@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowNoTitle">true</item>
+<!--        <item name="android:windowIsFloating">false</item>-->
+        <item name="android:windowMinWidthMinor">90%</item>
+    </style>
+
+</resources>

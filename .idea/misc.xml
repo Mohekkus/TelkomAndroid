@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/MonthYearPicker/src/main/res/layout/layout_calendar.xml" value="0.381025641025641" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_all_rounded_solid_darkest.xml" value="0.1" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_border_darkest.xml" value="0.1" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_border_white.xml" value="0.1495" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_circle_white.xml" value="0.1495" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_dash_left_round.xml" value="0.1495" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_dash_progressbar_bast.xml" value="0.1495" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_dash_progressbar_left.xml" value="0.1535" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_dash_progressbar_nikon.xml" value="0.1535" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_dash_right_round.xml" value="0.2255" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_green_left_corner.xml" value="0.1535" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_green_right_corner.xml" value="0.1535" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_oval.xml" value="0.1535" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_progress.xml" value="0.136" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_rounded.xml" value="0.247" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_rounded_bot.xml" value="0.2795" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_rounded_solid_primary.xml" value="0.1495" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_solid_darkest.xml" value="0.1" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/drawable_solid_white.xml" value="0.1" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1535" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.247" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/ic_baseline_done_24.xml" value="0.247" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.387" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/ic_calendar_mo.xml" value="0.1" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/drawable/shitty_bottom_navbar.xml" value="0.386" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/activity_main.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_bop.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_budget_bop.xml" value="0.3729166666666667" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_budget_detail_bast.xml" value="0.2935185185185185" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_budget_detail_rv.xml" value="0.3692708333333333" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_budget_edit_expanding.xml" value="0.2361111111111111" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_budget_edit_hidden.xml" value="0.2361111111111111" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_budget_item.xml" value="0.5" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_budget_mmyy.xml" value="0.25" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_dash_card.xml" value="0.1" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_dash_month.xml" value="0.19846153846153847" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_dash_recent.xml" value="0.33" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_dash_spinner.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_dash_unit_spinner.xml" value="0.33" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_detail_month.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_doc.xml" value="0.3850210970464135" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_doc_item.xml" value="0.3675925925925926" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_filter.xml" value="0.3671794871794872" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_login_email.xml" value="0.19846153846153847" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_login_phone.xml" value="0.19846153846153847" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/fragment_bop.xml" value="0.3729166666666667" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/fragment_budged_edit.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/fragment_budget.xml" value="0.3388888888888889" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/fragment_budget_container.xml" value="0.3229665071770335" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/fragment_budget_detail.xml" value="0.33" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/fragment_budget_edit.xml" value="0.5" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/fragment_budget_rev.xml" value="0.3635897435897436" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/fragment_budget_summary.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/fragment_dashboard.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/fragment_doc.xml" value="0.25" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/fragment_home.xml" value="0.20277777777777778" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/fragment_idea.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/fragment_notifications.xml" value="0.20277777777777778" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/fragment_overview.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/fragment_tracker.xml" value="0.3398148148148148" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/item_dash_spinner.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/layout_budget_container.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/layout_datepicker.xml" value="0.325" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/layout_doc.xml" value="0.33" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/layout_login.xml" value="0.25" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/menu/bottom_nav_menu.xml" value="0.38697916666666665" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

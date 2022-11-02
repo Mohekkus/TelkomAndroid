@@ -1,0 +1,24 @@
+DOC Tracker
+
+ Ada dua Chart - Plan sama Target
+
+ Search jugak
+
+ Item mirip budget hanya beda progress dan kolom 3 di rubah jadi deskripsi
+
+ Detail? liatin lebih detail aja
+
+BOP Tracker
+
+ Kureng Paham akakakka
+
+
+
+Budgetting Viewpager - Disable Swipe.
+Total atau search
+List - Edit Target dan/atau Plan
+
+DOC Tracker Viewpager - Disable Swipe.
+Chart dan Search
+List - Add/Edit Progress
+

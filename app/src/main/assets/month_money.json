@@ -1,0 +1,54 @@
+{
+  "data":
+  [
+    {
+      "month": "Januari",
+      "duit": "Rp 100.000.000"
+    },
+    {
+      "month": "Febuary",
+      "duit": "Rp 50.000.000"
+    },
+    {
+      "month": "Maret",
+      "duit": "-"
+    },
+    {
+      "month": "April",
+      "duit": "Rp 120.000.000"
+    },
+    {
+      "month": "May",
+      "duit": "-"
+    },
+    {
+      "month": "Juni",
+      "duit": "-"
+    },
+    {
+      "month": "Juli",
+      "duit": "Rp 50.000.000"
+    },
+    {
+      "month": "Agustus",
+      "duit": "-"
+    },
+    {
+      "month": "September",
+      "duit": "Rp 150.000.000",
+      "page": "page_table_customer"
+    },
+    {
+      "month": "October",
+      "duit": "Rp 999.999.999"
+    },
+    {
+      "month": "November",
+      "duit": "-"
+    },
+    {
+      "month": "Desember",
+      "duit": "-"
+    }
+  ]
+}

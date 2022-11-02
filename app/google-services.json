@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "999673337808",
+    "project_id": "mad-dashboard",
+    "storage_bucket": "mad-dashboard.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999673337808:android:a05e5bdf9fb4e990200bd5",
+        "android_client_info": {
+          "package_name": "com.telkom.capex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "999673337808-rio9j1a7k586pdhavqbi8p13bos4g1o6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMoxuBuJDSVlKEc9oULn6wz0SLGqD06YM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "999673337808-rio9j1a7k586pdhavqbi8p13bos4g1o6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999673337808:android:6ac828ee9b62b0f7200bd5",
+        "android_client_info": {
+          "package_name": "me.mohekkus.maddashboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "999673337808-rio9j1a7k586pdhavqbi8p13bos4g1o6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMoxuBuJDSVlKEc9oULn6wz0SLGqD06YM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "999673337808-rio9j1a7k586pdhavqbi8p13bos4g1o6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/drawable_rounded_bot"
+                android:backgroundTint="@color/green_darkest"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <WebView
+                        android:id="@+id/budget_summary_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="6dp"
+                    android:paddingBottom="8dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/primary"
+                        app:cardCornerRadius="24dp"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="8dp">
+
+                            <TextView
+                                android:id="@+id/textView17"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Target"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/textView29"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Rp. 200.000.000.000"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="#C28F3C"
+                        app:cardCornerRadius="24dp"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="8dp">
+
+                            <TextView
+                                android:id="@+id/textView28"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Actual"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/textView30"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Rp. 200.000.000.000"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Budgetting"
+                android:textAlignment="center"
+                android:textColor="@color/green_darkest"
+                android:textSize="34sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="24dp"
+                app:cardUseCompatPadding="true">
+
+                <SearchView
+                    android:id="@+id/budget_summary_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:iconifiedByDefault="false"
+                    android:queryBackground="@null"
+                    android:queryHint="Search" />
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/button"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="64dp"
+                android:background="@drawable/drawable_circle_white"
+                android:backgroundTint="@color/green_darkest"
+                android:paddingEnd="10dp"
+                android:text="Search" />
+
+            <Button
+                android:id="@+id/button_budget_view_list"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/transparent"
+                android:text="View List"
+                android:textColor="@color/green_darkest" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

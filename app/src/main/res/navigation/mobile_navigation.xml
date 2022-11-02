@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_dashboard">
+
+    <fragment
+        android:id="@+id/navigation_budget"
+        android:name="com.telkom.capex.ui.budget.fragments.BudgetSummary"
+        android:label="@string/title_budget">
+        <action
+            android:id="@+id/action_navigation_budget_to_budgetlist"
+            app:destination="@id/budgetlist" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.telkom.capex.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_dashboardDialog"
+            app:destination="@id/dashboardDialog" />
+        <action
+            android:id="@+id/action_navigation_dashboard_to_dashboardSearchFragment"
+            app:destination="@id/dashboardSearchFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.telkom.capex.ui.tracker.TrackerFragment"
+        android:label="@string/title_tracker"
+        tools:layout="@layout/fragment_notifications" />
+    <dialog
+        android:id="@+id/dashboardDialog"
+        android:name="com.telkom.capex.ui.dashboard.fragments.DashboardDialog"
+        android:label="DashboardDialog" />
+    <fragment
+        android:id="@+id/budgetlist"
+        android:name="com.telkom.capex.ui.budget.BudgetFragment"
+        android:label="budgetlist"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_budgetDetail_to_navigation_budget"
+            app:destination="@id/navigation_budget" />
+        <action
+            android:id="@+id/action_budgetlist_to_budgetDetail"
+            app:destination="@id/budgetDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/budgetDetail"
+        android:name="com.telkom.capex.ui.budget.fragments.BudgetDetail"
+        android:label="BudgetDetail" >
+        <action
+            android:id="@+id/action_budgetDetail2_to_budgetDetail"
+            app:destination="@id/budgetlist" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashboardSearchFragment"
+        android:name="com.telkom.capex.ui.dashboard.fragments.DashboardSearchFragment"
+        android:label="DashboardSearchFragment" />
+</navigation>

@@ -1,0 +1,44 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.TelkomCapexDID" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/green_dark</item>
+        <item name="colorPrimaryVariant">@color/green_darkest</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/white_kinda</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <item name="android:textColor">@color/white</item>
+        <!-- Customize your theme here. -->
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+    </style>
+
+    <style name="mySpinnerItemStyle" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:textColor">@color/green_dark</item>
+    </style>
+
+    <style name="Theme.TelkomCapexDID.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="BottomNavigationBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">@drawable/shitty_bottom_navbar</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="android:textColorSecondary">@color/green_darkest</item>
+    </style>
+
+    <style name="Theme.MadDashboard.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MadDashboard.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/green_darkest</item>
+        <item name="android:textColor">@color/green_darkest</item>
+    </style>
+
+</resources>

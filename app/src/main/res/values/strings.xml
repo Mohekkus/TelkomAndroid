@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Telkom Capex DID</string>
+<!--    <string name="title_home">Home</string>-->
+    <string name="title_budget">Budget</string>
+    <string name="title_tracker">Tracker</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="dash_scroll">DASH SCROLL STRING</string>
+    <string name="dash_spinner">DASH SPINNER STRING</string>
+    <string name="title_activity_container">ContainerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+</resources>
