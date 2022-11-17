@@ -28,10 +28,14 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_tracker"
         android:name="com.telkom.capex.ui.tracker.TrackerFragment"
         android:label="@string/title_tracker"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notifications" >
+        <action
+            android:id="@+id/action_navigation_tracker_to_DOCDetailFragment"
+            app:destination="@id/DOCDetailFragment" />
+    </fragment>
     <dialog
         android:id="@+id/dashboardDialog"
         android:name="com.telkom.capex.ui.dashboard.fragments.DashboardDialog"
@@ -60,4 +64,8 @@
         android:id="@+id/dashboardSearchFragment"
         android:name="com.telkom.capex.ui.dashboard.fragments.DashboardSearchFragment"
         android:label="DashboardSearchFragment" />
+    <fragment
+        android:id="@+id/DOCDetailFragment"
+        android:name="com.telkom.capex.ui.tracker.fragments.doc.DOCDetailFragment"
+        android:label="DOCDetailFragment" />
 </navigation>

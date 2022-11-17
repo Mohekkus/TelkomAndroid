@@ -11,6 +11,7 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -94,7 +95,7 @@ class DOCTrackerFragment: Fragment() {
                             if (viewModel.selectingItemList.value == true)
                                 multipleSelect(model, holder)
                             else
-                                Snackbar.make(view, "Go to detailed with date", Snackbar.LENGTH_LONG).show()
+                                findNavController().navigate(R.id.action_navigation_tracker_to_DOCDetailFragment) //Send request with date
                         }
                         setOnLongClickListener {
                             multipleSelect(model, holder)

@@ -35,9 +35,9 @@ class LoginActivity: AppCompatActivity() {
                 adapter = LoginAdapter(this@LoginActivity)
             }
             bNext.setOnClickListener {
-//                supportFragmentManager.beginTransaction()
-//                    .add(binding.root.id, DOCTrackerFragment())
-//                    .commit()
+                supportFragmentManager.beginTransaction()
+                    .add(binding.root.id, DOCTrackerFragment())
+                    .commit()
             }
             bLogin.setOnClickListener {
                 toDashboard()

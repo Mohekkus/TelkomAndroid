@@ -134,7 +134,6 @@
                     android:id="@+id/textView41"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="6dp"
                     android:text="Last Updated on : 21/08/2022"
                     android:textAlignment="viewEnd"

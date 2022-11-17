@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.telkom.capex.R
 import com.telkom.capex.databinding.FragmentBopBinding
@@ -29,16 +31,19 @@ class BOPTrackerFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             bopRv.apply {
+                layoutManager = LinearLayoutManager(requireContext())
                 adapter = object : RecyclerView.Adapter<ViewHolder>() {
-                    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
-                        LayoutInflater.from(requireContext()).inflate(R.layout.component_bop, parent, false)
-                    )
+                    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+                        ViewHolder(
+                            LayoutInflater.from(requireContext())
+                                .inflate(R.layout.component_bop, parent, false)
+                        )
 
                     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
                         val itemview = holder.itemView
 
                         itemview.apply {
-
+                            findViewById<TextView>(R.id.textView49).text = "a$position"
                             setOnClickListener {
 
                             }

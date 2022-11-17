@@ -1,17 +1,18 @@
 DOC Tracker
 
- Ada dua Chart - Plan sama Target
+v Ada dua Chart - Plan sama Target
 
- Search jugak
+v Search jugak
 
- Item mirip budget hanya beda progress dan kolom 3 di rubah jadi deskripsi
+v Item mirip budget hanya beda progress dan kolom 3 di rubah jadi deskripsi
 
- Detail? liatin lebih detail aja
+v Detail? liatin lebih detail aja
+
+Kurang View Progress Approval, Deskripsi Progress, Edit dan deskripsi kontrak (opsional)
 
 BOP Tracker
 
- Kureng Paham akakakka
-
+v Layout doang
 
 
 Budgetting Viewpager - Disable Swipe.
