@@ -43,7 +43,7 @@
     <fragment
         android:id="@+id/budgetlist"
         android:name="com.telkom.capex.ui.budget.BudgetFragment"
-        android:label="budgetlist"
+        android:label="@string/title_budget"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_budgetDetail_to_navigation_budget"
@@ -55,7 +55,7 @@
     <fragment
         android:id="@+id/budgetDetail"
         android:name="com.telkom.capex.ui.budget.fragments.BudgetDetail"
-        android:label="BudgetDetail" >
+        android:label="@string/title_budget">
         <action
             android:id="@+id/action_budgetDetail2_to_budgetDetail"
             app:destination="@id/budgetlist" />

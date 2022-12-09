@@ -145,7 +145,7 @@
                         android:id="@+id/tv_log_option"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Check Approval"
+                        android:text="Daftar BOP"
                         android:textSize="16sp"
                         android:translationY="-.55dp" />
                 </LinearLayout>

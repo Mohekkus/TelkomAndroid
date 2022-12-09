@@ -21,6 +21,7 @@ import com.telkom.capex.databinding.FragmentDocBinding
 import com.telkom.capex.etc.KeyboardUtils
 import com.telkom.capex.etc.Utility
 import com.telkom.capex.ui.tracker.TrackerViewModel
+import com.telkom.capex.ui.tracker.fragments.doc.DOCDetailFragment
 import com.telkom.capex.ui.tracker.model.DOCFilter
 import com.telkom.capex.ui.tracker.model.DOCSelectedModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -94,6 +95,16 @@ class DOCTrackerFragment: Fragment() {
                         setOnClickListener {
                             if (viewModel.selectingItemList.value == true)
                                 multipleSelect(model, holder)
+                            if (arguments?.isEmpty == false)
+                                arguments?.getBoolean("Guest").apply {
+                                    if (this == true)
+                                        parentFragmentManager.beginTransaction()
+                                            .add(binding.root.id, DOCDetailFragment().apply {
+                                                arguments // = Bundle().apply{}
+                                            })
+                                            .addToBackStack("Guest-Tracker-Detail")
+                                            .commit()
+                                }
                             else
                                 findNavController().navigate(R.id.action_navigation_tracker_to_DOCDetailFragment) //Send request with date
                         }
@@ -138,7 +149,7 @@ class DOCTrackerFragment: Fragment() {
                 val mockModel = mutableListOf<DOCFilter>().apply {
                     add(DOCFilter("All Status"))
                     add(DOCFilter("Done (1)"))
-                    add(DOCFilter("In Progress (5)"))
+                    add(DOCFilter("Progress (5)"))
                 }
                 layoutManager = GridLayoutManager(requireContext(), 3)
                 adapter = object : RecyclerView.Adapter<ViewHolder>() {

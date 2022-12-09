@@ -1,6 +1,14 @@
 package com.telkom.capex.etc
 
+import java.text.SimpleDateFormat
+import java.util.*
+
 object MonthModifier {
+
+    fun currentMonthInt(): Int {
+        val dateFormat = SimpleDateFormat("MM", Locale.getDefault())
+        return dateFormat.format(Date()).toInt()
+    }
 
     fun fromMonth(month: String) : Int = when (month) {
         "January" -> 1

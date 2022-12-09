@@ -2,8 +2,6 @@ package com.telkom.capex.ui.budget
 
 import android.content.res.AssetManager
 import android.os.Bundle
-import android.util.Log
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -11,8 +9,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.view.get
-import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.android.material.snackbar.Snackbar
 import com.telkom.capex.R
 import com.telkom.capex.databinding.FragmentBudgetContainerBinding
+import com.telkom.capex.etc.MonthModifier
 import com.telkom.capex.etc.ToMiddleScroller
 import com.telkom.capex.ui.budget.fragments.BudgetList
 import com.telkom.capex.ui.budget.fragments.ViewHolder
@@ -149,6 +146,20 @@ class BudgetFragment : Fragment()  {
                     }
                 })
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        binding.apply {
+            val currentMonth = MonthModifier.currentMonthInt() - 1
+
+            budgetPagerList.setCurrentItem(
+                currentMonth,
+                true
+            )
+            rvMonthYear.smoothScrollToPosition(currentMonth)
         }
     }
 
