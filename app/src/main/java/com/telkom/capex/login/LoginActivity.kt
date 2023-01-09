@@ -34,6 +34,9 @@ class LoginActivity: AppCompatActivity() {
             loginPager.apply {
                 isUserInputEnabled = false
                 adapter = LoginAdapter(this@LoginActivity)
+                viewModel.loginProgress.observe(this@LoginActivity) {
+                    setCurrentItem(it, true)
+                }
             }
             bNext.setOnClickListener {
                 supportFragmentManager.beginTransaction()
@@ -48,7 +51,7 @@ class LoginActivity: AppCompatActivity() {
             viewModel.apply {
                 loginProgress.observe(this@LoginActivity) { value ->
                     bLogin.setOnClickListener {
-                        if (value < 2) setProgress(value + 1)
+                        if (value < 1) setProgress(value + 1)
                         else attemptLogin()
                     }
                 }

@@ -15,8 +15,8 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return when (arguments?.getInt("pos", 0)) {
-            0 -> showLoginByPhone(inflater, container)
-            else -> showLoginByEmail(inflater, container)
+            0 -> showLoginByEmail(inflater, container)
+            else -> showLoginPassword(inflater, container)
         }
     }
 
@@ -31,5 +31,9 @@ class LoginFragment : Fragment() {
 
     private fun showLoginByEmail(inflater: LayoutInflater, container: ViewGroup?): View {
         return inflater.inflate(R.layout.component_login_email, container, false)
+    }
+
+    private fun showLoginPassword(inflater: LayoutInflater, container: ViewGroup?): View {
+        return inflater.inflate(R.layout.component_login_password, container, false)
     }
 }
