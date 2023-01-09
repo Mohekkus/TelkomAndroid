@@ -22,6 +22,8 @@ class DOCDetailFragment: Fragment() {
         return binding.root
     }
 
-
+    override fun onStop() {
+        super.onStop()
+    }
 
 }

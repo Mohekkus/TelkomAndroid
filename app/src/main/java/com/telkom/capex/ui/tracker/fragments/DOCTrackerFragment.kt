@@ -93,10 +93,8 @@ class DOCTrackerFragment: Fragment() {
                                 )
                         }
                         setOnClickListener {
-                            if (viewModel.selectingItemList.value == true)
-                                multipleSelect(model, holder)
-                            if (arguments?.isEmpty == false)
-                                arguments?.getBoolean("Guest").apply {
+                            when (arguments?.isEmpty) {
+                                false -> arguments?.getBoolean("Guest").apply {
                                     if (this == true)
                                         parentFragmentManager.beginTransaction()
                                             .add(binding.root.id, DOCDetailFragment().apply {
@@ -105,10 +103,19 @@ class DOCTrackerFragment: Fragment() {
                                             .addToBackStack("Guest-Tracker-Detail")
                                             .commit()
                                 }
-                            else
-                                findNavController().navigate(R.id.action_navigation_tracker_to_DOCDetailFragment) //Send request with date
+                                else ->
+                                    viewModel.selectingItemList.observe(viewLifecycleOwner) { value ->
+                                        if (value == true)
+                                            multipleSelect(model, holder)
+                                        else
+                                            findNavController().navigate(R.id.action_navigation_tracker_to_DOCDetailFragment) //Send request with date
+                                    }
+                            }
                         }
+
                         setOnLongClickListener {
+                            if (arguments?.getBoolean("Guest") == true) return@setOnLongClickListener true
+
                             multipleSelect(model, holder)
 
                             return@setOnLongClickListener true
@@ -220,6 +227,15 @@ class DOCTrackerFragment: Fragment() {
             }
         }
     }
+
+    override fun onPause() {
+        super.onPause()
+        Log.e("Status", "On Pause")
+
+        if (arguments?.isEmpty == false)
+            arguments = null
+    }
 }
+
 
 class ViewHolder(view:View): RecyclerView.ViewHolder(view)
