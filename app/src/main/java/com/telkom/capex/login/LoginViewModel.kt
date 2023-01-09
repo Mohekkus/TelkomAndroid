@@ -10,11 +10,17 @@ class LoginViewModel : ViewModel() {
         value = null
     }
     val username: LiveData<String> = _username
+    fun setUsername(string: String) {
+        _username.value = string
+    }
 
     private val _password = MutableLiveData<String>().apply {
         value = null
     }
     val password: LiveData<String> = _password
+    fun setPassword(string: String) {
+        _password.value = string
+    }
 
     private val _loginProgress = MutableLiveData(0)
 

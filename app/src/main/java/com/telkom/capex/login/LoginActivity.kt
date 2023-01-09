@@ -49,14 +49,29 @@ class LoginActivity: AppCompatActivity() {
                     .commit()
             }
             viewModel.apply {
-                loginProgress.observe(this@LoginActivity) { value ->
-                    bLogin.setOnClickListener {
-                        if (value < 1) setProgress(value + 1)
-                        else attemptLogin()
-                    }
+                bLogin.setOnClickListener {
+                    loginProgress.value?.let { value -> doCheck(value) }
                 }
             }
         }
+    }
+
+    private fun doCheck(value: Int) {
+            viewModel.apply {
+                when (value) {
+                    0 ->
+                        username.observe(this@LoginActivity) {
+                            if (it.isNullOrEmpty()) return@observe
+                            else setProgress(value + 1)
+                        }
+                    1 ->
+                        password.observe(this@LoginActivity) {
+                            if (it.isNullOrEmpty()) return@observe
+                            else attemptLogin()
+                        }
+                    else -> attemptLogin()
+                }
+            }
     }
 
     private fun attemptLogin() {
