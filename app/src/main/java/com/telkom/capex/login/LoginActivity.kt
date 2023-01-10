@@ -39,6 +39,7 @@ class LoginActivity: AppCompatActivity() {
                 }
             }
             bNext.setOnClickListener {
+                //DOCTrackerFragment
                 supportFragmentManager.beginTransaction()
                     .add(binding.root.id, DOCTrackerFragment().apply {
                         arguments = Bundle().apply {

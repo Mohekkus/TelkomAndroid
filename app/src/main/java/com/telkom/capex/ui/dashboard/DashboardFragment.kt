@@ -20,12 +20,14 @@ import com.telkom.capex.ui.dashboard.fragments.DashboardDialog
 import com.telkom.capex.ui.dashboard.fragments.MonthlyBastFragment
 import com.telkom.capex.etc.ChartDemo
 import com.telkom.capex.etc.MonthModifier
+import com.telkom.capex.ui.dashboard.fragments.NewContractFragment
 import com.telkom.capex.ui.dashboard.helper.DashboardFirestore
 import com.telkom.capex.ui.dashboard.helper.adapter.DashboardGridAdapter
 import com.telkom.capex.ui.dashboard.helper.interfaces.DashboardInterface
 import com.telkom.capex.ui.dashboard.helper.model.DashboardModel
 import com.telkom.capex.ui.dashboard.helper.model.DataItem
 import com.telkom.capex.ui.dashboard.helper.model.MonthlyBast
+import com.telkom.capex.ui.tracker.fragments.DOCTrackerFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import javax.inject.Inject
@@ -181,7 +183,8 @@ class DashboardFragment : Fragment(), DashboardInterface {
             }
             dashCardNew.apply {
                 setOnClickListener {
-                    soonTM()
+                    findNavController().navigate(R.id.action_navigation_dashboard_to_newContractFragment)
+//                    soonTM()
                 }
             }
             dashSearch.setOnClickListener {

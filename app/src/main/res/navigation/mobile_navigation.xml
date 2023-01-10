@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_navigation_dashboard_to_dashboardSearchFragment"
             app:destination="@id/dashboardSearchFragment" />
+        <action
+            android:id="@+id/action_navigation_dashboard_to_newContractFragment"
+            app:destination="@id/newContractFragment" />
     </fragment>
 
     <fragment
@@ -68,4 +71,8 @@
         android:id="@+id/DOCDetailFragment"
         android:name="com.telkom.capex.ui.tracker.fragments.doc.DOCDetailFragment"
         android:label="DOCDetailFragment" />
+    <fragment
+        android:id="@+id/newContractFragment"
+        android:name="com.telkom.capex.ui.dashboard.fragments.NewContractFragment"
+        android:label="NewContractFragment" />
 </navigation>
