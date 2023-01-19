@@ -6,12 +6,16 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import com.telkom.capex.R
 import com.telkom.capex.databinding.ComponentContractInputNameBinding
-import com.telkom.capex.databinding.ComponentContractSelectUnitBinding
+import com.telkom.capex.databinding.ComponentContractSpinnerUnitBinding
 import com.telkom.capex.databinding.FragmentNewContractBinding
 import java.text.DecimalFormat
+
 
 class NewContractFragment : Fragment() {
 
@@ -21,7 +25,7 @@ class NewContractFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentNewContractBinding.inflate(layoutInflater,container,false)
         return binding.root
     }
@@ -42,7 +46,33 @@ class NewContractFragment : Fragment() {
                 })
             }
             contractRequirement.apply {
-                ComponentContractSelectUnitBinding.inflate(layoutInflater).apply {
+                ComponentContractSpinnerUnitBinding.inflate(layoutInflater).apply {
+                    unitSelection.apply {
+                        adapter = ArrayAdapter.createFromResource(
+                            requireContext(),
+                            R.array.unit_list,
+                            R.layout.component_contract_dropdown
+                        )
+                        onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(
+                                parent: AdapterView<*>?,
+                                view: View?,
+                                pos: Int,
+                                id: Long
+                            ) {
+                                parent?.getItemAtPosition(pos).toString().apply {
+                                    unitName.text = this
+//                                    Snackbar.make(
+//                                        requireView().rootView,
+//                                        this,
+//                                        Snackbar.LENGTH_LONG
+//                                    ).show()
+                                }
+                            }
+
+                            override fun onNothingSelected(p0: AdapterView<*>?) {}
+                        }
+                    }
 
                     spinnerActivator.setOnClickListener {
                         unitSelection.performClick()
@@ -52,7 +82,7 @@ class NewContractFragment : Fragment() {
                 ComponentContractInputNameBinding.inflate(layoutInflater).apply {
 
                     tietContract.apply {
-                        onFocusChangeListener = View.OnFocusChangeListener { view, b ->
+                        onFocusChangeListener = View.OnFocusChangeListener { _, b ->
                             if (b) tilContract.helperText = ""
                             else tilContract.helperText = "Tap to input new contract header"
                         }

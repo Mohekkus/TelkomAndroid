@@ -37,6 +37,8 @@
         <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_budget_edit_hidden.xml" value="0.2361111111111111" />
         <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_budget_item.xml" value="0.5" />
         <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_budget_mmyy.xml" value="0.25" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_contract_dropdown.xml" value="0.24322916666666666" />
+        <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_contract_spinner_unit.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_dash_card.xml" value="0.1" />
         <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_dash_month.xml" value="0.19846153846153847" />
         <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/component_dash_recent.xml" value="0.33" />
@@ -75,6 +77,7 @@
         <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/layout_doc.xml" value="0.33" />
         <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/layout/layout_login.xml" value="0.33" />
         <entry key="..\:/Users/mohek/AndroidStudioProjects/TelkomCapexDID/app/src/main/res/menu/bottom_nav_menu.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/mohek/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_dropdown_item.xml" value="0.25729166666666664" />
       </map>
     </option>
   </component>

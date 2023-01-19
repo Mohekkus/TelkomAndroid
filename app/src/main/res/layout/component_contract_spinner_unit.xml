@@ -38,6 +38,7 @@
                 android:id="@+id/linearLayout14"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@color/green_dark"
                 android:gravity="bottom"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -60,7 +61,7 @@
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/textView66"
+                        android:id="@+id/unit_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="IP Metro Development" />

@@ -9,7 +9,6 @@ import com.telkom.capex.ContainerActivity
 import com.telkom.capex.databinding.LayoutLoginBinding
 import com.telkom.capex.login.adapter.LoginAdapter
 import com.telkom.capex.ui.dashboard.fragments.NewContractFragment
-import com.telkom.capex.ui.tracker.fragments.DOCTrackerFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
