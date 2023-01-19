@@ -8,6 +8,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.telkom.capex.ContainerActivity
 import com.telkom.capex.databinding.LayoutLoginBinding
 import com.telkom.capex.login.adapter.LoginAdapter
+import com.telkom.capex.ui.dashboard.fragments.NewContractFragment
 import com.telkom.capex.ui.tracker.fragments.DOCTrackerFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -41,10 +42,10 @@ class LoginActivity: AppCompatActivity() {
             bNext.setOnClickListener {
                 //DOCTrackerFragment
                 supportFragmentManager.beginTransaction()
-                    .add(binding.root.id, DOCTrackerFragment().apply {
-                        arguments = Bundle().apply {
-                            putBoolean("Guest", true)
-                        }
+                    .add(binding.root.id, NewContractFragment().apply {
+//                        arguments = Bundle().apply {
+//                            putBoolean("Guest", true)
+//                        }
                     })
                     .addToBackStack("Guest-Tracker")
                     .commit()
