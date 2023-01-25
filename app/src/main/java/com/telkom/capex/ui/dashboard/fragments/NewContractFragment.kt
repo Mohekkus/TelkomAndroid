@@ -89,6 +89,17 @@ class NewContractFragment : Fragment() {
                     }
                     addView(this.root)
                 }
+                buttonSave.apply {
+                    val validation = false
+
+                    if (!validation) setBackgroundColor(
+                        resources.getColor(R.color.white_kinda)
+                    )
+                    setOnClickListener {
+                        if (!validation)
+                            return@setOnClickListener
+                    }
+                }
             }
         }
     }
