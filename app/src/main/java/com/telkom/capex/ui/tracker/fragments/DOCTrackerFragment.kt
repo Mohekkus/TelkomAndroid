@@ -98,7 +98,10 @@ class DOCTrackerFragment: Fragment() {
                                     if (this == true)
                                         parentFragmentManager.beginTransaction()
                                             .add(binding.root.id, DOCDetailFragment().apply {
-                                                arguments // = Bundle().apply{}
+                                                arguments = when (arguments?.isEmpty) {
+                                                    true -> null
+                                                    else -> this@DOCTrackerFragment.arguments
+                                                }
                                             })
                                             .addToBackStack("Guest-Tracker-Detail")
                                             .commit()
@@ -230,7 +233,6 @@ class DOCTrackerFragment: Fragment() {
 
     override fun onPause() {
         super.onPause()
-        Log.e("Status", "On Pause")
 
         if (arguments?.isEmpty == false)
             arguments = null

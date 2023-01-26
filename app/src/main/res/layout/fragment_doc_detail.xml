@@ -312,35 +312,23 @@
                         android:id="@+id/textView52"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
                         android:text="Description"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <FrameLayout
+                    <EditText
+                        android:id="@+id/etext_description"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <EditText
-                            android:id="@+id/et_description"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:ems="10"
-                            android:gravity="start|top"
-                            android:hint="@string/app_name"
-                            android:inputType="textMultiLine"
-                            android:visibility="gone" />
-
-                        <TextView
-                            android:id="@+id/text_description"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
-                            android:textAlignment="textStart"
-                            android:textColor="@color/black"
-                            android:typeface="sans" />
-                    </FrameLayout>
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:ems="10"
+                        android:focusable="auto"
+                        android:inputType="textLongMessage|textMultiLine"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+                        android:textColor="@color/text_color_state_list"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -348,55 +336,10 @@
             <LinearLayout
                 android:id="@+id/container_progress"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_prog_0"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/drawable_border_darkest"
-                    android:text="OSM"
-                    android:textColor="@color/green_darkest" />
-
-                <Button
-                    android:id="@+id/btn_prog_1"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/drawable_border_darkest"
-                    android:text="Deputi"
-                    android:textColor="@color/green_darkest" />
-
-                <Button
-                    android:id="@+id/btn_prog_2"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/drawable_border_darkest"
-                    android:text="EGM"
-                    android:textColor="@color/green_darkest" />
-
-                <Button
-                    android:id="@+id/btn_prog_done"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/drawable_border_darkest"
-                    android:text="DONE"
-                    android:textColor="@color/green_darkest" />
-            </LinearLayout>
+                android:orientation="horizontal"/>
 
             <Button
                 android:id="@+id/btn_edit"
@@ -405,6 +348,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:background="@drawable/drawable_border_darkest"
+                android:focusable="false"
                 android:text="Edit Contract Progress"
                 android:textColor="@color/green_darkest" />
 
