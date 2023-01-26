@@ -60,7 +60,7 @@ class DashboardFragment : Fragment(), DashboardInterface {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getData()
+//        getData()
         initiateActivity()
     }
 
@@ -82,7 +82,6 @@ class DashboardFragment : Fragment(), DashboardInterface {
             mehLottie.setOnClickListener {
                 mehLottie.playAnimation()
                 soonTM()
-//                Toast.makeText(this@DashboardActivity, "Kontol, eh, kontol", Toast.LENGTH_LONG).show()
             }
             dashFcviewSpinner.apply {
                 parentFragmentManager.findFragmentById(this.id).apply {

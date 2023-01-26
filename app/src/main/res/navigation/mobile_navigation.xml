@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_navigation_tracker_to_DOCDetailFragment"
             app:destination="@id/DOCDetailFragment" />
+        <action
+            android:id="@+id/action_navigation_tracker_to_DOCEditFragment2"
+            app:destination="@id/DOCEditFragment" />
     </fragment>
     <dialog
         android:id="@+id/dashboardDialog"
@@ -75,4 +78,8 @@
         android:id="@+id/newContractFragment"
         android:name="com.telkom.capex.ui.dashboard.fragments.NewContractFragment"
         android:label="NewContractFragment" />
+    <fragment
+        android:id="@+id/DOCEditFragment"
+        android:name="com.telkom.capex.ui.tracker.fragments.doc.DOCEditFragment"
+        android:label="DOCEditFragment" />
 </navigation>
