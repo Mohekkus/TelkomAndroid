@@ -59,13 +59,6 @@
                         android:textSize="14sp" />
                 </LinearLayout>
 
-                <CheckBox
-                    android:id="@+id/doc_check"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    tools:ignore="TouchTargetSizeCheck" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -149,7 +142,6 @@
                         android:gravity="center"
                         android:text="OSM"
                         android:textColor="@color/primary"
-                        android:textIsSelectable="true"
                         android:textStyle="bold" />
 
                     <TextView
@@ -162,12 +154,10 @@
                         android:singleLine="true"
                         android:text="Progress"
                         android:textColor="@color/primary"
-                        android:textIsSelectable="true"
                         app:autoSizeMaxTextSize="100sp"
                         app:autoSizeMinTextSize="2sp"
                         app:autoSizeStepGranularity="1sp"
-                        app:autoSizeTextType="uniform"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        app:autoSizeTextType="uniform"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -186,7 +176,6 @@
                         android:gravity="center"
                         android:text="Deputi"
                         android:textColor="@color/green_darkest"
-                        android:textIsSelectable="true"
                         android:textStyle="bold" />
 
                     <TextView
@@ -199,12 +188,10 @@
                         android:singleLine="true"
                         android:text="Waiting"
                         android:textColor="@color/green_darkest"
-                        android:textIsSelectable="true"
                         app:autoSizeMaxTextSize="100sp"
                         app:autoSizeMinTextSize="2sp"
                         app:autoSizeStepGranularity="1sp"
-                        app:autoSizeTextType="uniform"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        app:autoSizeTextType="uniform"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -223,8 +210,7 @@
                         android:gravity="center"
                         android:text="EGM"
                         android:textColor="@color/green_darkest"
-                        android:textIsSelectable="true"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/doc_filled_val"
@@ -236,13 +222,12 @@
                         android:singleLine="true"
                         android:text="Waiting"
                         android:textColor="@color/green_darkest"
-                        android:textIsSelectable="true"
                         app:autoSizeMaxTextSize="100sp"
                         app:autoSizeMinTextSize="2sp"
                         app:autoSizeStepGranularity="1sp"
-                        app:autoSizeTextType="uniform"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        app:autoSizeTextType="uniform"/>
                 </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout

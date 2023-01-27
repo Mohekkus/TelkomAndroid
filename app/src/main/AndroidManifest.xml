@@ -29,7 +29,7 @@
         </activity>
         <activity
             android:name=".ContainerActivity"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="nosensor"
             tools:replace="screenOrientation"
             android:windowSoftInputMode="adjustPan"
