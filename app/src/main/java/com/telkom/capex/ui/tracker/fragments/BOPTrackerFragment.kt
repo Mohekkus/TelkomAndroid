@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.telkom.capex.R
@@ -43,9 +44,9 @@ class BOPTrackerFragment: Fragment() {
                         val itemview = holder.itemView
 
                         itemview.apply {
-                            findViewById<TextView>(R.id.textView49).text = "a$position"
+//                            findViewById<TextView>(R.id.textView49).text = "a$position"
                             setOnClickListener {
-
+                                findNavController().navigate(R.id.action_navigation_tracker_to_BOPDetailFragment)
                             }
                         }
                     }

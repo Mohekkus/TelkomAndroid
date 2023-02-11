@@ -35,7 +35,7 @@
                 android:background="@drawable/drawable_solid_white"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:text="Done" />
+                android:text="Banjarmasin" />
         </LinearLayout>
 
         <FrameLayout
