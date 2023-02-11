@@ -65,6 +65,9 @@
         <action
             android:id="@+id/action_budgetDetail2_to_budgetDetail"
             app:destination="@id/budgetlist" />
+        <action
+            android:id="@+id/action_budgetDetail_to_budgetEdit"
+            app:destination="@id/budgetEdit" />
     </fragment>
     <fragment
         android:id="@+id/dashboardSearchFragment"
@@ -82,4 +85,12 @@
         android:id="@+id/DOCEditFragment"
         android:name="com.telkom.capex.ui.tracker.fragments.doc.DOCEditFragment"
         android:label="DOCEditFragment" />
+    <fragment
+        android:id="@+id/budgetEdit"
+        android:name="com.telkom.capex.ui.budget.fragments.BudgetEdit"
+        android:label="BudgetEdit" >
+        <action
+            android:id="@+id/action_budgetEdit_to_budgetDetail"
+            app:destination="@id/budgetDetail" />
+    </fragment>
 </navigation>
