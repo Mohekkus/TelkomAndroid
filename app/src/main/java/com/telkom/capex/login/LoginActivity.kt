@@ -8,6 +8,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.telkom.capex.ContainerActivity
 import com.telkom.capex.databinding.LayoutLoginBinding
 import com.telkom.capex.login.adapter.LoginAdapter
+import com.telkom.capex.ui.dashboard.fragments.NewContractFragment
 import com.telkom.capex.ui.tracker.fragments.DOCTrackerFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -61,9 +62,15 @@ class LoginActivity: AppCompatActivity() {
             viewModel.apply {
                 when (value) {
                     0 ->
-                        if (username.value.isNullOrEmpty()) return else setProgress(value + 1)
+                        username.observe(this@LoginActivity) {
+                            if (it.isNullOrEmpty()) return@observe
+                            else setProgress(value + 1)
+                        }
                     1 ->
-                        if(password.value.isNullOrEmpty()) return else setProgress(value + 1)
+                        password.observe(this@LoginActivity) {
+                            if (it.isNullOrEmpty()) return@observe
+                            else attemptLogin()
+                        }
                     else -> attemptLogin()
                 }
             }

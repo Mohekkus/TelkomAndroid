@@ -1,11 +1,9 @@
 *.iml
 *.tmp
 *.cache
-*.caches
 .gradle
 /local.properties
 /.idea/caches
-/.idea/.tmp
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
