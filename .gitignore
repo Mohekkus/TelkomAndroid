@@ -1,6 +1,7 @@
 *.iml
 *.tmp
 *.cache
+*.caches
 .gradle
 */caches
 */cache
