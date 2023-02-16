@@ -2,6 +2,9 @@
 *.tmp
 *.cache
 .gradle
+*/caches
+*/cache
+*/tmp
 /local.properties
 /.idea/caches
 /.idea/libraries
