@@ -1,23 +1,29 @@
 package com.telkom.capex.login
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.telkom.capex.ContainerActivity
+import com.telkom.capex.data.utility.Status
 import com.telkom.capex.databinding.LayoutLoginBinding
-import com.telkom.capex.login.adapter.LoginAdapter
-import com.telkom.capex.ui.dashboard.fragments.NewContractFragment
-import com.telkom.capex.ui.tracker.fragments.DOCTrackerFragment
+import com.telkom.capex.login.ui.adapter.LoginAdapter
+import com.telkom.capex.menu.tracker.fragments.DOCTrackerFragment
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class LoginActivity: AppCompatActivity() {
+class LoginActivity(): AppCompatActivity() {
+
+    @Inject lateinit var sharedPreferences: SharedPreferences
+    private val viewModel: LoginViewModel by viewModels()
 
     lateinit var binding: LayoutLoginBinding
-
-    private val viewModel by viewModels<LoginViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -27,6 +33,28 @@ class LoginActivity: AppCompatActivity() {
             binding = this
             setContentView(binding.root)
         }
+
+        viewModel.token.observe(this, Observer {
+            when(it.status){
+                Status.SUCCESS -> {
+                    it.data.let { _token ->
+//                        if (sharedPreferences.contains("token") && sharedPreferences.getString("token", "") != _token.toString())
+                            sharedPreferences.edit()
+                                .putString("token", _token.toString())
+                                .apply()
+
+                        Snackbar.make(binding.root, _token?.token.toString(), Snackbar.LENGTH_SHORT).show()
+                    }
+                }
+                Status.LOADING -> {
+
+                }
+                Status.ERROR -> {
+                    Snackbar.make(binding.root, "Something went wrong",Snackbar.LENGTH_SHORT).show()
+                }
+            }
+        })
+
         initiateLogin()
     }
 
@@ -61,17 +89,9 @@ class LoginActivity: AppCompatActivity() {
     private fun doCheck(value: Int) {
             viewModel.apply {
                 when (value) {
-                    0 ->
-                        username.observe(this@LoginActivity) {
-                            if (it.isNullOrEmpty()) return@observe
-                            else setProgress(value + 1)
-                        }
-                    1 ->
-                        password.observe(this@LoginActivity) {
-                            if (it.isNullOrEmpty()) return@observe
-                            else attemptLogin()
-                        }
-                    else -> attemptLogin()
+                    0 -> if (username.value.isNullOrEmpty()) return else setProgress(value + 1)
+                    1 -> if (password.value.isNullOrEmpty()) return else attemptLogin()
+                    else -> Snackbar.make(binding.root, "Something went wrong: Restart app, to continue", Snackbar.LENGTH_SHORT).show()
                 }
             }
     }
