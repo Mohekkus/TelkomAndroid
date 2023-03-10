@@ -25,7 +25,7 @@ class BudgetSummary: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentBudgetSummaryBinding.inflate(
             inflater,
             container,
@@ -69,7 +69,6 @@ class BudgetSummary: Fragment() {
                             KeyboardUtils.hide(requireActivity(), binding.root)
                             budgetSummarySearch.clearFocus()
 
-                            val submittedText = p0
                             return false
                         }
 

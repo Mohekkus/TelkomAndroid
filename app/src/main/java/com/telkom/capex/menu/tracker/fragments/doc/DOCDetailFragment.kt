@@ -35,7 +35,7 @@ class DOCDetailFragment: Fragment() {
                     containerProgress.visibility = View.GONE
                     etextDescription.isEnabled = false
                 }
-                else -> null
+                else -> return
             }
 
             btnEdit.setOnClickListener {

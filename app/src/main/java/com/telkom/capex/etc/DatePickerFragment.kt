@@ -10,11 +10,4 @@ class DatePickerFragment: Fragment() {
 
     private lateinit var binding: Fragment
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
 }

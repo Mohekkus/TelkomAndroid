@@ -25,7 +25,7 @@ class BudgetList: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentBudgetBinding.inflate(
             inflater, container, false
         )
@@ -53,10 +53,10 @@ class BudgetList: Fragment() {
 
                         adapterview.apply {
                             if (position + 1  == itemCount) {
-                                val rid = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+                                val rid = resources.getIdentifier("navigation_bar_height", "dimen", "android")
                                 if (rid > 0) {
                                     adapterview.layoutParams = ViewGroup.MarginLayoutParams(adapterview.layoutParams).apply {
-                                        bottomMargin = resources.getDimensionPixelSize(rid);
+                                        bottomMargin = resources.getDimensionPixelSize(rid)
                                     }
                                 }
                             }
@@ -84,7 +84,6 @@ class BudgetList: Fragment() {
                             KeyboardUtils.hide(requireActivity(), binding.root)
                             budgetSearch.clearFocus()
 
-                            val submittedText = p0
                             return false
                         }
 

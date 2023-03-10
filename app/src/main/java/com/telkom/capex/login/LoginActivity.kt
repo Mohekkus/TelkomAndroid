@@ -1,13 +1,11 @@
 package com.telkom.capex.login
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.telkom.capex.ContainerActivity
 import com.telkom.capex.data.utility.Status
@@ -18,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class LoginActivity(): AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     @Inject lateinit var sharedPreferences: SharedPreferences
     private val viewModel: LoginViewModel by viewModels()
@@ -34,26 +32,28 @@ class LoginActivity(): AppCompatActivity() {
             setContentView(binding.root)
         }
 
-        viewModel.token.observe(this, Observer {
-            when(it.status){
+        viewModel.token.observe(this) {
+            when (it.status) {
                 Status.SUCCESS -> {
                     it.data.let { _token ->
 //                        if (sharedPreferences.contains("token") && sharedPreferences.getString("token", "") != _token.toString())
-                            sharedPreferences.edit()
-                                .putString("token", _token.toString())
-                                .apply()
+                        sharedPreferences.edit()
+                            .putString("token", _token.toString())
+                            .apply()
 
-                        Snackbar.make(binding.root, _token?.token.toString(), Snackbar.LENGTH_SHORT).show()
+                        Snackbar.make(binding.root, _token?.token.toString(), Snackbar.LENGTH_SHORT)
+                            .show()
                     }
                 }
                 Status.LOADING -> {
 
                 }
                 Status.ERROR -> {
-                    Snackbar.make(binding.root, "Something went wrong",Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, "Something went wrong", Snackbar.LENGTH_SHORT)
+                        .show()
                 }
             }
-        })
+        }
 
         initiateLogin()
     }

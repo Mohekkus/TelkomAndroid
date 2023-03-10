@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.telkom.capex.R
 import com.telkom.capex.databinding.ComponentLoginPasswordBinding
 import com.telkom.capex.login.LoginViewModel
 
@@ -20,7 +19,7 @@ class PasswordFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = ComponentLoginPasswordBinding.inflate(layoutInflater)
         return binding.root
     }

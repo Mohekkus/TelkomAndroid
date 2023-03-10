@@ -2,7 +2,6 @@ package com.telkom.capex.etc
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.telkom.capex.R
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

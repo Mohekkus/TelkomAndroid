@@ -1,11 +1,9 @@
 package com.telkom.capex.login.ui.adapter
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.telkom.capex.login.ui.fragments.EmailFragment
-import com.telkom.capex.login.ui.fragments.LoginFragment
 import com.telkom.capex.login.ui.fragments.PasswordFragment
 
 class LoginAdapter(

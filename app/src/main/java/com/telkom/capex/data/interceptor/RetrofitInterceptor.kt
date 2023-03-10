@@ -1,7 +1,6 @@
 package com.telkom.capex.data.interceptor
 
 import android.content.SharedPreferences
-import com.telkom.capex.etc.SharedPreferencesModule
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject

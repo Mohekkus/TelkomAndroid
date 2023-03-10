@@ -13,7 +13,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return when (arguments?.getInt("pos", 0)) {
             0 -> showLoginByEmail(inflater, container)
             else -> showLoginPassword(inflater, container)

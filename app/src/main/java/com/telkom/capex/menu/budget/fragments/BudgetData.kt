@@ -27,7 +27,7 @@ class BudgetData: Fragment()  {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentBudgetDetailBinding.inflate(inflater, container, false)
 
         return binding.root

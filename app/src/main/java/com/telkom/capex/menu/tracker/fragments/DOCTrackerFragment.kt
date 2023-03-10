@@ -143,7 +143,6 @@ class DOCTrackerFragment: Fragment() {
                             KeyboardUtils.hide(requireActivity(), binding.root)
                             docSearch.clearFocus()
 
-                            val submittedText = p0
                             return false
                         }
 
@@ -154,7 +153,7 @@ class DOCTrackerFragment: Fragment() {
                 )
             }
             docFilter.apply {
-                val mockModel = mutableListOf<DOCFilter>().apply {
+                val tempModel = mutableListOf<DOCFilter>().apply {
                     add(DOCFilter("All Status"))
                     add(DOCFilter("Done (1)"))
                     add(DOCFilter("Progress (5)"))
@@ -169,7 +168,7 @@ class DOCTrackerFragment: Fragment() {
 
 
                     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-                        val model = mockModel[position]
+                        val model = tempModel[position]
 
                         holder.itemView.apply {
                             findViewById<TextView>(R.id.filter_text).apply {

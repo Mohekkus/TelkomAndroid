@@ -24,7 +24,7 @@ class BudgetMonthlyBAST: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentBudgetMonthlyBinding.inflate(
             inflater, container, false
         )
