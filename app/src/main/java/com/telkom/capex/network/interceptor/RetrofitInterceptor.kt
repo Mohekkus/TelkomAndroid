@@ -1,4 +1,4 @@
-package com.telkom.capex.data.interceptor
+package com.telkom.capex.network.interceptor
 
 import android.content.SharedPreferences
 import okhttp3.Interceptor

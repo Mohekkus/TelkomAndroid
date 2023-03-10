@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.material.snackbar.Snackbar
 import com.telkom.capex.ContainerActivity
-import com.telkom.capex.data.utility.Status
+import com.telkom.capex.network.utility.Status
 import com.telkom.capex.databinding.LayoutLoginBinding
 import com.telkom.capex.login.ui.adapter.LoginAdapter
 import com.telkom.capex.menu.tracker.fragments.DOCTrackerFragment

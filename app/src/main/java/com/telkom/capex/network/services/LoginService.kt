@@ -1,4 +1,4 @@
-package com.telkom.capex.data.services
+package com.telkom.capex.network.services
 
 import com.telkom.capex.login.data.model.AuthTokenResponse
 import retrofit2.Response

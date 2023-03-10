@@ -1,4 +1,4 @@
-package com.telkom.capex.data.utility
+package com.telkom.capex.network.utility
 
 data class ServiceHandler<out T>(
     val status: Status,

@@ -1,7 +1,10 @@
-package com.telkom.capex.data
+package com.telkom.capex.network
 
-import com.telkom.capex.data.interceptor.RetrofitInterceptor
-import com.telkom.capex.data.services.LoginService
+import com.telkom.capex.network.interceptor.RetrofitInterceptor
+import com.telkom.capex.network.services.BudgetService
+import com.telkom.capex.network.services.DashboardService
+import com.telkom.capex.network.services.LoginService
+import com.telkom.capex.network.services.TrackerService
 import com.telkom.capex.login.data.helper.TokenHelper
 import com.telkom.capex.login.data.implementor.TokenImplementor
 import dagger.Module
@@ -50,6 +53,18 @@ object AppModule {
     @Singleton
     @Provides
     fun provideLoginService(retrofit: Retrofit): LoginService = retrofit.create(LoginService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideDashboardService(retrofit: Retrofit): DashboardService = retrofit.create(DashboardService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideBudgetService(retrofit: Retrofit): BudgetService = retrofit.create(BudgetService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideTrackerService(retrofit: Retrofit): TrackerService = retrofit.create(TrackerService::class.java)
 
     @Singleton
     @Provides

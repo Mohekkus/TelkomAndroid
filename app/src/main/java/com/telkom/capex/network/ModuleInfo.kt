@@ -1,4 +1,4 @@
-package com.telkom.capex.data
+package com.telkom.capex.network
 
 object ModuleInfo {
     const val address = "103.181.183.149"

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.telkom.capex.login.data.repo.LoginRepository
-import com.telkom.capex.data.utility.ServiceHandler
+import com.telkom.capex.network.utility.ServiceHandler
 import com.telkom.capex.login.data.model.AuthTokenResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

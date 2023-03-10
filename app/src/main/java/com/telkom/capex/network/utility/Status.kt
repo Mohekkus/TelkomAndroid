@@ -1,4 +1,4 @@
-package com.telkom.capex.data.utility
+package com.telkom.capex.network.utility
 
 enum class Status {
     SUCCESS,
