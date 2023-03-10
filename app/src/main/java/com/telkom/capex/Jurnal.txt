@@ -1,25 +1,5 @@
-DOC Tracker
+Implementing API --
 
-v Ada dua Chart - Plan sama Target
-
-v Search jugak
-
-v Item mirip budget hanya beda progress dan kolom 3 di rubah jadi deskripsi
-
-v Detail? liatin lebih detail aja
-
-Kurang View Progress Approval, Deskripsi Progress, Edit dan deskripsi kontrak (opsional)
-
-BOP Tracker
-
-v Layout doang
-
-
-Budgetting Viewpager - Disable Swipe.
-Total atau search
-List - Edit Target dan/atau Plan
-
-DOC Tracker Viewpager - Disable Swipe.
-Chart dan Search
-List - Add/Edit Progress
+v Login
+x Dashboard and etc
 
