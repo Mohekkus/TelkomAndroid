@@ -5,8 +5,8 @@ import com.telkom.capex.network.services.BudgetService
 import com.telkom.capex.network.services.DashboardService
 import com.telkom.capex.network.services.LoginService
 import com.telkom.capex.network.services.TrackerService
-import com.telkom.capex.login.data.helper.TokenHelper
-import com.telkom.capex.login.data.implementor.TokenImplementor
+import com.telkom.capex.ui.login.data.helper.TokenHelper
+import com.telkom.capex.ui.login.data.implementor.TokenImplementor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +14,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.jackson.JacksonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -45,7 +45,7 @@ object AppModule {
     @Provides
     fun setupRetrofit(okHttpClient: OkHttpClient, baseURL: String): Retrofit =
          Retrofit.Builder()
-             .addConverterFactory(GsonConverterFactory.create())
+             .addConverterFactory(JacksonConverterFactory.create())
              .baseUrl(baseURL)
              .client(okHttpClient)
              .build()

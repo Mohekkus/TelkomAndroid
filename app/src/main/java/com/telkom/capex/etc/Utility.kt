@@ -7,4 +7,5 @@ import javax.inject.Inject
 class Utility @Inject constructor() {
     @Inject lateinit var timelyGreet: TimelyGreet
     @Inject lateinit var animUtils: AnimUtils
+    @Inject lateinit var money: Money
 }

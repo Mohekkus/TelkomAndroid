@@ -1,6 +1,6 @@
 package com.telkom.capex.network.services
 
-import com.telkom.capex.login.data.model.AuthTokenResponse
+import com.telkom.capex.ui.login.data.model.AuthTokenResponse
 import retrofit2.Response
 import retrofit2.http.GET
 

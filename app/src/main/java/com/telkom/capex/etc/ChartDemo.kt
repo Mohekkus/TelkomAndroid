@@ -10,11 +10,11 @@ object ChartDemo {
             "      google.charts.load(\"current\", {packages:[\"corechart\"]});\n" +
             "      google.charts.setOnLoadCallback(drawChart);\n" +
             "      function drawChart() {\n" +
-            "        var data = new google.visualization.DataTable();\n" +
-            "        data.addColumn('string', 'Task');\n" +
-            "        data.addColumn('number', '_');\n" +
-            "        data.addColumn({type: 'string', role: 'tooltip'});\n" +
-            "        data.addRows([\n" +
+            "        var data[]= new google.visualization.DataTable();\n" +
+            "        data[]addColumn('string', 'Task');\n" +
+            "        data[]addColumn('number', '_');\n" +
+            "        data[]addColumn({type: 'string', role: 'tooltip'});\n" +
+            "        data[]addRows([\n" +
             "          ['Preparing \\n Rp. 10000100', 10000100,'Preparing'],\n" +
             "          ['Delivery  \\n Rp. 4202000', 4202000, 'Delivery'],\n" +
             "          ['MOS \\n Rp. 2202000', 2202000, 'MOS'],\n" +
@@ -32,7 +32,7 @@ object ChartDemo {
             "        };\n" +
             "\n" +
             "        var chart = new google.visualization.PieChart(document.getElementById('chart'));\n" +
-            "        chart.draw(data, options);\n" +
+            "        chart.draw(data[] options);\n" +
             "      }\n" +
             "    </script>\n" +
             "</head>\n" +
@@ -50,7 +50,7 @@ object ChartDemo {
             "      google.charts.load(\"current\", {packages:[\"corechart\"]});\n" +
             "      google.charts.setOnLoadCallback(drawChart);\n" +
             "      function drawChart() {\n" +
-            "        var data = google.visualization.arrayToDataTable([\n" +
+            "        var data[]= google.visualization.arrayToDataTable([\n" +
             "          ['BAST', ''],\n" +
             "          ['Target',     30000100],\n" +
             "          ['Actual',      42020000]\n" +
@@ -66,7 +66,7 @@ object ChartDemo {
             "        };\n" +
             "\n" +
             "        var chart = new google.visualization.PieChart(document.getElementById('chart'));\n" +
-            "        chart.draw(data, options);\n" +
+            "        chart.draw(data[] options);\n" +
             "      }\n" +
             "    </script>\n" +
             "</head>\n" +
@@ -76,7 +76,7 @@ object ChartDemo {
             "</html>\n"
 
 
-    fun getColumn(): String = "<!DOCTYPE html>\n" +
+    fun getColumn(data: List<Long>?): String = "<!DOCTYPE html>\n" +
             "<html>\n" +
             "<head>\n" +
             "    <script type=\"text/javascript\" src=\"https://www.gstatic.com/charts/loader.js\"></script>\n" +
@@ -84,21 +84,20 @@ object ChartDemo {
             "    google.charts.load(\"current\", {packages:['corechart']});\n" +
             "    google.charts.setOnLoadCallback(drawChart);\n" +
             "    function drawChart() {\n" +
-            "      var data = google.visualization.arrayToDataTable([\n" +
+            "      var data= google.visualization.arrayToDataTable([\n" +
             "        [\"Month\", \"BAST\", { role: \"style\" } ],\n" +
-            "        [\"Jan\", 8.94, \"#018786\"],\n" +
-            "        [\"Feb\", 10.49, \"#144D53\"],\n" +
-            "        [\"Mar\", 19.30, \"#1A3C40\"],\n" +
-            "        [\"Mar\", 12.30, \"#018786\"],\n" +
-            "        [\"Apr\", 13.30, \"#144D53\"],\n" +
-            "        [\"Mei\", 17.30, \"#1A3C40\"],\n" +
-            "        [\"Jun\", 19.30, \"#018786\"],\n" +
-            "        [\"Jul\", 22.45, \"#144D53\"],\n" +
-            "        [\"Aug\", 15.30, \"#1A3C40\"],\n" +
-            "        [\"Sep\", 11.30, \"#018786\"],\n" +
-            "        [\"Oct\", 17.30, \"#144D53\"],\n" +
-            "        [\"Nov\", 19.30, \"#1A3C40\"],\n" +
-            "        [\"Des\", 10.30, \"#018786\"],\n" +
+            "        [\"Jan\", ${data?.get(0)}, \"#018786\"],\n" +
+            "        [\"Feb\", ${data?.get(1)}, \"#144D53\"],\n" +
+            "        [\"Mar\", ${data?.get(2)}, \"#1A3C40\"],\n" +
+            "        [\"Apr\", ${data?.get(3)}, \"#144D53\"],\n" +
+            "        [\"Mei\", ${data?.get(4)}, \"#1A3C40\"],\n" +
+            "        [\"Jun\", ${data?.get(5)}, \"#018786\"],\n" +
+            "        [\"Jul\", ${data?.get(6)}, \"#144D53\"],\n" +
+            "        [\"Aug\", ${data?.get(7)}, \"#1A3C40\"],\n" +
+            "        [\"Sep\", ${data?.get(8)}, \"#018786\"],\n" +
+            "        [\"Oct\", ${data?.get(9)}, \"#144D53\"],\n" +
+            "        [\"Nov\", ${data?.get(10)}, \"#1A3C40\"],\n" +
+            "        [\"Des\", ${data?.get(11)}, \"#018786\"],\n" +
             "      ]);\n" +
             "\n" +
             "      var options = {\n" +
@@ -116,6 +115,31 @@ object ChartDemo {
             "      };\n" +
             "      var chart = new google.visualization.ColumnChart(document.getElementById(\"chart\"));\n" +
             "      chart.draw(data, options);\n" +
+            "      google.visualization.events.addListener(chart, 'click', function(e) {\n" +
+            "          if (e.targetID.startsWith('bar#')) {\n" +
+            "              var columnIndex = parseInt(e.targetID.substring(4));\n" +
+            "               Android.onClick(columnIndex);\n" +
+            "       }\n" +
+            "      });\n" +
+            "       \n" +
+            "  // Add error handling\n" +
+            "  google.visualization.events.addListener(chart, 'error', function(e) {\n" +
+            "    console.error('Google Chart error: ' + e.message);\n" +
+            "  });"+
+            "\n" +
+            "  google.visualization.events.addListener(chart, 'click', function(e) {\n" +
+            "    if (e.targetID && e.targetID.startsWith('bar#')) {\n" +
+            "      var columnIndex = parseInt(e.targetID.substring(6));\n" +
+            "      Android.onClick(columnIndex);\n" +
+            "\n" +
+            "          console.log('Column index:', columnIndex);" +
+            "    }\n" +
+            "  });\n" +
+            "\n" +
+            "  // Add error handling\n" +
+            "  google.visualization.events.addListener(chart, 'error', function(e) {\n" +
+            "    console.error('Google Chart error: ' + e.message);\n" +
+            "  });"+
             "  }\n" +
             "  </script>\n" +
             "</head>\n" +
@@ -123,4 +147,55 @@ object ChartDemo {
             "<div id=\"chart\" style=\"height: 200px;\"></div>\n" +
             "</body>\n" +
             "</html>\n"
+
+    fun test() = "<!DOCTYPE html>\n" +
+            "<html>\n" +
+            "<head>\n" +
+            "    <script type=\"text/javascript\" src=\"https://www.gstatic.com/charts/loader.js\"></script>\n" +
+            "    <script type=\"text/javascript\">\n" +
+            "google.charts.load('current', {'packages':['corechart']});\n" +
+            "google.charts.setOnLoadCallback(drawChart);\n" +
+            "\n" +
+            "function drawChart() {\n" +
+            "  var data[]= google.visualization.arrayToDataTable([\n" +
+            "    ['Month', 'Sales'],\n" +
+            "    ['Jan', 10],\n" +
+            "    ['Feb', 20],\n" +
+            "    ['Mar', 30],\n" +
+            "    ['Apr', 40]\n" +
+            "  ]);\n" +
+            "\n" +
+            "  var options = {\n" +
+            "    chart: {\n" +
+            "      title: 'Sales by Month',\n" +
+            "      subtitle: 'in dollars (USD)'\n" +
+            "    },\n" +
+            "    legend: { position: 'none' }\n" +
+            "  };\n" +
+            "\n" +
+            "  var chart = new google.visualization.ColumnChart(document.getElementById('chart'));\n" +
+            "  chart.draw(data[] options);\n" +
+            "\n" +
+            "  google.visualization.events.addListener(chart, 'click', function(e) {\n" +
+            "    if (e.targetID && e.targetID.startsWith('bar#')) {\n" +
+            "      console.log('Target ID:', e.targetID);\n"+
+            "      var columnIndex = parseInt(e.targetID.substring(6));\n" +
+            "      Android.onClick(columnIndex);\n" +
+            "\n" +
+            "          console.log('Column index:', columnIndex);" +
+            "    }\n" +
+            "  });\n" +
+            "\n" +
+            "  // Add error handling\n" +
+            "  google.visualization.events.addListener(chart, 'error', function(e) {\n" +
+            "    console.error('Google Chart error: ' + e.message);\n" +
+            "  });"+
+            "}\n" +
+            "</script>\n" +
+            "</head>\n" +
+            "<body>\n" +
+            "<div id=\"chart\" style=\"height: 200px;\"></div>\n" +
+            "</body>\n" +
+            "</html>\n"
+
 }
