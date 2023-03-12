@@ -31,7 +31,7 @@ class DashboardViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             repo.apply {
-                getBarYear(year.value?.toInt() ?: defaultYear).let {
+                getBarYear(defaultYear).let {
                     _bastYear.postValue(ServiceHandler.loading(null))
                     when {
                         it.isSuccessful -> {
@@ -67,12 +67,6 @@ class DashboardViewModel @Inject constructor(
     val page: LiveData<Int> = _page
     fun setPage(number: Int) {
         _page.value = number
-    }
-
-    private val _size = MutableLiveData(0)
-    val size: LiveData<Int> = _size
-    fun setSize(number: Int) {
-        _size.value = number
     }
 
     private val _year = MutableLiveData(Calendar.getInstance().get(Calendar.YEAR))

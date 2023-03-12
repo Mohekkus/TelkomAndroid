@@ -13,4 +13,16 @@ object AccessComposer {
             p_intyear = year
         }
     }
+
+    fun getDoc(string: String, page: Int): AppAccess {
+        return getAccess(string).apply {
+            pagenum = page
+        }
+    }
+
+    fun searchDoc(string: String, page: Int, query: String): AppAccess {
+        return getDoc(string, page).apply {
+            search_for = query
+        }
+    }
 }

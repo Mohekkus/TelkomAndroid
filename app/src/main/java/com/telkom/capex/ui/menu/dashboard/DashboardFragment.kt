@@ -1,8 +1,8 @@
 package com.telkom.capex.ui.menu.dashboard
 
-import android.content.res.AssetManager
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,9 +29,6 @@ import javax.inject.Inject
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     private val viewModel by activityViewModels<DashboardViewModel>()
@@ -110,14 +107,28 @@ class DashboardFragment : Fragment() {
             dashRefresh.setOnRefreshListener {
 
             }
-            mehLottie.setOnClickListener {
-                mehLottie.playAnimation()
-                soonTM()
+            mehLottie.apply {
+                setOnClickListener {
+                    playAnimation()
+                    soonTM()
+                }
             }
             dashFcviewSpinner.apply {
-                parentFragmentManager.findFragmentById(this.id).apply {
-//                    (this as UnitSpinnerFragment).setCallback(::setChartText)
-                }
+                parentFragmentManager.findFragmentById(this.id)
+            }
+
+            dashSelectMonth.setOnClickListener {
+                DashboardDialog(
+                    viewModel.year.value?.toInt() ?: Calendar.getInstance().get(Calendar.YEAR),
+                    dashPagerMonth.currentItem
+                ).apply {
+                    setListener { _, y, m, _ ->
+                        viewModel.apply {
+                            setPage(m)
+                            setYear(y)
+                        }
+                    }
+                }.show(childFragmentManager, "YeMonth Picker")
             }
             dashKontrak.setOnClickListener {
                 isExpanding = when (isExpanding) {
@@ -147,42 +158,6 @@ class DashboardFragment : Fragment() {
                     }
                 }
             }
-//            dashPagerMonth.apply {
-//                val om = ObjectMapper()
-//                val raw = om.readValue(requireActivity().assets.readAssetFile(), MonthlyBast::class.java)
-//
-//                viewModel.apply {
-//                    setSize(raw.data?.size ?: 0)
-//                    page.observe(viewLifecycleOwner) {
-//                        currentItem = it
-//                    }
-//                    year.observe(viewLifecycleOwner) {
-//                        dashYearHolder.text = it.toString()
-//                    }
-//                }
-//
-//                adapter = object : FragmentStateAdapter(this@DashboardFragment) {
-//                    override fun getItemCount(): Int = raw.data?.size ?: 0
-//
-//                    override fun createFragment(position: Int): Fragment =
-//                        MonthlyBastFragment().apply {
-//                            setData(raw.data?.get(position) ?: DataItem())
-//                        }
-//                }
-//
-//                currentItem = Calendar.getInstance().get(Calendar.MONTH)
-//
-//                dashSelectMonth.setOnClickListener {
-//                    DashboardDialog().apply {
-//                        setListener { view, y, m ,d  ->
-//                            viewModel.apply {
-//                                setPage(m)
-//                                setYear(y)
-//                            }
-//                        }
-//                    }.show(childFragmentManager, "YeMonth Picker")
-//                }
-//            }
             dashPieChart.apply {
                 setBackgroundColor(Color.TRANSPARENT)
                 settings.apply {
@@ -197,24 +172,9 @@ class DashboardFragment : Fragment() {
                     null
                 )
             }
-//            dashColChart.apply {
-//                setBackgroundColor(Color.TRANSPARENT)
-//                settings.apply {
-//                    domStorageEnabled = true
-//                    javaScriptEnabled = true
-//                }
-//                loadDataWithBaseURL(
-//                    null,
-//                    ChartDemo.getColumn(),
-//                    "text/html",
-//                    "UTF-8",
-//                    null
-//                )
-//            }
             dashCardNew.apply {
                 setOnClickListener {
                     findNavController().navigate(R.id.action_navigation_dashboard_to_newContractFragment)
-//                    soonTM()
                 }
             }
             dashSearch.setOnClickListener {
@@ -222,9 +182,6 @@ class DashboardFragment : Fragment() {
             }
         }
     }
-
-    private fun AssetManager.readAssetFile(): String = open("month_money.json").bufferedReader().use { it.readText() }
-
     private fun soonTM() {
         Snackbar.make(binding.root, "Soon but better version", Snackbar.LENGTH_LONG).show()
     }
@@ -256,21 +213,20 @@ class DashboardFragment : Fragment() {
         binding.apply {
             dashYearHolder.text = viewModel.year.value.toString()
             
-            if (resultChart.arrays.isNullOrEmpty()) {
+            if (resultChart.arrays.isNullOrEmpty() || resultChart.arrays.sum() < 1) {
                 dataNullBarChart()
                 return
             }
 
             dashPagerMonth.apply {
-                if (resultChart.arrays.sum() < 1) {
-                    return
+                if (visibility == View.GONE) {
+                    visibility = View.VISIBLE
+                    tvNullData.text = ""
                 }
 
-                if (visibility == View.GONE)
-                    visibility = View.VISIBLE
+                Log.e("Check", "Passed")
 
                 viewModel.apply {
-                    setSize(resultChart.arrays.size)
                     page.observe(viewLifecycleOwner) {
                         currentItem = it
                     }
@@ -280,32 +236,16 @@ class DashboardFragment : Fragment() {
                 }
 
                 adapter = object : FragmentStateAdapter(this@DashboardFragment) {
-                    override fun getItemCount(): Int = resultChart.arrays?.size ?: 0
+                    override fun getItemCount(): Int = resultChart.arrays.size
+
 
                     override fun createFragment(position: Int): Fragment =
-                        MonthlyBastFragment().apply {
-                            setData(resultChart.arrays[position])
-                        }
+                        MonthlyBastFragment(resultChart.arrays[position], position + 1)
                 }
 
                 currentItem = Calendar.getInstance().get(Calendar.MONTH)
-
-                dashSelectMonth.setOnClickListener {
-                    DashboardDialog().apply {
-                        setListener { view, y, m ,d  ->
-                            viewModel.apply {
-                                setPage(m)
-                                setYear(y)
-                            }
-                        }
-                    }.show(childFragmentManager, "YeMonth Picker")
-                }
             }
             dashColChart.apply {
-                if (resultChart.arrays.sum() < 1) {
-                    return
-                }
-
                 if (visibility == View.GONE)
                     visibility = View.VISIBLE
 
@@ -335,26 +275,9 @@ class DashboardFragment : Fragment() {
 
     private fun dataNullBarChart() {
         binding.apply {
-//            dashPagerMonth.visibility = View.GONE
+            dashPagerMonth.visibility = View.GONE
             dashColChart.visibility = View.GONE
+            tvNullData.text = getString(R.string.array_null_data)
         }
     }
-
-//    override fun doWithData(pojo: DashboardModel) {
-//        binding.apply {
-//            dashTotal.text = "IDR ${pojo.bastTotal}"
-//            dashRvGrid.apply {
-//                isNestedScrollingEnabled = false
-//                isScrollContainer = false
-//                layoutManager = GridLayoutManager(requireContext(), 2)
-//                adapter = DashboardGridAdapter(pojo.gridMenu)
-//                setHasFixedSize(true)
-//            }
-//            dashRefresh.isRefreshing = false
-//        }
-//    }
-//
-//    override fun setCurrentPageTo(position: Int) {
-//        binding.dashPagerMonth.currentItem = position
-//    }
 }

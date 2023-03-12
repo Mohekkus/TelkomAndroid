@@ -48,7 +48,6 @@
                             android:id="@+id/dash_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Good Evening"
                             app:layout_constraintStart_toStartOf="@+id/dash_title"
                             app:layout_constraintTop_toBottomOf="@+id/dash_title" />
 
@@ -439,6 +438,7 @@
                         app:layout_constraintStart_toStartOf="parent">
 
                         <LinearLayout
+                            android:id="@+id/dash_pager_container"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
@@ -482,12 +482,34 @@
                                     android:padding="8dp"
                                     android:text="Go To"
                                     android:textAlignment="center" />
+
                             </LinearLayout>
 
-                            <androidx.viewpager2.widget.ViewPager2
-                                android:id="@+id/dash_pager_month"
+                            <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/tv_null_data"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/green_darkest"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <androidx.viewpager2.widget.ViewPager2
+                                    android:id="@+id/dash_pager_month"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>

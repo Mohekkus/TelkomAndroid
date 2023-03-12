@@ -7,5 +7,11 @@ data class AppAccess(
     var access: String = "",
 
     @JsonProperty("p_intyear")
-    var p_intyear: Int = 0
+    var p_intyear: Int? = null,
+
+    @JsonProperty("pagenum")
+    var pagenum: Int? = null,
+
+    @JsonProperty("search_for")
+    var search_for: String = ""
 )

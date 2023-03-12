@@ -5,19 +5,10 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
 import com.telkom.capex.R
 import com.telkom.capex.databinding.ComponentDashMonthBinding
-import com.telkom.capex.ui.menu.dashboard.DashboardViewModel
-import java.util.*
 
-class DashboardDialog: DialogFragment()  {
-
-    private val viewModel by activityViewModels<DashboardViewModel>()
-
-    companion object {
-        private const val MAX_YEAR = 2099
-    }
+class DashboardDialog(private val year: Int, val month: Int) : DialogFragment()  {
 
     private var listener: DatePickerDialog.OnDateSetListener? = null
 
@@ -29,18 +20,16 @@ class DashboardDialog: DialogFragment()  {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = ComponentDashMonthBinding.inflate(requireActivity().layoutInflater)
-        val cal: Calendar = Calendar.getInstance()
 
         binding.pickerMonth.run {
             minValue = 0
             maxValue = 11
-            value = cal.get(Calendar.MONTH)
+            value = month
             displayedValues = arrayOf("Jan","Feb","Mar","Apr","May","June","July",
                 "Aug","Sep","Oct","Nov","Dec")
         }
 
         binding.pickerYear.run {
-            val year = cal.get(Calendar.YEAR)
             minValue = year - 10
             maxValue = year + 10
             value = year

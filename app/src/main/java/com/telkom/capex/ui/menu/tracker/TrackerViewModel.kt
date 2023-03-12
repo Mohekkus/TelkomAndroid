@@ -3,12 +3,48 @@ package com.telkom.capex.ui.menu.tracker
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.telkom.capex.network.utility.ServiceHandler
+import com.telkom.capex.ui.menu.tracker.fragments.doc.model.DocResponse
+import com.telkom.capex.ui.menu.tracker.fragments.doc.repo.DOCRepository
 import com.telkom.capex.ui.menu.tracker.model.DOCSelectedModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TrackerViewModel : ViewModel() {
+@HiltViewModel
+class TrackerViewModel @Inject constructor(private val repo: DOCRepository) : ViewModel() {
+
+
+    private val _doc = MutableLiveData<ServiceHandler<DocResponse>>()
+    val doc : LiveData<ServiceHandler<DocResponse>>
+        get() = _doc
+
+
 
     init {
+        viewModelScope.launch {
+            repo.getDOC().let {
+                _doc.postValue(ServiceHandler.loading(null))
+                when {
+                    it.isSuccessful -> {
+                        _doc.postValue(ServiceHandler.success(it.body()))
+                        it.body()?.let { it1 -> setArchive(it1) }
+                    }
+                    else -> {
+                        _doc.postValue(ServiceHandler.error(it.errorBody().toString(), null))
+                    }
+                }
+            }
+        }
+    }
 
+    private val _archive = MutableLiveData<DocResponse>()
+    val archive : LiveData<DocResponse>
+        get() = _archive
+
+    private fun setArchive(serviceHandler: DocResponse) {
+        _archive.value = serviceHandler
     }
 
     private val _text = MutableLiveData<String>().apply {
@@ -16,12 +52,12 @@ class TrackerViewModel : ViewModel() {
     }
     val text: LiveData<String> = _text
 
-    private val _selected = MutableLiveData<Int>().apply {
+    private val _selectedFilter = MutableLiveData<Int>().apply {
         value = 0
     }
-    val selected: LiveData<Int> = _selected
-    fun setSelected(number: Int) {
-        _selected.value = number
+    val selectedFilter: LiveData<Int> = _selectedFilter
+    fun setSelectedFilter(number: Int) {
+        _selectedFilter.value = number
     }
 
 
@@ -56,5 +92,35 @@ class TrackerViewModel : ViewModel() {
 //                Log.e("Empty list?", "Yes Less")
 //            else
 //                Log.e("Empty list?", "No")
+    }
+
+    private val _searchQuery = MutableLiveData<String>()
+    val searchQuery: LiveData<String>
+        get() = _searchQuery
+
+    fun setSearchQuery(query: String) {
+        _searchQuery.value = query
+    }
+
+    fun searchFor(pattern: String) {
+        val currentPattern = searchQuery.value
+
+        if (currentPattern != pattern) return
+
+        setSearchQuery(pattern)
+
+        viewModelScope.launch {
+            repo.getDOCSearch(pattern).let {
+                _doc.postValue(ServiceHandler.loading(null))
+                when {
+                    it.isSuccessful -> {
+                        _doc.postValue(ServiceHandler.success(it.body()))
+                    }
+                    else -> {
+                        _doc.postValue(ServiceHandler.error(it.errorBody().toString(), null))
+                    }
+                }
+            }
+        }
     }
 }
