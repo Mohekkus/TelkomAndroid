@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
@@ -22,6 +23,7 @@ class TrackerFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private val viewModel by activityViewModels<TrackerViewModel>()
+    private val args: TrackerFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,7 +51,6 @@ class TrackerFragment : Fragment() {
                     }
                 }
             }
-
             TabLayoutMediator(
                 budgetTab,
                 budgetPager
@@ -76,6 +77,11 @@ class TrackerFragment : Fragment() {
                         }
                     }
                 }
+            }
+
+            if (args.isUser) {
+                budgetTab.visibility = View.GONE
+                buttonEditor.visibility = View.GONE
             }
         }
     }

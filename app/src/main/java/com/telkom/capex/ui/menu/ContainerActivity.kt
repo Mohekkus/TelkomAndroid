@@ -9,6 +9,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.telkom.capex.R
 import com.telkom.capex.databinding.ActivityMainBinding
+import com.telkom.capex.etc.SupremeFragmentDirections
+import com.telkom.capex.ui.menu.tracker.TrackerFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,10 +36,9 @@ class ContainerActivity : AppCompatActivity() {
                 navigate(R.id.navigation_tracker)
             }
         } else {
-            binding.navView.visibility == View.VISIBLE
             navController.apply {
                 popBackStack()
-                navigate(R.id.navigation_dashboard)
+                navigate(SupremeFragmentDirections.actionSupremeFragmentToNavigationTracker(false))
             }
         }
     }

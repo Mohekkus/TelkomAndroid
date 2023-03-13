@@ -44,6 +44,10 @@
         <action
             android:id="@+id/action_navigation_tracker_to_BOPDetailFragment"
             app:destination="@id/BOPDetailFragment" />
+        <argument
+            android:name="isUser"
+            app:argType="boolean"
+            android:defaultValue="true" />
     </fragment>
     <dialog
         android:id="@+id/dashboardDialog"
@@ -107,5 +111,9 @@
     <fragment
         android:id="@+id/supremeFragment"
         android:name="com.telkom.capex.etc.SupremeFragment"
-        android:label="SupremeFragment" />
+        android:label="SupremeFragment" >
+        <action
+            android:id="@+id/action_supremeFragment_to_navigation_tracker"
+            app:destination="@id/navigation_tracker" />
+    </fragment>
 </navigation>
