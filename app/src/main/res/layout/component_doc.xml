@@ -141,7 +141,7 @@
                         android:focusableInTouchMode="false"
                         android:gravity="center"
                         android:text="OSM"
-                        android:textColor="@color/primary"
+                        android:textColor="@color/green_darkest"
                         android:textStyle="bold" />
 
                     <TextView
@@ -153,11 +153,11 @@
                         android:gravity="center"
                         android:singleLine="true"
                         android:text="Progress"
-                        android:textColor="@color/primary"
+                        android:textColor="@color/green_darkest"
                         app:autoSizeMaxTextSize="100sp"
                         app:autoSizeMinTextSize="2sp"
                         app:autoSizeStepGranularity="1sp"
-                        app:autoSizeTextType="uniform"/>
+                        app:autoSizeTextType="uniform" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -174,7 +174,7 @@
                         android:enabled="false"
                         android:focusableInTouchMode="false"
                         android:gravity="center"
-                        android:text="Deputi"
+                        android:text="Deputy"
                         android:textColor="@color/green_darkest"
                         android:textStyle="bold" />
 

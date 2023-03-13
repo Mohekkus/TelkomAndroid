@@ -18,4 +18,6 @@
     <string name="expanding_string">expand</string>
     <string name="collapsing_string">collapse</string>
     <string name="array_null_data">No data to show</string>
+    <string name="affrimation_done">Done</string>
+    <string name="affrimation_progress">Progress</string>
 </resources>

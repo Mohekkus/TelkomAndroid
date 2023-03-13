@@ -7,12 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.telkom.capex.databinding.ComponentDocPromptBinding
 import com.telkom.capex.databinding.FragmentDocDetailBinding
+import com.telkom.capex.network.utility.Status
+import com.telkom.capex.ui.menu.tracker.fragments.doc.model.ResultDOC
+import com.telkom.capex.ui.menu.tracker.fragments.doc.viewmodel.DetailDocViewModel
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.*
 
 class DOCDetailFragment: Fragment() {
 
     private lateinit var binding: FragmentDocDetailBinding
+    private val viewModel by activityViewModels<DetailDocViewModel>()
+    private val args: DOCDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,19 +38,69 @@ class DOCDetailFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.apply {
-
-            when (arguments?.isEmpty == null) {
-                false -> {
-                    btnEdit.visibility = View.GONE
-                    containerProgress.visibility = View.GONE
-                    etextDescription.isEnabled = false
+        viewModel.data.observe(requireActivity()) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.data.let { data ->
+                        val result = data?.result
+                        result?.get(0)?.apply {
+                            assembleData(
+                                this
+                            )
+                        }
+                    }
                 }
-                else -> return
+                Status.LOADING -> {
+
+                }
+                Status.ERROR -> {
+                    Snackbar.make(binding.root, "Something went wrong", Snackbar.LENGTH_SHORT)
+                        .show()
+                }
             }
+        }
+
+        binding.apply {
 
             btnEdit.setOnClickListener {
                 toggleUI()
+            }
+
+
+            viewModel.getData(args.contractname.toString())
+        }
+    }
+
+    private fun assembleData(data: ResultDOC) {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+        val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+
+        binding.apply {
+            overviewTitle2.text = args.contractname
+            data.apply {
+                tvMitraDocDetail.text = contractPartner
+                tvDescriptionDocDetail.text = contractDescription
+                tvUnitDocDetail.text = contractUnit
+                tvEdcDocDetail.text = contractEDC?.let {
+                    dateFormat.parse(it)
+                        ?.let { date -> formatter.format(date).toString() }
+                }
+                tvTocDocDetail.text = contractTOC?.let {
+                    dateFormat.parse(it)
+                        ?.let { date -> formatter.format(date).toString() }
+                }
+                docSeekbar2.apply {
+                    isEnabled = false
+                    progress = contractProgress
+                }
+                tvApprovalDocDetail.text =
+                    when (contractProgress) {
+                        0 -> "OSM"
+                        1 -> "Deputy"
+                        2 -> "EGM"
+                        else -> "Done"
+                    }
+                etextDescription.setText(contractDocDescription.toString())
             }
         }
     }

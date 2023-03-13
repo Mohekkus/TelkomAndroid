@@ -28,4 +28,11 @@ class DOCRepository @Inject constructor(private val trackerService: TrackerServi
             pattern
         )
     )
+
+    suspend fun getDOCDetail(query: String) = trackerService.getDOC(
+        AccessComposer.detailDoc(
+            "api_select_doc_by",
+            query
+        )
+    )
 }

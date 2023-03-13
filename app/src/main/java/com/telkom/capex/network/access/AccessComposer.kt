@@ -25,4 +25,10 @@ object AccessComposer {
             search_for = query
         }
     }
+
+    fun detailDoc(string: String, query: String): AppAccess {
+        return getAccess(string).apply {
+            search_for = query
+        }
+    }
 }

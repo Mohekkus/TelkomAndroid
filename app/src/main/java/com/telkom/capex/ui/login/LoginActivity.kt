@@ -68,15 +68,16 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
             bNext.setOnClickListener {
+                toDashboard(false)
                 //DOCTrackerFragment
-                supportFragmentManager.beginTransaction()
-                    .add(binding.root.id, DOCTrackerFragment().apply {
-                        arguments = Bundle().apply {
-                            putBoolean("Guest", true)
-                        }
-                    })
-                    .addToBackStack("Guest-Tracker")
-                    .commit()
+//                supportFragmentManager.beginTransaction()
+//                    .add(binding.root.id, DOCTrackerFragment().apply {
+//                        arguments = Bundle().apply {
+//                            putBoolean("Guest", true)
+//                        }
+//                    })
+//                    .addToBackStack("Guest-Tracker")
+//                    .commit()
             }
             viewModel.apply {
                 bLogin.setOnClickListener {
@@ -97,17 +98,17 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun attemptLogin() {
-        toDashboard()
+        toDashboard(true)
     }
 
-    private fun toDashboard() {
+    private fun toDashboard(condition: Boolean) {
         startActivity(
             Intent(
                 this,
                 ContainerActivity::class.java
             ).putExtra(
-                "login",
-                false
+                "Login",
+                condition
             )
         )
         finish()

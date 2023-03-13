@@ -23,6 +23,7 @@ import com.telkom.capex.databinding.FragmentDocBinding
 import com.telkom.capex.etc.KeyboardUtils
 import com.telkom.capex.etc.Utility
 import com.telkom.capex.network.utility.Status
+import com.telkom.capex.ui.menu.tracker.TrackerFragmentDirections
 import com.telkom.capex.ui.menu.tracker.TrackerViewModel
 import com.telkom.capex.ui.menu.tracker.fragments.doc.DOCDetailFragment
 import com.telkom.capex.ui.menu.tracker.fragments.doc.model.ResultDOC
@@ -100,17 +101,57 @@ class DOCTrackerFragment: Fragment() {
                                 isEnabled = false
                                 progress = data.contractProgress
                             }
-                            if (data.contractProgress == 3) {
-                                findViewById<TextView>(R.id.doc_status).apply {
-                                    text = "Done"
-                                    setTextColor(
-                                        Color.WHITE
-                                    )
+                            when (data.contractProgress) {
+                                1 -> {
+                                    findViewById<TextView>(R.id.doc_target_val).text = context.getString(R.string.affrimation_done)
+                                    findViewById<TextView>(R.id.doc_left_txt)
+                                        .setTextColor(
+                                            ContextCompat.getColor(requireContext(), R.color.primary)
+                                        )
+                                    findViewById<TextView>(R.id.doc_left_val).apply {
+                                        text = context.getString(R.string.affrimation_progress)
+                                        setTextColor(
+                                            ContextCompat.getColor(requireContext(), R.color.primary)
+                                        )
+                                    }
                                 }
-                                findViewById<LinearLayout>(R.id.doc_status_container).backgroundTintList =
-                                    ColorStateList.valueOf(
-                                        ContextCompat.getColor(requireContext(), R.color.green_darkest)
-                                    )
+                                2 -> {
+                                    findViewById<TextView>(R.id.doc_left_val).text = context.getString(R.string.affrimation_done)
+                                    findViewById<TextView>(R.id.doc_filled_txt)
+                                        .setTextColor(
+                                            ContextCompat.getColor(requireContext(), R.color.primary)
+                                        )
+                                    findViewById<TextView>(R.id.doc_filled_val).apply {
+                                        text = context.getString(R.string.affrimation_progress)
+                                        setTextColor(
+                                            ContextCompat.getColor(requireContext(), R.color.primary)
+                                        )
+                                    }
+                                }
+                                3 -> {
+                                    findViewById<TextView>(R.id.doc_status).apply {
+                                        text = context.getString(R.string.affrimation_done)
+                                        setTextColor(
+                                            Color.WHITE
+                                        )
+                                    }
+                                    findViewById<LinearLayout>(R.id.doc_status_container).backgroundTintList =
+                                        ColorStateList.valueOf(
+                                            ContextCompat.getColor(requireContext(), R.color.green_darkest)
+                                        )
+                                }
+                                else -> {
+                                    findViewById<TextView>(R.id.doc_target_txt)
+                                        .setTextColor(
+                                            ContextCompat.getColor(requireContext(), R.color.primary)
+                                        )
+                                    findViewById<TextView>(R.id.doc_target_val).apply {
+                                        text = context.getString(R.string.affrimation_progress)
+                                        setTextColor(
+                                            ContextCompat.getColor(requireContext(), R.color.primary)
+                                        )
+                                    }
+                                }
                             }
 
                             val multipleModel = DOCSelectedModel(data)
@@ -133,7 +174,13 @@ class DOCTrackerFragment: Fragment() {
                                             if (value == true)
                                                 multipleSelect(multipleModel, holder)
                                             else
-                                                findNavController().navigate(R.id.action_navigation_tracker_to_DOCDetailFragment) //Send request with date
+                                                findNavController()
+                                                    .navigate(
+                                                        TrackerFragmentDirections
+                                                            .actionNavigationTrackerToDOCDetailFragment(
+                                                                data.contractName
+                                                            )
+                                                    ) //Send request with date
                                         }
                                 }
                             }

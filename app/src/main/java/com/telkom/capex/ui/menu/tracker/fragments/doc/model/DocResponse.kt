@@ -16,17 +16,27 @@ data class DocResponse(@JsonProperty("Request")
 data class ResultDOC(@JsonProperty("intidkontrak")
                       val idContract: Int = 0,
                       @JsonProperty("txtinfo")
-                      val contractDescription: String = "",
+                      val contractDescription: String? = null,
+                      @JsonProperty("txtextendinfo")
+                      val contractDocDescription: String? = null,
+                      @JsonProperty("dtdatepengajuan")
+                      val contractDate: String? = null,
                       @JsonProperty("intstatus")
                       val contractProgress: Int = 0,
                       @JsonProperty("boolstatus")
                       val contractStatus: Boolean = false,
-                      @JsonProperty("strorg")
-                      val contractUnit: String = "",
                       @JsonProperty("intsucceed")
                       val code: Int = 0,
                       @JsonProperty("strnamakontrak")
                       val contractName: String = "",
+                      @JsonProperty("strnamamitra")
+                      val contractPartner: String? = null,
+                      @JsonProperty("strnamaorg")
+                      val contractUnit: String? = null,
+                      @JsonProperty("dtedc")
+                      val contractEDC: String? = null,
+                      @JsonProperty("dttoc")
+                      val contractTOC: String? = null,
                       @JsonProperty("errdescription")
                       val err: String = "")
 

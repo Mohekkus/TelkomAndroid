@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_dashboard">
+    app:startDestination="@id/supremeFragment">
 
     <fragment
         android:id="@+id/navigation_budget"
@@ -79,7 +79,11 @@
     <fragment
         android:id="@+id/DOCDetailFragment"
         android:name="com.telkom.capex.ui.menu.tracker.fragments.doc.DOCDetailFragment"
-        android:label="DOCDetailFragment" />
+        android:label="DOCDetailFragment" >
+        <argument
+            android:name="contractname"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/newContractFragment"
         android:name="com.telkom.capex.ui.menu.dashboard.fragments.NewContractFragment"
@@ -100,4 +104,8 @@
         android:id="@+id/BOPDetailFragment"
         android:name="com.telkom.capex.ui.menu.tracker.fragments.bop.BOPDetailFragment"
         android:label="BOPDetailFragment" />
+    <fragment
+        android:id="@+id/supremeFragment"
+        android:name="com.telkom.capex.etc.SupremeFragment"
+        android:label="SupremeFragment" />
 </navigation>
