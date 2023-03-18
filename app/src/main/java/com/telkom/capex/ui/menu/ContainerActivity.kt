@@ -38,7 +38,7 @@ class ContainerActivity : AppCompatActivity() {
         } else {
             navController.apply {
                 popBackStack()
-                navigate(SupremeFragmentDirections.actionSupremeFragmentToNavigationTracker(false))
+                navigate(R.id.navigation_dashboard)
             }
         }
     }

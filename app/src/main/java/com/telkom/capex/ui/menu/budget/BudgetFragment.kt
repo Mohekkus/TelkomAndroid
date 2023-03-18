@@ -11,6 +11,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -24,8 +26,9 @@ import com.telkom.capex.etc.ToMiddleScroller
 import com.telkom.capex.ui.menu.budget.fragments.BudgetList
 import com.telkom.capex.ui.menu.budget.fragments.ViewHolder
 import com.telkom.capex.ui.menu.dashboard.helper.model.MonthlyBast
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class BudgetFragment : Fragment()  {
 
     private var _binding: FragmentBudgetContainerBinding? = null
@@ -34,7 +37,7 @@ class BudgetFragment : Fragment()  {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val viewModel by activityViewModels<BudgetViewModel>()
+    private val viewModel by hiltNavGraphViewModels<BudgetViewModel>(R.id.mobile_navigation)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -107,7 +110,6 @@ class BudgetFragment : Fragment()  {
                                 LinearLayout.LayoutParams.WRAP_CONTENT,
                                 LinearLayout.LayoutParams.WRAP_CONTENT
                             ).apply {
-
                                 if (position == 0 && position != 9)
                                     setMargins(absoluteMiddlePx - absoluteMeasured,0,0,0)
                                 if (position == 11)

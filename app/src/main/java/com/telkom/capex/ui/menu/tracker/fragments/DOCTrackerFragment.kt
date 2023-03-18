@@ -13,6 +13,8 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,8 +39,12 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class DOCTrackerFragment: Fragment() {
 
-    private lateinit var binding: FragmentDocBinding
-    private val viewModel by activityViewModels<TrackerViewModel>()
+    private var _binding: FragmentDocBinding? = null
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+    private val viewModel by hiltNavGraphViewModels<TrackerViewModel>(R.id.mobile_navigation)
 
     @Inject
     lateinit var utility: Utility
@@ -48,7 +54,7 @@ class DOCTrackerFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentDocBinding.inflate(
+        _binding = FragmentDocBinding.inflate(
             inflater,
             container,
             false
@@ -173,14 +179,11 @@ class DOCTrackerFragment: Fragment() {
                                         viewModel.selectingItemList.observe(viewLifecycleOwner) { value ->
                                             if (value == true)
                                                 multipleSelect(multipleModel, holder)
-                                            else
+                                            else {
+                                                viewModel.setSelected(data.contractName)
                                                 findNavController()
-                                                    .navigate(
-                                                        TrackerFragmentDirections
-                                                            .actionNavigationTrackerToDOCDetailFragment(
-                                                                data.contractName
-                                                            )
-                                                    ) //Send request with date
+                                                    .navigate(R.id.action_navigation_tracker_to_DOCDetailFragment)
+                                            }
                                         }
                                 }
                             }

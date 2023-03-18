@@ -20,8 +20,6 @@ class TrackerViewModel @Inject constructor(private val repo: DOCRepository) : Vi
     val doc : LiveData<ServiceHandler<DocResponse>>
         get() = _doc
 
-
-
     init {
         viewModelScope.launch {
             repo.getDOC().let {
@@ -119,6 +117,40 @@ class TrackerViewModel @Inject constructor(private val repo: DOCRepository) : Vi
                     else -> {
                         _doc.postValue(ServiceHandler.error(it.errorBody().toString(), null))
                     }
+                }
+            }
+        }
+    }
+
+
+    //DOC Detail DATA
+    private val _selected = MutableLiveData<String>()
+    val selected : LiveData<String>
+        get() = _selected
+    fun setSelected(contractName: String) {
+        _selected.value = contractName
+    }
+
+    private val _data = MutableLiveData<ServiceHandler<DocResponse>>()
+    val data : LiveData<ServiceHandler<DocResponse>>
+        get() = _data
+
+    private val _progress = MutableLiveData<Int>()
+    val progress : LiveData<Int>
+        get() = _progress
+
+    fun setProgress(progress: Int) {
+        _progress.value = progress
+    }
+
+    fun getData(query: String) {
+        viewModelScope.launch {
+            repo.getDOCDetail(query).let {
+                _data.postValue(ServiceHandler.loading(null))
+                if (it.isSuccessful) {
+                    _data.postValue(ServiceHandler.success(it.body()))
+                } else {
+                    _data.postValue(ServiceHandler.error(it.errorBody().toString(), null))
                 }
             }
         }

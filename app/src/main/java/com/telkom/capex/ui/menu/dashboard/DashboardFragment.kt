@@ -10,6 +10,8 @@ import android.webkit.JavascriptInterface
 import android.webkit.WebChromeClient
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.snackbar.Snackbar
@@ -31,7 +33,8 @@ class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by activityViewModels<DashboardViewModel>()
+//    private val viewModel by viewModels<DashboardViewModel>()
+    private val viewModel: DashboardViewModel by hiltNavGraphViewModels(R.id.mobile_navigation)
     @Inject lateinit var utility: Utility
     private var isExpanding: Boolean = false
 
@@ -91,12 +94,22 @@ class DashboardFragment : Fragment() {
                     }
                 }
             }
+            binding.apply {
+                page.observe(viewLifecycleOwner) {
+                    dashPagerMonth.currentItem = it
+                }
+                year.observe(viewLifecycleOwner) {
+                    dashYearHolder.text = it.toString()
+                }
+            }
+
         }
 
         initiateActivity()
     }
 
     override fun onDestroyView() {
+        Log.e("Destroyed", "Yes")
         super.onDestroyView()
         _binding = null
     }
@@ -160,6 +173,7 @@ class DashboardFragment : Fragment() {
             }
             dashPieChart.apply {
                 setBackgroundColor(Color.TRANSPARENT)
+                webChromeClient = WebChromeClient()
                 settings.apply {
                     domStorageEnabled = true
                     javaScriptEnabled = true
@@ -222,17 +236,6 @@ class DashboardFragment : Fragment() {
                 if (visibility == View.GONE) {
                     visibility = View.VISIBLE
                     tvNullData.text = ""
-                }
-
-                Log.e("Check", "Passed")
-
-                viewModel.apply {
-                    page.observe(viewLifecycleOwner) {
-                        currentItem = it
-                    }
-                    year.observe(viewLifecycleOwner) {
-                        dashYearHolder.text = it.toString()
-                    }
                 }
 
                 adapter = object : FragmentStateAdapter(this@DashboardFragment) {

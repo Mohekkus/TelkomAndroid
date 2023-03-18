@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.snackbar.Snackbar
@@ -14,7 +16,10 @@ import com.telkom.capex.R
 import com.telkom.capex.databinding.FragmentTrackerBinding
 import com.telkom.capex.ui.menu.tracker.fragments.BOPTrackerFragment
 import com.telkom.capex.ui.menu.tracker.fragments.DOCTrackerFragment
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 
+@AndroidEntryPoint
 class TrackerFragment : Fragment() {
 
     private var _binding: FragmentTrackerBinding? = null
@@ -22,7 +27,7 @@ class TrackerFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private val viewModel by activityViewModels<TrackerViewModel>()
+    private val viewModel by hiltNavGraphViewModels<TrackerViewModel>(R.id.mobile_navigation)
     private val args: TrackerFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -79,7 +84,7 @@ class TrackerFragment : Fragment() {
                 }
             }
 
-            if (args.isUser) {
+            if (!args.isUser) {
                 budgetTab.visibility = View.GONE
                 buttonEditor.visibility = View.GONE
             }

@@ -6,15 +6,6 @@
     app:startDestination="@id/supremeFragment">
 
     <fragment
-        android:id="@+id/navigation_budget"
-        android:name="com.telkom.capex.ui.menu.budget.fragments.BudgetSummary"
-        android:label="@string/title_budget">
-        <action
-            android:id="@+id/action_navigation_budget_to_budgetlist"
-            app:destination="@id/budgetlist" />
-    </fragment>
-
-    <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.telkom.capex.ui.menu.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
@@ -44,10 +35,6 @@
         <action
             android:id="@+id/action_navigation_tracker_to_BOPDetailFragment"
             app:destination="@id/BOPDetailFragment" />
-        <argument
-            android:name="isUser"
-            app:argType="boolean"
-            android:defaultValue="true" />
     </fragment>
     <dialog
         android:id="@+id/dashboardDialog"
@@ -58,9 +45,6 @@
         android:name="com.telkom.capex.ui.menu.budget.BudgetFragment"
         android:label="@string/title_budget"
         tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_budgetDetail_to_navigation_budget"
-            app:destination="@id/navigation_budget" />
         <action
             android:id="@+id/action_budgetlist_to_budgetDetail"
             app:destination="@id/budgetDetail" />
@@ -115,5 +99,11 @@
         <action
             android:id="@+id/action_supremeFragment_to_navigation_tracker"
             app:destination="@id/navigation_tracker" />
+        <action
+            android:id="@+id/action_supremeFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+        <action
+            android:id="@+id/action_supremeFragment_to_budgetlist"
+            app:destination="@id/budgetlist" />
     </fragment>
 </navigation>

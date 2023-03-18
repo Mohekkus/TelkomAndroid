@@ -9,6 +9,9 @@ data class AppAccess(
     @JsonProperty("p_intyear")
     var p_intyear: Int? = null,
 
+    @JsonProperty("p_intmonthr")
+    var p_intmonth: Int? = null,
+
     @JsonProperty("pagenum")
     var pagenum: Int? = null,
 
