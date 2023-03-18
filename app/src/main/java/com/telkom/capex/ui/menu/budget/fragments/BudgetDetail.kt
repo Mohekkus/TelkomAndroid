@@ -12,7 +12,11 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.telkom.capex.R
 import com.telkom.capex.databinding.FragmentOverviewBinding
 import com.telkom.capex.ui.menu.budget.BudgetViewModel
+import com.telkom.capex.ui.menu.budget.fragments.component.BudgetDetailData
+import com.telkom.capex.ui.menu.budget.fragments.component.BudgetMonthlyBAST
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BudgetDetail: Fragment() {
 
     lateinit var binding: FragmentOverviewBinding
@@ -37,7 +41,7 @@ class BudgetDetail: Fragment() {
 
                     override fun createFragment(position: Int): Fragment {
                         return when (position) {
-                            0 -> BudgetData()
+                            0 -> BudgetDetailData()
                             else -> BudgetMonthlyBAST()
                         }
                     }
@@ -54,7 +58,7 @@ class BudgetDetail: Fragment() {
                     }
                 }.attach()
                 overviewEdit.setOnClickListener {
-                    findNavController().navigate(R.id.action_budgetDetail_to_budgetEdit)
+                    findNavController().navigate(R.id.action_budgetlist_to_budgetEdit)
                 }
             }
         }

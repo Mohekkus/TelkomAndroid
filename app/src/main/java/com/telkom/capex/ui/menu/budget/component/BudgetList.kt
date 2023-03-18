@@ -1,4 +1,4 @@
-package com.telkom.capex.ui.menu.budget.fragments
+package com.telkom.capex.ui.menu.budget.component
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,20 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.telkom.capex.R
 import com.telkom.capex.databinding.FragmentBudgetBinding
 import com.telkom.capex.etc.KeyboardUtils
-import com.telkom.capex.ui.menu.budget.BudgetViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 
+@AndroidEntryPoint
 class BudgetList: Fragment() {
 
     private lateinit var binding: FragmentBudgetBinding
-    private val viewModel by activityViewModels<BudgetViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

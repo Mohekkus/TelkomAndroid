@@ -1,4 +1,4 @@
-package com.telkom.capex.ui.menu.budget.fragments
+package com.telkom.capex.ui.menu.budget.fragments.component
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +14,9 @@ import com.google.android.material.snackbar.Snackbar
 import com.telkom.capex.R
 import com.telkom.capex.databinding.FragmentBudgetMonthlyBinding
 import com.telkom.capex.ui.menu.budget.BudgetViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BudgetMonthlyBAST: Fragment() {
 
     lateinit var binding: FragmentBudgetMonthlyBinding

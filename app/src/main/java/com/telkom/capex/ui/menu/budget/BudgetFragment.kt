@@ -10,8 +10,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,8 +21,8 @@ import com.telkom.capex.R
 import com.telkom.capex.databinding.FragmentBudgetContainerBinding
 import com.telkom.capex.etc.MonthModifier
 import com.telkom.capex.etc.ToMiddleScroller
-import com.telkom.capex.ui.menu.budget.fragments.BudgetList
-import com.telkom.capex.ui.menu.budget.fragments.ViewHolder
+import com.telkom.capex.ui.menu.budget.component.BudgetList
+import com.telkom.capex.ui.menu.budget.fragments.component.ViewHolder
 import com.telkom.capex.ui.menu.dashboard.helper.model.MonthlyBast
 import dagger.hilt.android.AndroidEntryPoint
 

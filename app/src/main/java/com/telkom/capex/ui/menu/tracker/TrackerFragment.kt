@@ -28,7 +28,6 @@ class TrackerFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private val viewModel by hiltNavGraphViewModels<TrackerViewModel>(R.id.mobile_navigation)
-    private val args: TrackerFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -82,11 +81,6 @@ class TrackerFragment : Fragment() {
                         }
                     }
                 }
-            }
-
-            if (!args.isUser) {
-                budgetTab.visibility = View.GONE
-                buttonEditor.visibility = View.GONE
             }
         }
     }

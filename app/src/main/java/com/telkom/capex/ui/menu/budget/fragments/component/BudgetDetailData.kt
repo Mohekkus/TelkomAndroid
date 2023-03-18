@@ -1,4 +1,4 @@
-package com.telkom.capex.ui.menu.budget.fragments
+package com.telkom.capex.ui.menu.budget.fragments.component
 
 import android.content.res.AssetManager
 import android.os.Bundle
@@ -7,21 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.telkom.capex.R
 import com.telkom.capex.databinding.FragmentBudgetDetailBinding
 import com.telkom.capex.etc.MonthModifier
-import com.telkom.capex.ui.menu.budget.BudgetViewModel
 import com.telkom.capex.ui.menu.dashboard.helper.model.MonthlyBast
+import dagger.hilt.android.AndroidEntryPoint
 
-class BudgetData: Fragment()  {
-
+@AndroidEntryPoint
+class BudgetDetailData: Fragment()  {
 
     private lateinit var binding: FragmentBudgetDetailBinding
-    private val viewModel by activityViewModels<BudgetViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

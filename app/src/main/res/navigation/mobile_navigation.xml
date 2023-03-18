@@ -48,18 +48,14 @@
         <action
             android:id="@+id/action_budgetlist_to_budgetDetail"
             app:destination="@id/budgetDetail" />
+        <action
+            android:id="@+id/action_budgetlist_to_budgetEdit"
+            app:destination="@id/budgetEdit" />
     </fragment>
     <fragment
         android:id="@+id/budgetDetail"
         android:name="com.telkom.capex.ui.menu.budget.fragments.BudgetDetail"
-        android:label="@string/title_budget">
-        <action
-            android:id="@+id/action_budgetDetail2_to_budgetDetail"
-            app:destination="@id/budgetlist" />
-        <action
-            android:id="@+id/action_budgetDetail_to_budgetEdit"
-            app:destination="@id/budgetEdit" />
-    </fragment>
+        android:label="@string/title_budget"/>
     <fragment
         android:id="@+id/dashboardSearchFragment"
         android:name="com.telkom.capex.ui.menu.dashboard.fragments.DashboardSearchFragment"
@@ -83,11 +79,7 @@
     <fragment
         android:id="@+id/budgetEdit"
         android:name="com.telkom.capex.ui.menu.budget.fragments.BudgetEdit"
-        android:label="BudgetEdit" >
-        <action
-            android:id="@+id/action_budgetEdit_to_budgetDetail"
-            app:destination="@id/budgetDetail" />
-    </fragment>
+        android:label="BudgetEdit" />
     <fragment
         android:id="@+id/BOPDetailFragment"
         android:name="com.telkom.capex.ui.menu.tracker.fragments.bop.BOPDetailFragment"
