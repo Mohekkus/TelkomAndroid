@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.telkom.capex.R
 import com.telkom.capex.etc.MonthModifier
-import com.telkom.capex.ui.menu.dashboard.fragments.DashboardDialog
+import com.telkom.capex.ui.menu.dashboard.helper.fragments.DashboardDialog
 
 class DashboardDialogAdapter(
     private val dialog: DashboardDialog,

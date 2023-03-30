@@ -539,7 +539,7 @@
 
                         <androidx.fragment.app.FragmentContainerView
                             android:id="@+id/dash_fcview_spinner"
-                            android:name="com.telkom.capex.ui.menu.dashboard.fragments.UnitSpinnerFragment"
+                            android:name="com.telkom.capex.ui.menu.dashboard.helper.fragments.UnitSpinnerFragment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             tools:layout="@layout/component_dash_spinner" />

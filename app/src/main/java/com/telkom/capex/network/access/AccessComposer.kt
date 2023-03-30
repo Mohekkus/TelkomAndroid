@@ -14,6 +14,13 @@ object AccessComposer {
         }
     }
 
+    fun getBudgetList(string: String, year: Int, page: Int): AppAccess {
+        return getAccess(string).apply {
+            p_intyear = year
+            pagenum = 1
+        }
+    }
+
     fun getDoc(string: String, page: Int): AppAccess {
         return getAccess(string).apply {
             pagenum = page
