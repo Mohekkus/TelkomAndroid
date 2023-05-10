@@ -1,4 +1,4 @@
-package com.telkom.capex.ui.menu.dashboard.fragments
+package com.telkom.capex.ui.menu.dashboard.helper.fragments
 
 import android.os.Bundle
 import android.text.Editable

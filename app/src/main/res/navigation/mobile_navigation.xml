@@ -38,7 +38,7 @@
     </fragment>
     <dialog
         android:id="@+id/dashboardDialog"
-        android:name="com.telkom.capex.ui.menu.dashboard.fragments.DashboardDialog"
+        android:name="com.telkom.capex.ui.menu.dashboard.helper.fragments.DashboardDialog"
         android:label="DashboardDialog" />
     <fragment
         android:id="@+id/budgetlist"
@@ -58,7 +58,7 @@
         android:label="@string/title_budget"/>
     <fragment
         android:id="@+id/dashboardSearchFragment"
-        android:name="com.telkom.capex.ui.menu.dashboard.fragments.DashboardSearchFragment"
+        android:name="com.telkom.capex.ui.menu.dashboard.helper.fragments.DashboardSearchFragment"
         android:label="DashboardSearchFragment" />
     <fragment
         android:id="@+id/DOCDetailFragment"
@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/newContractFragment"
-        android:name="com.telkom.capex.ui.menu.dashboard.fragments.NewContractFragment"
+        android:name="com.telkom.capex.ui.menu.dashboard.helper.fragments.NewContractFragment"
         android:label="NewContractFragment" />
     <fragment
         android:id="@+id/DOCEditFragment"

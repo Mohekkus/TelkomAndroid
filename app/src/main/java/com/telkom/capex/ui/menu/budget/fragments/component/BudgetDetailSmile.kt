@@ -37,7 +37,7 @@ class BudgetMonthlyBAST: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            tvBudgetEditMonth.text = viewModel.month.value
+//            tvBudgetEditMonth.text = viewModel.month.value
             tvBudgetEditYear.setOnClickListener {
                 Snackbar.make(root, "Show Year Picker", Snackbar.LENGTH_SHORT).show()
             }

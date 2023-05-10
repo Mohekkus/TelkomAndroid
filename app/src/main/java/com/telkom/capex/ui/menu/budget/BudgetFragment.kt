@@ -1,9 +1,7 @@
 package com.telkom.capex.ui.menu.budget
 
-import android.content.res.AssetManager
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -15,16 +13,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.android.material.snackbar.Snackbar
 import com.telkom.capex.R
 import com.telkom.capex.databinding.FragmentBudgetContainerBinding
 import com.telkom.capex.etc.MonthModifier
 import com.telkom.capex.etc.ToMiddleScroller
-import com.telkom.capex.ui.menu.budget.component.BudgetList
+import com.telkom.capex.network.utility.Status
+import com.telkom.capex.ui.menu.budget.helper.fragment.BudgetList
 import com.telkom.capex.ui.menu.budget.fragments.component.ViewHolder
-import com.telkom.capex.ui.menu.dashboard.helper.model.MonthlyBast
+import com.telkom.capex.ui.menu.budget.viewmodel.BudgetingSharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.Year
 
 @AndroidEntryPoint
 class BudgetFragment : Fragment()  {
@@ -35,7 +34,7 @@ class BudgetFragment : Fragment()  {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val viewModel by hiltNavGraphViewModels<BudgetViewModel>(R.id.mobile_navigation)
+    private val sharedViewModel by hiltNavGraphViewModels<BudgetingSharedViewModel>(R.id.mobile_navigation)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,18 +48,38 @@ class BudgetFragment : Fragment()  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedViewModel.apply {
+            setYear(
+                Year.now().value
+            )
+
+            data.observe(viewLifecycleOwner) {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        it.data.let { it ->
+                            val result = it?.result
+                            result?.let { list -> addListData(list) }
+                        }
+                    }
+                    Status.LOADING -> {
+
+                    }
+                    Status.ERROR -> {
+                        Snackbar.make(binding.root, "Something went wrong", Snackbar.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            }
+        }
+
         binding.apply {
             rvMonthYearOverlay.setOnClickListener {
                 Snackbar.make(view, "Soon TM", Snackbar.LENGTH_LONG).show()
             }
             rvMonthYear.apply {
-                //Dummy Local Json File Mapper
-                val om = ObjectMapper()
-                val raw = om.readValue(requireActivity().assets.readAssetFile(), MonthlyBast::class.java)
-
                 //Scroll To Middle
                 layoutManager = ToMiddleScroller(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                viewModel.monthList.observe(viewLifecycleOwner) {
+                sharedViewModel.monthList.observe(viewLifecycleOwner) {
                     smoothScrollToPosition(it)
                 }
 
@@ -76,10 +95,10 @@ class BudgetFragment : Fragment()  {
                         val itemView = holder.itemView
 
                         itemView.findViewById<TextView>(R.id.tv_item).apply {
-                            val data = raw.data?.get(position)
-                            text = "${data?.month} 2022"
+                            val bulan = MonthModifier.getMonth(position)
+                            text = "$bulan 2022"
 
-                            viewModel.apply {
+                            sharedViewModel.apply {
                                 monthList.observe(viewLifecycleOwner) {
                                     if (it == position)
                                         setTextColor(
@@ -96,10 +115,6 @@ class BudgetFragment : Fragment()  {
                             }
 
                             val absoluteMiddlePx = (view.measuredWidth * .5).toInt()
-                            val measure = this.measure(
-                                LinearLayout.LayoutParams.WRAP_CONTENT,
-                                LinearLayout.LayoutParams.WRAP_CONTENT
-                            )
                             val measured = (this.measuredWidth * .5).toInt()
                             val marginOffset = (16 * resources.displayMetrics.density).toInt()
                             val absoluteMeasured = measured + marginOffset
@@ -117,19 +132,6 @@ class BudgetFragment : Fragment()  {
                     }
                     override fun getItemCount(): Int = 12
                 }
-
-                //No user swipe to scroll by return true
-                addOnItemTouchListener(object : RecyclerView.OnItemTouchListener {
-                    override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
-                        return true
-                    }
-
-                    override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {}
-
-                    override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {}
-
-                })
-
             }
             budgetPagerList.apply {
                 adapter = object : FragmentStateAdapter(this@BudgetFragment) {
@@ -142,7 +144,7 @@ class BudgetFragment : Fragment()  {
                 registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                     override fun onPageSelected(position: Int) {
                         super.onPageSelected(position)
-                        viewModel.setMonthList(position)
+                        sharedViewModel.setMonthList(position)
                     }
                 })
             }
@@ -155,16 +157,13 @@ class BudgetFragment : Fragment()  {
         binding.apply {
             val currentMonth = MonthModifier.currentMonthInt() - 1
 
+            rvMonthYear.smoothScrollToPosition(currentMonth)
             budgetPagerList.setCurrentItem(
                 currentMonth,
                 true
             )
-            rvMonthYear.smoothScrollToPosition(currentMonth)
         }
     }
-
-    private fun AssetManager.readAssetFile(): String = open("month_money.json").bufferedReader().use { it.readText() }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

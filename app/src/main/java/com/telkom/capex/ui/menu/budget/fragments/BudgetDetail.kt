@@ -46,10 +46,10 @@ class BudgetDetail: Fragment() {
                         }
                     }
                 }
-                viewModel.page.observe(viewLifecycleOwner) {
-                    currentItem = if (it > 0) childCount
-                    else 0
-                }
+//                viewModel.page.observe(viewLifecycleOwner) {
+//                    currentItem = if (it > 0) childCount
+//                    else 0
+//                }
                 TabLayoutMediator(tabLayout, overviewPager) {tab, pos ->
                     tab.text = when (pos) {
                         0 -> "Monthly BAST"

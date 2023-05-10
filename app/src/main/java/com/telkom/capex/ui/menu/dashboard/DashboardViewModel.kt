@@ -31,17 +31,17 @@ class DashboardViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             repo.apply {
-                getBarYear(defaultYear).let {
-                    _bastYear.postValue(ServiceHandler.loading(null))
-                    when {
-                        it.isSuccessful -> {
-                            _bastYear.postValue(ServiceHandler.success(it.body()))
-                        }
-                        else -> {
-                            _bastYear.postValue(ServiceHandler.error(it.errorBody().toString(), null))
-                        }
-                    }
-                }
+//                getBarYear(defaultYear).let {
+//                    _bastYear.postValue(ServiceHandler.loading(null))
+//                    when {
+//                        it.isSuccessful -> {
+//                            _bastYear.postValue(ServiceHandler.success(it.body()))
+//                        }
+//                        else -> {
+//                            _bastYear.postValue(ServiceHandler.error(it.errorBody().toString(), null))
+//                        }
+//                    }
+//                }
                 getDashboard().let {
                     _dashboard.postValue(ServiceHandler.loading(null))
                     when {
