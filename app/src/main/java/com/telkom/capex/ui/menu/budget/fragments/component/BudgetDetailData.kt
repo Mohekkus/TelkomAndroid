@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -60,6 +61,59 @@ class BudgetDetailData: Fragment()  {
 
                             findViewById<TextView>(R.id.bud_detail_rv_val).text =
                                 string
+
+
+                            findViewById<RecyclerView>(R.id.rv_budget_edit_comp_hidden).apply {
+                                isScrollContainer = false
+                                layoutManager = LinearLayoutManager(requireContext())
+                                adapter = object : RecyclerView.Adapter<ViewHolder>() {
+                                    override fun onCreateViewHolder(
+                                        parent: ViewGroup,
+                                        viewType: Int
+                                    ): ViewHolder =
+                                        ViewHolder(
+                                            LayoutInflater.from(parent.context)
+                                                .inflate(R.layout.component_budget_edit_hidden, parent, false)
+                                        )
+
+                                    override fun onBindViewHolder(
+                                        holder: ViewHolder,
+                                        position: Int
+                                    ) {
+                                        val thisroot = holder.itemView
+
+                                        thisroot.apply {
+                                            when (position) {
+                                                0 -> {
+                                                    findViewById<TextView>(R.id.tv_hidden_name).text = "Plan RKAP"
+                                                    findViewById<TextView>(R.id.tv_hidden_sum).text = "Rp.155.000.000.000"
+                                                }
+
+                                                else -> {
+
+                                                    findViewById<TextView>(R.id.tv_hidden_name).text = "Plan PM"
+                                                    findViewById<TextView>(R.id.tv_hidden_sum).text = "Rp.215.000.000.000"
+                                                }
+                                            }
+                                        }
+                                    }
+                                    override fun getItemCount(): Int = 2
+                                }
+                                setOnClickListener {
+//                                    Snackbar.make(view, "Edit Value", Snackbar.LENGTH_SHORT).show()
+                                }
+                            }
+
+
+                            setOnClickListener {
+                                findViewById<LinearLayout>(R.id.budget_edit_comp_container_hidden)
+                                    .apply {
+                                        visibility = if (visibility == View.VISIBLE)
+                                            View.GONE
+                                        else
+                                            View.VISIBLE
+                                    }
+                            }
                         }
                     }
 

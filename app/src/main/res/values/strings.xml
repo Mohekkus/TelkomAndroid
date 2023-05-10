@@ -2,7 +2,7 @@
     <string name="app_name">Telkom Capex DID</string>
 <!--    <string name="title_home">Home</string>-->
     <string name="title_budget">Budget</string>
-    <string name="title_tracker">Tracker</string>
+    <string name="title_tracker">BOP</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 

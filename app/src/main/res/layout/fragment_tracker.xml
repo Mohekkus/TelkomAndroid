@@ -14,7 +14,7 @@
             android:id="@+id/new_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tracker"
+            android:text="BOP"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -38,6 +38,7 @@
         android:id="@+id/budget_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:tabBackground="@color/green_darkest"
         app:tabIndicatorColor="@color/white"
         app:tabTextColor="@color/white_kinda">

@@ -76,7 +76,7 @@ class DashboardViewModel @Inject constructor(
         getDifferentYear()
     }
 
-    fun getDifferentYear() {
+    private fun getDifferentYear() {
         viewModelScope.launch {
             repo.getBarYear(year.value?.toInt() ?: defaultYear).let {
                 _bastYear.postValue(ServiceHandler.loading(null))

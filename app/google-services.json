@@ -1,62 +1,41 @@
 {
   "project_info": {
-    "project_number": "999673337808",
-    "project_id": "mad-dashboard",
-    "storage_bucket": "mad-dashboard.appspot.com"
+    "project_number": "859529502883",
+    "project_id": "telkomcapexdid",
+    "storage_bucket": "telkomcapexdid.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:999673337808:android:a05e5bdf9fb4e990200bd5",
+        "mobilesdk_app_id": "1:859529502883:android:a9b4d2f2ee7849406cdf16",
         "android_client_info": {
           "package_name": "com.telkom.capex"
         }
       },
       "oauth_client": [
         {
-          "client_id": "999673337808-rio9j1a7k586pdhavqbi8p13bos4g1o6.apps.googleusercontent.com",
+          "client_id": "859529502883-2cl1g89lpms90a4bfsdau559jcl7iuag.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.telkom.capex",
+            "certificate_hash": "b9413df3a0ea229e1fa3199fda024788a8c6e684"
+          }
+        },
+        {
+          "client_id": "859529502883-ae1ni5m3ms54h39q8kocbotrvobolre7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBMoxuBuJDSVlKEc9oULn6wz0SLGqD06YM"
+          "current_key": "AIzaSyBvw247XU-auUAqPzNdF8QdA816ucpJ66g"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "999673337808-rio9j1a7k586pdhavqbi8p13bos4g1o6.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:999673337808:android:6ac828ee9b62b0f7200bd5",
-        "android_client_info": {
-          "package_name": "me.mohekkus.maddashboard"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "999673337808-rio9j1a7k586pdhavqbi8p13bos4g1o6.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBMoxuBuJDSVlKEc9oULn6wz0SLGqD06YM"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "999673337808-rio9j1a7k586pdhavqbi8p13bos4g1o6.apps.googleusercontent.com",
+              "client_id": "859529502883-ae1ni5m3ms54h39q8kocbotrvobolre7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

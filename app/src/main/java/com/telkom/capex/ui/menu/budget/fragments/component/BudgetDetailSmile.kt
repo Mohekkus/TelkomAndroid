@@ -64,45 +64,45 @@ class BudgetMonthlyBAST: Fragment() {
                         root.apply {
                             findViewById<TextView>(R.id.tv_budget_edit_comp_title).text = data[position]
                             findViewById<TextView>(R.id.tv_budget_edit_comp_sum).text = "Rp. 167.000.000.000"
-                            findViewById<RecyclerView>(R.id.rv_budget_edit_comp_hidden).apply {
-                                isScrollContainer = false
-                                layoutManager = LinearLayoutManager(requireContext())
-                                adapter = object : RecyclerView.Adapter<ViewHolder>() {
-                                    override fun onCreateViewHolder(
-                                        parent: ViewGroup,
-                                        viewType: Int
-                                    ): ViewHolder =
-                                        ViewHolder(
-                                            LayoutInflater.from(parent.context)
-                                                .inflate(R.layout.component_budget_edit_hidden, parent, false)
-                                        )
-
-                                    override fun onBindViewHolder(
-                                        holder: ViewHolder,
-                                        position: Int
-                                    ) {
-                                        val thisroot = holder.itemView
-
-                                        thisroot.apply {
-                                            findViewById<TextView>(R.id.tv_hidden_name).text = "Plan #${position + 1}"
-                                            findViewById<TextView>(R.id.tv_hidden_sum).text = "Rp.15.000.000.000"
-                                        }
-                                    }
-                                    override fun getItemCount(): Int = 2
-                                }
-                                setOnClickListener {
-//                                    Snackbar.make(view, "Edit Value", Snackbar.LENGTH_SHORT).show()
-                                }
-                            }
-                            setOnClickListener {
-                                findViewById<LinearLayout>(R.id.budget_edit_comp_container_hidden)
-                                    .apply {
-                                        visibility = if (visibility == View.VISIBLE)
-                                            View.GONE
-                                        else
-                                            View.VISIBLE
-                                    }
-                            }
+//                            findViewById<RecyclerView>(R.id.rv_budget_edit_comp_hidden).apply {
+//                                isScrollContainer = false
+//                                layoutManager = LinearLayoutManager(requireContext())
+//                                adapter = object : RecyclerView.Adapter<ViewHolder>() {
+//                                    override fun onCreateViewHolder(
+//                                        parent: ViewGroup,
+//                                        viewType: Int
+//                                    ): ViewHolder =
+//                                        ViewHolder(
+//                                            LayoutInflater.from(parent.context)
+//                                                .inflate(R.layout.component_budget_edit_hidden, parent, false)
+//                                        )
+//
+//                                    override fun onBindViewHolder(
+//                                        holder: ViewHolder,
+//                                        position: Int
+//                                    ) {
+//                                        val thisroot = holder.itemView
+//
+//                                        thisroot.apply {
+//                                            findViewById<TextView>(R.id.tv_hidden_name).text = "Plan #${position + 1}"
+//                                            findViewById<TextView>(R.id.tv_hidden_sum).text = "Rp.15.000.000.000"
+//                                        }
+//                                    }
+//                                    override fun getItemCount(): Int = 2
+//                                }
+//                                setOnClickListener {
+////                                    Snackbar.make(view, "Edit Value", Snackbar.LENGTH_SHORT).show()
+//                                }
+//                            }
+//                            setOnClickListener {
+//                                findViewById<LinearLayout>(R.id.budget_edit_comp_container_hidden)
+//                                    .apply {
+//                                        visibility = if (visibility == View.VISIBLE)
+//                                            View.GONE
+//                                        else
+//                                            View.VISIBLE
+//                                    }
+//                            }
                         }
                     }
 

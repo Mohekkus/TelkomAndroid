@@ -45,26 +45,27 @@ class TrackerFragment : Fragment() {
             budgetPager.apply {
                 isUserInputEnabled = false
                 adapter = object : FragmentStateAdapter(this@TrackerFragment) {
-                    override fun getItemCount(): Int = 2
+                    override fun getItemCount(): Int = 1
 
                     override fun createFragment(position: Int): Fragment {
-                        return when(position) {
-                            0 -> DOCTrackerFragment()
-                            else -> BOPTrackerFragment()
-                        }
+                        return BOPTrackerFragment()
+//                        return when(position) {
+//                            0 -> DOCTrackerFragment()
+//                            else -> BOPTrackerFragment()
+//                        }
                     }
                 }
             }
-            TabLayoutMediator(
-                budgetTab,
-                budgetPager
-            ) { tab, position ->
-                tab.text = when(position) {
-                    0 -> "DOC"
-                    1 -> "BOP"
-                    else -> "sum thin u doin"
-                }
-            }.attach()
+//            TabLayoutMediator(
+//                budgetTab,
+//                budgetPager
+//            ) { tab, position ->
+//                tab.text = when(position) {
+//                    0 -> "DOC"
+//                    1 -> "BOP"
+//                    else -> "sum thin u doin"
+//                }
+//            }.attach()
 
             buttonEditor.apply {
                 viewModel.selectingItemList.observe(viewLifecycleOwner) {
