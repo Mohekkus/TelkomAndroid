@@ -4,23 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.telkom.capex.R
 import com.telkom.capex.databinding.FragmentBudgetMonthlyBinding
-import com.telkom.capex.ui.menu.budget.BudgetViewModel
+import com.telkom.capex.ui.menu.ViewHolder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class BudgetMonthlyBAST: Fragment() {
 
     lateinit var binding: FragmentBudgetMonthlyBinding
-    private val viewModel by activityViewModels<BudgetViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -112,6 +109,3 @@ class BudgetMonthlyBAST: Fragment() {
         }
     }
 }
-
-
-class ViewHolder (view: View) : RecyclerView.ViewHolder(view)

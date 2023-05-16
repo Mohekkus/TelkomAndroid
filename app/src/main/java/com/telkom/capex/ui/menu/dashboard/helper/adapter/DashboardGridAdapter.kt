@@ -8,11 +8,10 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.telkom.capex.R
+import com.telkom.capex.ui.menu.ViewHolder
 import com.telkom.capex.ui.menu.dashboard.helper.model.DashboardGridModel
 
-class DashboardGridAdapter(val gridMenu: ArrayList<DashboardGridModel>) : RecyclerView.Adapter<DashboardGridAdapter.ViewHolder>() {
-
-    class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view)
+class DashboardGridAdapter(val gridMenu: ArrayList<DashboardGridModel>) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(

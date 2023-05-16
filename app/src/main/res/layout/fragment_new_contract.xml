@@ -45,6 +45,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nomor Kontrak"
+                android:textColor="@color/primary" />
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -150,7 +157,7 @@
                         android:id="@+id/textView65"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Budget Detail"
+                        android:text="Status Contract"
                         android:textColor="@color/green_dark"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -159,7 +166,7 @@
                         android:id="@+id/textView64"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Synchronize with SMILE"
+                        android:text="Active"
                         android:textColor="@color/primary" />
                 </LinearLayout>
 

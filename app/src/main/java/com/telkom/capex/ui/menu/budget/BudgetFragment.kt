@@ -19,9 +19,10 @@ import com.telkom.capex.databinding.FragmentBudgetContainerBinding
 import com.telkom.capex.etc.MonthModifier
 import com.telkom.capex.etc.ToMiddleScroller
 import com.telkom.capex.network.utility.Status
-import com.telkom.capex.ui.menu.budget.helper.fragment.BudgetList
-import com.telkom.capex.ui.menu.budget.fragments.component.ViewHolder
-import com.telkom.capex.ui.menu.budget.viewmodel.BudgetingSharedViewModel
+import com.telkom.capex.ui.menu.ViewHolder
+import com.telkom.capex.ui.menu.budget.fragments.BudgetList
+import com.telkom.capex.ui.menu.budget.viewmodel.BudgetSharedViewModel
+import com.telkom.capex.ui.menu.budget.viewmodel.BudgetViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.Year
 
@@ -34,7 +35,8 @@ class BudgetFragment : Fragment()  {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val sharedViewModel by hiltNavGraphViewModels<BudgetingSharedViewModel>(R.id.mobile_navigation)
+    private val viewmodel by hiltNavGraphViewModels<BudgetViewModel>(R.id.mobile_navigation)
+    private val shared by hiltNavGraphViewModels<BudgetSharedViewModel>(R.id.mobile_navigation)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,7 +50,7 @@ class BudgetFragment : Fragment()  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedViewModel.apply {
+        shared.apply {
             setYear(
                 Year.now().value
             )
@@ -79,7 +81,7 @@ class BudgetFragment : Fragment()  {
             rvMonthYear.apply {
                 //Scroll To Middle
                 layoutManager = ToMiddleScroller(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                sharedViewModel.monthList.observe(viewLifecycleOwner) {
+                viewmodel.monthList.observe(viewLifecycleOwner) {
                     smoothScrollToPosition(it)
                 }
 
@@ -95,10 +97,10 @@ class BudgetFragment : Fragment()  {
                         val itemView = holder.itemView
 
                         itemView.findViewById<TextView>(R.id.tv_item).apply {
-                            val bulan = MonthModifier.getMonth(position)
+                            val bulan = MonthModifier.getMonth(position + 1)
                             text = "$bulan 2022"
 
-                            sharedViewModel.apply {
+                            viewmodel.apply {
                                 monthList.observe(viewLifecycleOwner) {
                                     if (it == position)
                                         setTextColor(
@@ -144,7 +146,7 @@ class BudgetFragment : Fragment()  {
                 registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                     override fun onPageSelected(position: Int) {
                         super.onPageSelected(position)
-                        sharedViewModel.setMonthList(position)
+                        viewmodel.setMonthList(position)
                     }
                 })
             }

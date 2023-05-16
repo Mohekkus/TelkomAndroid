@@ -7,11 +7,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.telkom.capex.R
+import com.telkom.capex.ui.menu.ViewHolder
 import com.telkom.capex.ui.menu.dashboard.helper.model.DashboardRecentModel
 
-class DashboardRecentAdapter(private val data: ArrayList<DashboardRecentModel>) : RecyclerView.Adapter<DashboardRecentAdapter.ViewHolder>() {
-
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
+class DashboardRecentAdapter(private val data: ArrayList<DashboardRecentModel>) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(

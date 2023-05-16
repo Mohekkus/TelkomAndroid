@@ -25,6 +25,7 @@ import com.telkom.capex.databinding.FragmentDocBinding
 import com.telkom.capex.etc.KeyboardUtils
 import com.telkom.capex.etc.Utility
 import com.telkom.capex.network.utility.Status
+import com.telkom.capex.ui.menu.ViewHolder
 import com.telkom.capex.ui.menu.tracker.TrackerFragmentDirections
 import com.telkom.capex.ui.menu.tracker.TrackerViewModel
 import com.telkom.capex.ui.menu.tracker.fragments.doc.DOCDetailFragment
@@ -349,6 +350,3 @@ class DOCTrackerFragment: Fragment() {
             arguments = null
     }
 }
-
-
-class ViewHolder(view:View): RecyclerView.ViewHolder(view)

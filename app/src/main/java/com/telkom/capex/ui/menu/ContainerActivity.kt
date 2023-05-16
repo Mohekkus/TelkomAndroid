@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.telkom.capex.R
 import com.telkom.capex.databinding.ActivityMainBinding
 import com.telkom.capex.etc.SupremeFragmentDirections
@@ -43,3 +44,5 @@ class ContainerActivity : AppCompatActivity() {
         }
     }
 }
+
+class ViewHolder (view: View) : RecyclerView.ViewHolder(view)

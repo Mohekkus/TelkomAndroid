@@ -1,16 +1,23 @@
 package com.telkom.capex.ui.menu.dashboard.helper.model
 
+
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class ResultItem(@JsonProperty("bintsumbast")
-                      val bastTotal: Long = 0,
+                      val bintsumbast: Long = 0,
                       @JsonProperty("intperbastdone")
-                      val bastDone: Long = 0,
+                      val intperbastdone: Long = 0,
                       @JsonProperty("intsucceed")
-                      val code: Int = 0,
+                      val intsucceed: Long = 0,
+                      @JsonProperty("bintsisapekerjaan")
+                      val bintsisapekerjaan: Long = 0,
                       @JsonProperty("intpersisapekerjaan")
-                      val remainJob: Long = 0,
+                      val intpersisapekerjaan: Long = 0,
                       @JsonProperty("errdescription")
-                      val err: String = "",
+                      val errdescription: String = "",
                       @JsonProperty("bintsumnikon")
-                      val nikon: Long = 0)
+                      val bintsumnikon: Long = 0,
+                      @JsonProperty("intcountkont")
+                      val intcountkont: Long = 0)
+
+

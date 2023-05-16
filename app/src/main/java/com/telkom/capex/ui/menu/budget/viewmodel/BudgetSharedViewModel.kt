@@ -14,7 +14,7 @@ import java.time.Year
 import javax.inject.Inject
 
 @HiltViewModel
-class BudgetingSharedViewModel @Inject constructor(private val repo: BudgetRepository): ViewModel() {
+class BudgetSharedViewModel @Inject constructor(private val repo: BudgetRepository) : ViewModel() {
 
     private var _data = MutableLiveData<ServiceHandler<BudgetListResponse>>()
     val data: LiveData<ServiceHandler<BudgetListResponse>>
@@ -22,7 +22,7 @@ class BudgetingSharedViewModel @Inject constructor(private val repo: BudgetRepos
 
     private var _listData = MutableLiveData<List<BudgetListResultItem>>()
     val listData: LiveData<List<BudgetListResultItem>>
-    get() = _listData
+        get() = _listData
 
     init {
 //        viewModelScope.launch {
@@ -42,7 +42,7 @@ class BudgetingSharedViewModel @Inject constructor(private val repo: BudgetRepos
 
     fun getListOnPage(page: Int) {
         viewModelScope.launch {
-            repo.getListBudget(year.value ?: Year.now().value, page).let {
+            repo.getListBudget(year.value ?: Year.now().value, getPage()).let {
                 _data.postValue(ServiceHandler.loading(null))
                 when {
                     it.isSuccessful -> {
@@ -62,12 +62,17 @@ class BudgetingSharedViewModel @Inject constructor(private val repo: BudgetRepos
         )
     }
 
-    private val _monthList = MutableLiveData<Int>().apply {
-        value = 0
+
+    private val _page = MutableLiveData<Int>().apply {
+        value = 1
     }
-    val monthList: LiveData<Int> = _monthList
-    fun setMonthList(data: Int) {
-        _monthList.value = data
+
+    private fun getPage(): Int = _page.value ?: 1
+    fun setPage(query: Int) {
+        _page.value = query
+    }
+    fun addToPage() {
+        _page.value?.plus(1)
     }
 
     private val _year = MutableLiveData<Int> ()

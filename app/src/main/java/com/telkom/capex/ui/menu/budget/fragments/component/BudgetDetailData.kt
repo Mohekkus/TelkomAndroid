@@ -1,6 +1,7 @@
 package com.telkom.capex.ui.menu.budget.fragments.component
 
 import android.content.res.AssetManager
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +12,17 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.telkom.capex.R
+import com.telkom.capex.databinding.ComponentBudgetDetailRvBinding
+import com.telkom.capex.databinding.ComponentBudgetEditBinding
 import com.telkom.capex.databinding.FragmentBudgetDetailBinding
 import com.telkom.capex.etc.MonthModifier
+import com.telkom.capex.ui.menu.ViewHolder
 import com.telkom.capex.ui.menu.dashboard.helper.model.MonthlyBast
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.Year
+
 
 @AndroidEntryPoint
 class BudgetDetailData: Fragment()  {
@@ -28,13 +35,13 @@ class BudgetDetailData: Fragment()  {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentBudgetDetailBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
+    lateinit var rvBinding: ComponentBudgetDetailRvBinding
+    lateinit var botDialog: ComponentBudgetEditBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         binding.apply {
             val om = ObjectMapper()
@@ -43,27 +50,32 @@ class BudgetDetailData: Fragment()  {
             budgetDetailRv.apply {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = object : RecyclerView.Adapter<ViewHolder>() {
-                    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-                        ViewHolder(
-                            LayoutInflater.from(parent.context)
-                                .inflate(R.layout.component_budget_detail_rv, parent, false)
-                        )
+                    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+                        rvBinding = ComponentBudgetDetailRvBinding.inflate(layoutInflater, parent, false)
+                        return ViewHolder(rvBinding.root)
+                    }
 
                     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-                        val holderView = holder.itemView
-
-                        holderView.apply {
-                            findViewById<TextView>(R.id.bud_detail_rv_mo)
-                                .text = MonthModifier.getMonth( position + 1)
+                        val month = MonthModifier.getMonth( position + 1)
+                        rvBinding.apply {
+                            editTrigger.setOnClickListener {
+                                botDialog = ComponentBudgetEditBinding.inflate(layoutInflater).apply {
+                                    tvTitle.text = "$month, ${Year.now()}"
+                                }
+                                BottomSheetDialog(requireContext()).apply {
+                                    setContentView(
+                                        botDialog.root
+                                    )
+                                }.show()
+                            }
+                            budDetailRvMo.text = month
 
                             var string = raw.data?.get(position)?.duit.toString()
-                            string = string.replace("Rp ", "")
+                            string = string.replace("Rp ", "Rp.")
 
-                            findViewById<TextView>(R.id.bud_detail_rv_val).text =
-                                string
+                            budDetailRvVal.text = string
 
-
-                            findViewById<RecyclerView>(R.id.rv_budget_edit_comp_hidden).apply {
+                            rvBudgetEditCompHidden.apply {
                                 isScrollContainer = false
                                 layoutManager = LinearLayoutManager(requireContext())
                                 adapter = object : RecyclerView.Adapter<ViewHolder>() {
@@ -99,20 +111,6 @@ class BudgetDetailData: Fragment()  {
                                     }
                                     override fun getItemCount(): Int = 2
                                 }
-                                setOnClickListener {
-//                                    Snackbar.make(view, "Edit Value", Snackbar.LENGTH_SHORT).show()
-                                }
-                            }
-
-
-                            setOnClickListener {
-                                findViewById<LinearLayout>(R.id.budget_edit_comp_container_hidden)
-                                    .apply {
-                                        visibility = if (visibility == View.VISIBLE)
-                                            View.GONE
-                                        else
-                                            View.VISIBLE
-                                    }
                             }
                         }
                     }
@@ -123,7 +121,9 @@ class BudgetDetailData: Fragment()  {
         }
     }
 
-    class ViewHolder (private val view: View) : RecyclerView.ViewHolder(view)
+    private fun setSelectedItem(linout: LinearLayout) {
+
+    }
 
     private fun AssetManager.readAssetFile(): String = open("month_money.json").bufferedReader().use { it.readText() }
 

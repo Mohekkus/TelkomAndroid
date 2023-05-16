@@ -5,13 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import com.telkom.capex.R
 import com.telkom.capex.databinding.FragmentOverviewBinding
-import com.telkom.capex.ui.menu.budget.BudgetViewModel
 import com.telkom.capex.ui.menu.budget.fragments.component.BudgetDetailData
 import com.telkom.capex.ui.menu.budget.fragments.component.BudgetMonthlyBAST
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class BudgetDetail: Fragment() {
 
     lateinit var binding: FragmentOverviewBinding
-    private val viewModel by activityViewModels<BudgetViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +53,7 @@ class BudgetDetail: Fragment() {
                     }
                 }.attach()
                 overviewEdit.setOnClickListener {
-                    findNavController().navigate(R.id.action_budgetlist_to_budgetEdit)
+//                    findNavController().navigate(R.id.action_budgetDetail_to_budgetEdit)
                 }
             }
         }

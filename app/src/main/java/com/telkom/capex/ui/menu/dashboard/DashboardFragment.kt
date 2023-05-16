@@ -18,9 +18,10 @@ import com.telkom.capex.databinding.FragmentDashboardBinding
 import com.telkom.capex.etc.ChartDemo
 import com.telkom.capex.etc.Utility
 import com.telkom.capex.network.utility.Status
-import com.telkom.capex.ui.menu.dashboard.fragments.DashboardDialog
-import com.telkom.capex.ui.menu.dashboard.fragments.MonthlyBastFragment
+import com.telkom.capex.ui.menu.dashboard.helper.fragments.DashboardDialog
+import com.telkom.capex.ui.menu.dashboard.helper.fragments.MonthlyBastFragment
 import com.telkom.capex.ui.menu.dashboard.helper.model.ResultChart
+import com.telkom.capex.ui.menu.search.model.SharedSearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import javax.inject.Inject
@@ -33,6 +34,7 @@ class DashboardFragment : Fragment() {
 
 //    private val viewModel by viewModels<DashboardViewModel>()
     private val viewModel: DashboardViewModel by hiltNavGraphViewModels(R.id.mobile_navigation)
+    private val shared: SharedSearchViewModel by hiltNavGraphViewModels(R.id.mobile_navigation)
     @Inject lateinit var utility: Utility
     private var isExpanding: Boolean = false
 
@@ -55,12 +57,7 @@ class DashboardFragment : Fragment() {
                         it.data.let { dashboardResponse ->
                             val result = dashboardResponse?.result
                             result?.get(0)?.apply {
-                                assembleData(
-                                    bastTotal,
-                                    bastDone,
-                                    nikon,
-                                    remainJob
-                                )
+                                assembleData(bintsumbast, intcountkont, bintsumnikon, bintsisapekerjaan)
                             }
                         }
                     }
@@ -98,6 +95,9 @@ class DashboardFragment : Fragment() {
                 }
                 year.observe(viewLifecycleOwner) {
                     dashYearHolder.text = it.toString()
+                }
+                dashCardNew.setOnClickListener {
+
                 }
             }
 
@@ -184,13 +184,13 @@ class DashboardFragment : Fragment() {
                     null
                 )
             }
-            dashCardNew.apply {
-                setOnClickListener {
-                    findNavController().navigate(R.id.action_navigation_dashboard_to_newContractFragment)
-                }
+            dashCardNew.setOnClickListener {
+                shared.setFlagTo(SharedSearchViewModel.DICTIONARY.CONTRACT)
+                findNavController().navigate(R.id.action_navigation_dashboard_to_fragmentSearchContract)
             }
             dashSearch.setOnClickListener {
-                findNavController().navigate(R.id.action_navigation_dashboard_to_dashboardSearchFragment)
+                shared.setFlagTo(SharedSearchViewModel.DICTIONARY.CONTRACT)
+                findNavController().navigate(R.id.action_navigation_dashboard_to_fragmentSearchContract)
             }
         }
     }
@@ -198,23 +198,25 @@ class DashboardFragment : Fragment() {
         Snackbar.make(binding.root, "Soon but better version", Snackbar.LENGTH_LONG).show()
     }
 
-    private fun assembleData(bastTotal: Long, bastDone: Long, nikon: Long, remainJob: Long) {
+    private fun assembleData(bastTotal: Long, bastValue: Long, bastContracts: Long, bastLeft: Long) {
         binding.apply {
             utility.money.apply {
                 dashTotal.text = format(bastTotal)
-                dashBastYr.text = format(bastDone)
-                dashNikon.text = format(nikon)
-                dashRemain.text = format(remainJob)
+                dashCountValue.text = format(bastValue)
+                dashCountContracts.text = format(bastContracts)
+                dashRemain.text = format(bastLeft)
+                dashNikon.text = format(bastValue)
+//                dashRemain.text = format(remainJob)
 
 //                percentage(nikon, bastDone).apply {
 //                    dashPercentageContractBast.text = this
 //                    dashPercentageContractBast.text = this
 //                }
 
-                percentage(nikon, remainJob).apply {
-                    dashPercentageContractRemain.text = this
-                    dashPercentageContractRemainExpand.text = this
-                }
+//                percentage(nikon, remainJob).apply {
+//                    dashPercentageContractRemain.text = this
+//                    dashPercentageContractRemainExpand.text = this
+//                }
             }
 
             dashRefresh.isRefreshing = false

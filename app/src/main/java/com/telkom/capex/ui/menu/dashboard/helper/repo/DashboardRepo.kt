@@ -8,7 +8,9 @@ import retrofit2.Response
 import java.util.*
 import javax.inject.Inject
 
-class DashboardRepo @Inject constructor(private val dashboardService: DashboardService) {
+class DashboardRepo @Inject constructor(
+    private val dashboardService: DashboardService
+    ) {
 
     suspend fun getDashboard(): Response<DashboardResponse> = dashboardService.getDashboard(
         AccessComposer.getAccess(

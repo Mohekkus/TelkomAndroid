@@ -43,7 +43,7 @@
         android:paddingTop="16dp"
         android:paddingEnd="24dp"
         android:paddingBottom="16dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -165,14 +165,14 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="TOC"
+                            android:text="EDC"
                             android:textColor="@color/green_darkest"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="20 Aug 2022"
+                            android:text="11 Jan 2021"
                             android:textColor="@color/green_darkest" />
                     </LinearLayout>
 
@@ -185,14 +185,14 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="EDC"
+                            android:text="TOC"
                             android:textColor="@color/green_darkest"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="11 Jan 2021"
+                            android:text="20 Aug 2022"
                             android:textColor="@color/green_darkest" />
                     </LinearLayout>
 

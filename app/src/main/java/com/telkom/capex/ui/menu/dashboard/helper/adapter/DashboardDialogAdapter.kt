@@ -8,15 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.telkom.capex.R
 import com.telkom.capex.etc.MonthModifier
+import com.telkom.capex.ui.menu.ViewHolder
 import com.telkom.capex.ui.menu.dashboard.helper.fragments.DashboardDialog
 
 class DashboardDialogAdapter(
     private val dialog: DashboardDialog,
     private val size: Int,
     private val setPage: (Int) -> Unit,
-) : RecyclerView.Adapter<DashboardDialogAdapter.ViewHolder>() {
-
-    class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view)
+) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(

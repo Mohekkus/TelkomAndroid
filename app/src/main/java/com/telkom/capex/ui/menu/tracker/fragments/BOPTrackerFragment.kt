@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.telkom.capex.R
 import com.telkom.capex.databinding.FragmentBopBinding
+import com.telkom.capex.ui.menu.ViewHolder
 
 class BOPTrackerFragment: Fragment() {
 
@@ -24,8 +25,6 @@ class BOPTrackerFragment: Fragment() {
 
         return binding.root
     }
-
-    class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

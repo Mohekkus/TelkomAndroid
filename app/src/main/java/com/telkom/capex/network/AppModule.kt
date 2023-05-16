@@ -4,6 +4,7 @@ import com.telkom.capex.network.interceptor.RetrofitInterceptor
 import com.telkom.capex.network.services.BudgetService
 import com.telkom.capex.network.services.DashboardService
 import com.telkom.capex.network.services.LoginService
+import com.telkom.capex.network.services.SearchService
 import com.telkom.capex.network.services.TrackerService
 import com.telkom.capex.ui.login.data.helper.TokenHelper
 import com.telkom.capex.ui.login.data.implementor.TokenImplementor
@@ -65,6 +66,10 @@ object AppModule {
     @Singleton
     @Provides
     fun provideTrackerService(retrofit: Retrofit): TrackerService = retrofit.create(TrackerService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideSearchService(retrofit: Retrofit): SearchService = retrofit.create(SearchService::class.java)
 
     @Singleton
     @Provides

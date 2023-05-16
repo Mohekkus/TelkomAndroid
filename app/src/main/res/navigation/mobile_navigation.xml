@@ -14,11 +14,8 @@
             android:id="@+id/action_navigation_dashboard_to_dashboardDialog"
             app:destination="@id/dashboardDialog" />
         <action
-            android:id="@+id/action_navigation_dashboard_to_dashboardSearchFragment"
-            app:destination="@id/dashboardSearchFragment" />
-        <action
-            android:id="@+id/action_navigation_dashboard_to_newContractFragment"
-            app:destination="@id/newContractFragment" />
+            android:id="@+id/action_navigation_dashboard_to_fragmentSearchContract"
+            app:destination="@id/fragmentSearchContract" />
     </fragment>
 
     <fragment
@@ -49,17 +46,13 @@
             android:id="@+id/action_budgetlist_to_budgetDetail"
             app:destination="@id/budgetDetail" />
         <action
-            android:id="@+id/action_budgetlist_to_budgetEdit"
-            app:destination="@id/budgetEdit" />
+            android:id="@+id/action_budgetlist_to_fragmentSearchContract"
+            app:destination="@id/fragmentSearchContract" />
     </fragment>
     <fragment
         android:id="@+id/budgetDetail"
         android:name="com.telkom.capex.ui.menu.budget.fragments.BudgetDetail"
         android:label="@string/title_budget"/>
-    <fragment
-        android:id="@+id/dashboardSearchFragment"
-        android:name="com.telkom.capex.ui.menu.dashboard.helper.fragments.DashboardSearchFragment"
-        android:label="DashboardSearchFragment" />
     <fragment
         android:id="@+id/DOCDetailFragment"
         android:name="com.telkom.capex.ui.menu.tracker.fragments.doc.DOCDetailFragment"
@@ -69,17 +62,9 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/newContractFragment"
-        android:name="com.telkom.capex.ui.menu.dashboard.helper.fragments.NewContractFragment"
-        android:label="NewContractFragment" />
-    <fragment
         android:id="@+id/DOCEditFragment"
         android:name="com.telkom.capex.ui.menu.tracker.fragments.doc.DOCEditFragment"
         android:label="DOCEditFragment" />
-    <fragment
-        android:id="@+id/budgetEdit"
-        android:name="com.telkom.capex.ui.menu.budget.fragments.BudgetEdit"
-        android:label="BudgetEdit" />
     <fragment
         android:id="@+id/BOPDetailFragment"
         android:name="com.telkom.capex.ui.menu.tracker.fragments.bop.BOPDetailFragment"
@@ -97,5 +82,13 @@
         <action
             android:id="@+id/action_supremeFragment_to_budgetlist"
             app:destination="@id/budgetlist" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSearchContract"
+        android:name="com.telkom.capex.ui.menu.search.FragmentSearchContract"
+        android:label="FragmentSearchContract" >
+        <action
+            android:id="@+id/action_fragmentSearchContract_to_budgetDetail"
+            app:destination="@id/budgetDetail" />
     </fragment>
 </navigation>
