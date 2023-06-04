@@ -2,7 +2,6 @@ package com.telkom.capex.ui.menu.dashboard
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,9 +17,10 @@ import com.telkom.capex.databinding.FragmentDashboardBinding
 import com.telkom.capex.etc.ChartDemo
 import com.telkom.capex.etc.Utility
 import com.telkom.capex.network.utility.Status
+import com.telkom.capex.ui.menu.dashboard.helper.MyJavascriptInterface
 import com.telkom.capex.ui.menu.dashboard.helper.fragments.DashboardDialog
 import com.telkom.capex.ui.menu.dashboard.helper.fragments.MonthlyBastFragment
-import com.telkom.capex.ui.menu.dashboard.helper.model.ResultChart
+import com.telkom.capex.ui.menu.dashboard.helper.model.DashboardYearResultItem
 import com.telkom.capex.ui.menu.search.model.SharedSearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -29,8 +29,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class DashboardFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
-    private val binding get() = _binding!!
+    lateinit var binding: FragmentDashboardBinding
 
 //    private val viewModel by viewModels<DashboardViewModel>()
     private val viewModel: DashboardViewModel by hiltNavGraphViewModels(R.id.mobile_navigation)
@@ -43,7 +42,7 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -51,13 +50,29 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.apply {
+            division.observe(requireActivity()) { handler ->
+                when (handler.status) {
+                    Status.SUCCESS -> {
+                        handler.data.let { res ->
+                            getPie(res?.result?.get(0)?.intidorg ?: 0)
+                        }
+                    }
+                    Status.LOADING -> {
+
+                    }
+                    Status.ERROR -> {
+                        Snackbar.make(binding.root, "Something went wrong", Snackbar.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            }
             dashboard.observe(requireActivity()) {
                 when (it.status) {
                     Status.SUCCESS -> {
                         it.data.let { dashboardResponse ->
                             val result = dashboardResponse?.result
                             result?.get(0)?.apply {
-                                assembleData(bintsumbast, intcountkont, bintsumnikon, bintsisapekerjaan)
+                                assembleData(bintsumbast, intcountkont, bintsumnikon, bintsisapekerjaan, bintbastyear)
                             }
                         }
                     }
@@ -104,12 +119,6 @@ class DashboardFragment : Fragment() {
         }
 
         initiateActivity()
-    }
-
-    override fun onDestroyView() {
-        Log.e("Destroyed", "Yes")
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun initiateActivity() {
@@ -176,13 +185,36 @@ class DashboardFragment : Fragment() {
                     domStorageEnabled = true
                     javaScriptEnabled = true
                 }
-                loadDataWithBaseURL(
-                    null,
-                    ChartDemo.getPie(),
-                    "text/html",
-                    "UTF-8",
-                    null
-                )
+                addJavascriptInterface(MyJavascriptInterface(requireContext()), "Android")
+                viewModel.apply {
+                    pie.observe(requireActivity()) {
+                        when (it.status) {
+                            Status.SUCCESS -> {
+                                dashPieChart.visibility = View.VISIBLE
+                                dashPieProgress.visibility = View.GONE
+                                it.data.let { dashboardResponse ->
+                                    val result = dashboardResponse?.result
+
+                                    loadDataWithBaseURL(
+                                        null,
+                                        ChartDemo.getPie(result?.get(0)?.status),
+                                        "text/html",
+                                        "UTF-8",
+                                        null
+                                    )
+                                }
+                            }
+                            Status.LOADING -> {
+                                dashPieChart.visibility = View.GONE
+                                dashPieProgress.visibility = View.VISIBLE
+                            }
+                            Status.ERROR -> {
+                                Snackbar.make(binding.root, "Something went wrong", Snackbar.LENGTH_SHORT)
+                                    .show()
+                            }
+                        }
+                    }
+                }
             }
             dashCardNew.setOnClickListener {
                 shared.setFlagTo(SharedSearchViewModel.DICTIONARY.CONTRACT)
@@ -198,32 +230,45 @@ class DashboardFragment : Fragment() {
         Snackbar.make(binding.root, "Soon but better version", Snackbar.LENGTH_LONG).show()
     }
 
-    private fun assembleData(bastTotal: Long, bastValue: Long, bastContracts: Long, bastLeft: Long) {
+    private fun assembleData(
+        bastTotal: Long,
+        bastValue: Long,
+        bastContracts: Long,
+        bastLeft: Long,
+        bastdone: Long
+    ) {
         binding.apply {
             utility.money.apply {
                 dashTotal.text = format(bastTotal)
-                dashCountValue.text = format(bastValue)
-                dashCountContracts.text = format(bastContracts)
+                dashCountValue.text = formatToMil(bastContracts)
+                dashCountContracts.text = bastValue.toString()
                 dashRemain.text = format(bastLeft)
-                dashNikon.text = format(bastValue)
-//                dashRemain.text = format(remainJob)
+                dashNikon.text = format(bastContracts)
+                dashBastYr.text = format(bastdone)
 
-//                percentage(nikon, bastDone).apply {
-//                    dashPercentageContractBast.text = this
-//                    dashPercentageContractBast.text = this
-//                }
+                percentage(
+                    bastContracts, bastLeft
+                ).apply {
+                    dashProgressLeft.progress = this
+                    dashPercentageContractRemain.text = "$this%"
+                    dashPercentageContractRemainExpand.text = "$this%"
+                }
 
-//                percentage(nikon, remainJob).apply {
-//                    dashPercentageContractRemain.text = this
-//                    dashPercentageContractRemainExpand.text = this
-//                }
+                percentage(
+                    bastContracts,
+                    bastdone
+                ).apply {
+                    dashProgressBast.progress = this
+                    dashPercentageContractBast.text = "$this%"
+                    dashPercentageContractBastExpand.text = "$this%"
+                }
             }
 
             dashRefresh.isRefreshing = false
         }
     }
 
-    private fun checkBarData(resultChart: ResultChart) {
+    private fun checkBarData(resultChart: DashboardYearResultItem) {
         binding.apply {
             dashYearHolder.text = viewModel.year.value.toString()
             

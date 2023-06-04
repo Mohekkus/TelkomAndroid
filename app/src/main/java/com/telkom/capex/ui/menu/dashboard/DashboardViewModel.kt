@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.telkom.capex.network.utility.ServiceHandler
+import com.telkom.capex.ui.menu.dashboard.helper.model.DashboardDivisionResponse
+import com.telkom.capex.ui.menu.dashboard.helper.model.DashboardPieChartResponse
 import com.telkom.capex.ui.menu.dashboard.helper.model.DashboardResponse
 import com.telkom.capex.ui.menu.dashboard.helper.model.DashboardYearResponse
 import com.telkom.capex.ui.menu.dashboard.helper.repo.DashboardRepo
@@ -25,12 +27,27 @@ class DashboardViewModel @Inject constructor(
     private val _bastYear = MutableLiveData<ServiceHandler<DashboardYearResponse>>()
     val bastYear : LiveData<ServiceHandler<DashboardYearResponse>>
     get() = _bastYear
-
     private var defaultYear = Calendar.getInstance().get(Calendar.YEAR)
+
+
+    private val _division = MutableLiveData<ServiceHandler<DashboardDivisionResponse>>()
+    val division : LiveData<ServiceHandler<DashboardDivisionResponse>>
+        get() = _division
 
     init {
         viewModelScope.launch {
             repo.apply {
+                getDivision().let {
+                    _division.postValue(ServiceHandler.loading(null))
+                    when {
+                        it.isSuccessful -> {
+                            _division.postValue(ServiceHandler.success(it.body()))
+                        }
+                        else -> {
+                            _division.postValue(ServiceHandler.error(it.errorBody().toString(), null))
+                        }
+                    }
+                }
 //                getBarYear(defaultYear).let {
 //                    _bastYear.postValue(ServiceHandler.loading(null))
 //                    when {
@@ -86,6 +103,27 @@ class DashboardViewModel @Inject constructor(
                     }
                     else -> {
                         _bastYear.postValue(ServiceHandler.error(it.errorBody().toString(), null))
+                    }
+                }
+            }
+        }
+    }
+
+
+    private val _pie = MutableLiveData<ServiceHandler<DashboardPieChartResponse>>()
+    val pie : LiveData<ServiceHandler<DashboardPieChartResponse>>
+        get() = _pie
+
+    fun getPie(id: Int) {
+        viewModelScope.launch {
+            repo.getPie(id, true).let {
+                _pie.postValue(ServiceHandler.loading(null))
+                when {
+                    it.isSuccessful -> {
+                        _pie.postValue(ServiceHandler.success(it.body()))
+                    }
+                    else -> {
+                        _pie.postValue(ServiceHandler.error(it.errorBody().toString(), null))
                     }
                 }
             }

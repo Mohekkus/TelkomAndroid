@@ -5,17 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import android.widget.SpinnerAdapter
 import androidx.fragment.app.Fragment
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import com.google.android.material.snackbar.Snackbar
 import com.telkom.capex.R
 import com.telkom.capex.databinding.ComponentDashUnitSpinnerBinding
+import com.telkom.capex.network.utility.Status
+import com.telkom.capex.ui.menu.dashboard.DashboardViewModel
+import com.telkom.capex.ui.menu.search.model.SharedSearchViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UnitSpinnerFragment: Fragment() {
 
     private lateinit var binding: ComponentDashUnitSpinnerBinding
     private var viewID: Int? = null
-    private lateinit var callback: (String) -> Unit
 
+    private val viewModel: DashboardViewModel by hiltNavGraphViewModels(R.id.mobile_navigation)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,35 +37,42 @@ class UnitSpinnerFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.division.observe(requireActivity()) { handler ->
+            when (handler.status) {
+                Status.SUCCESS -> {
+                    handler.data.let { res ->
+                        val list = mutableListOf<String>()
+                        res?.result?.forEach {
+                            list.add(it.strnamaorg)
+                        }
 
-        binding.spinner.apply {
-            ArrayAdapter.createFromResource(
-                requireContext(),
-                R.array.Unit,
-                viewID ?: R.layout.component_dash_spinner
-            ).also { adapter ->
-                // Specify the layout to use when the list of choices appears
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                // Apply the adapter to the spinner
-                this.adapter = adapter
-//                callback(selectedItem.toString())
-            }
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-//                    parent?.getItemAtPosition(pos)
-//                    callback(selectedItem.toString())
+                        binding.spinner.apply {
+                            adapter = ArrayAdapter(requireContext(), R.layout.component_dash_spinner, list).apply {
+                                setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                            }
+                            onItemSelectedListener = object : OnItemSelectedListener {
+                                override fun onItemSelected(
+                                    adapter: AdapterView<*>?,
+                                    v: View?,
+                                    pos: Int,
+                                    id: Long
+                                ) {
+                                    viewModel.getPie(pos)
+                                }
+
+                                override fun onNothingSelected(p0: AdapterView<*>?) {}
+                            }
+                        }
+                    }
                 }
+                Status.LOADING -> {
 
-                override fun onNothingSelected(p0: AdapterView<*>?) {}
+                }
+                Status.ERROR -> {
+                    Snackbar.make(binding.root, "Something went wrong", Snackbar.LENGTH_SHORT)
+                        .show()
+                }
             }
         }
-    }
-
-    fun setFragmentView(view: Int) {
-        viewID = view
-    }
-
-    fun setCallback(callback: (String) -> Unit) {
-        this.callback = callback
     }
 }

@@ -12,9 +12,19 @@ data class AppAccess(
     @JsonProperty("p_intmonthr")
     var p_intmonth: Int? = null,
 
+    @JsonProperty("p_intidorg")
+    var p_intidorg: Int? = null,
+
     @JsonProperty("pagenum")
     var pagenum: Int? = null,
 
+    @JsonProperty("preview")
+    var preview: Boolean? = null,
+
     @JsonProperty("search_for")
-    var search_for: String = ""
+    var search_for: String? = null,
+
+    @JsonProperty("p_intidkontrak")
+    var p_intidkontrak: Int? = null
+
 )

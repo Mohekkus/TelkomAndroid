@@ -38,7 +38,7 @@
         android:name="com.telkom.capex.ui.menu.dashboard.helper.fragments.DashboardDialog"
         android:label="DashboardDialog" />
     <fragment
-        android:id="@+id/budgetlist"
+        android:id="@+id/budgetFragment"
         android:name="com.telkom.capex.ui.menu.budget.BudgetFragment"
         android:label="@string/title_budget"
         tools:layout="@layout/fragment_home">
@@ -81,7 +81,7 @@
             app:destination="@id/navigation_dashboard" />
         <action
             android:id="@+id/action_supremeFragment_to_budgetlist"
-            app:destination="@id/budgetlist" />
+            app:destination="@id/budgetFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragmentSearchContract"

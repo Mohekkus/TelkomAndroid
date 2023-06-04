@@ -12,8 +12,6 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -26,7 +24,6 @@ import com.telkom.capex.etc.KeyboardUtils
 import com.telkom.capex.etc.Utility
 import com.telkom.capex.network.utility.Status
 import com.telkom.capex.ui.menu.ViewHolder
-import com.telkom.capex.ui.menu.tracker.TrackerFragmentDirections
 import com.telkom.capex.ui.menu.tracker.TrackerViewModel
 import com.telkom.capex.ui.menu.tracker.fragments.doc.DOCDetailFragment
 import com.telkom.capex.ui.menu.tracker.fragments.doc.model.ResultDOC
@@ -115,7 +112,7 @@ class DOCTrackerFragment: Fragment() {
                                         .setTextColor(
                                             ContextCompat.getColor(requireContext(), R.color.primary)
                                         )
-                                    findViewById<TextView>(R.id.doc_left_val).apply {
+                                    findViewById<TextView>(R.id.holder_target).apply {
                                         text = context.getString(R.string.affrimation_progress)
                                         setTextColor(
                                             ContextCompat.getColor(requireContext(), R.color.primary)
@@ -123,7 +120,7 @@ class DOCTrackerFragment: Fragment() {
                                     }
                                 }
                                 2 -> {
-                                    findViewById<TextView>(R.id.doc_left_val).text = context.getString(R.string.affrimation_done)
+                                    findViewById<TextView>(R.id.holder_target).text = context.getString(R.string.affrimation_done)
                                     findViewById<TextView>(R.id.doc_filled_txt)
                                         .setTextColor(
                                             ContextCompat.getColor(requireContext(), R.color.primary)

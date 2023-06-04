@@ -28,7 +28,7 @@ class DashboardDialogAdapter(
         val data = MonthModifier.getMonthPrefix(position + 1)
 
         layout.apply {
-            findViewById<ImageView>(R.id.imageView11).visibility = View.GONE
+            findViewById<ImageView>(R.id.iv_budget_cal).visibility = View.GONE
             findViewById<TextView>(R.id.card_sub).apply {
                 text = data
                 textSize = 16f

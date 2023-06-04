@@ -5,21 +5,27 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.telkom.capex.R
+import com.telkom.capex.databinding.ComponentBudgetItemBinding
+import com.telkom.capex.databinding.ComponentSearchItemBinding
 import com.telkom.capex.databinding.LayoutSearchContractBinding
-import com.telkom.capex.etc.ToMiddleScroller
 import com.telkom.capex.network.utility.Status
 import com.telkom.capex.ui.menu.ViewHolder
-import com.telkom.capex.ui.menu.search.model.ResultItem
+import com.telkom.capex.ui.menu.budget.viewmodel.BudgetSharedViewModel
+import com.telkom.capex.ui.menu.search.model.SearchContractResultItem
 import com.telkom.capex.ui.menu.search.model.SharedSearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.roundToInt
 
 @AndroidEntryPoint
 class FragmentSearchContract: Fragment() {
@@ -27,6 +33,8 @@ class FragmentSearchContract: Fragment() {
     lateinit var binding: LayoutSearchContractBinding
     private val viewModel: FragmentSearchViewModel by hiltNavGraphViewModels(R.id.mobile_navigation)
     private val shared: SharedSearchViewModel by hiltNavGraphViewModels(R.id.mobile_navigation)
+    private val budgetvm: BudgetSharedViewModel by hiltNavGraphViewModels(R.id.mobile_navigation)
+    var searchResult: List<SearchContractResultItem>? = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,7 +53,8 @@ class FragmentSearchContract: Fragment() {
                     it.data.let { response ->
                         val result = response?.result
                         if (result != null) {
-                            setRecyclerView(result)
+                            searchResult = result
+                            binding.rvContractList.adapter?.notifyDataSetChanged()
                         }
                     }
                 }
@@ -60,8 +69,18 @@ class FragmentSearchContract: Fragment() {
         }
 
         binding.apply {
-            tieNomorKontrak.doOnTextChanged { text, start, before, count ->
-                viewModel.setQuery(text.toString())
+            tieNomorKontrak.apply {
+                doOnTextChanged { text, start, before, count ->
+                    viewModel.setQuery(text.toString())
+                }
+                doAfterTextChanged {
+                    viewModel.apply {
+                        if (viewModel.getQuery().value.isNullOrEmpty())
+                            return@doAfterTextChanged
+
+                        postQuery()
+                    }
+                }
             }
 
             button3.setOnClickListener {
@@ -72,35 +91,57 @@ class FragmentSearchContract: Fragment() {
                     postQuery()
                 }
             }
+            binding.rvContractList.apply {
+//            isNestedScrollingEnabled = false
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = object : RecyclerView.Adapter<ViewHolder>() {
+                    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+                        bindingRv = ComponentSearchItemBinding.inflate(layoutInflater, parent, false)
+                        return ViewHolder(bindingRv.root)
+                    }
+
+                    override fun getItemCount(): Int = searchResult?.size ?: 0
+
+                    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+                        val itemView = holder.itemView
+                        val data = searchResult?.get(position)
+                        var simpleMath: Int? = null
+                        data?.apply {
+                            if (plan != 0L && target != 0L) {
+                                simpleMath = ((plan.toDouble() / target.toDouble()) * 100).roundToInt()
+                            }
+
+                            bindingRv.apply {
+                                searchKontrak.text = strnamakontrak
+                                searchMitra.text = strnamaorg
+                                searchPlan.text = plan.toString()
+                                searchTarget.text = target.toString()
+                                docStatus.text =
+                                    if (status) "Active" else "Inactive"
+                                docProgressPercentage.text = "${simpleMath.toString()}%"
+                                searchProgress.progress = simpleMath ?: 0
+                            }
+                        }
+
+                        itemView.setOnClickListener {
+                            findNavController().navigate(R.id.action_fragmentSearchContract_to_budgetDetail)
+                            budgetvm.getDetailContract(id = data?.intidkontrak ?: 0)
+                            when (shared.getFlag().value) {
+                                SharedSearchViewModel.DICTIONARY.CONTRACT -> {}
+                                SharedSearchViewModel.DICTIONARY.BUDGET -> {}
+                                else -> {}
+                            }
+                        }
+
+                    }
+                }
+            }
         }
     }
 
-    private fun setRecyclerView(result: List<ResultItem>) {
-        binding.rvContractList.apply {
-            isNestedScrollingEnabled = false
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = object : RecyclerView.Adapter<ViewHolder>() {
-                override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-                    ViewHolder(
-                        LayoutInflater.from(parent.context)
-                            .inflate(R.layout.component_budget_item, parent, false)
-                    )
+    lateinit var bindingRv: ComponentSearchItemBinding
+    private fun setRecyclerView() {
 
-                override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-                    val itemView = holder.itemView
-
-                    itemView.setOnClickListener {
-                        when (shared.getFlag().value) {
-                            SharedSearchViewModel.DICTIONARY.CONTRACT -> {}
-                            SharedSearchViewModel.DICTIONARY.BUDGET -> {}
-                            else -> {}
-                        }
-                    }
-
-                }
-                override fun getItemCount(): Int = result.size
-            }
-        }
         removeLoading()
     }
 

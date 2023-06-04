@@ -3,24 +3,20 @@ package com.telkom.capex.ui.menu.search.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class ResultItem(@JsonProperty("intidkontrak")
+data class SearchContractResultItem(@JsonProperty("intidkontrak")
                       val intidkontrak: Int = 0,
-                      @JsonProperty("txtinfo")
-                      val txtinfo: String = "",
-                      @JsonProperty("dtedc")
-                      val dtedc: String = "",
                       @JsonProperty("strnamamitra")
                       val strnamamitra: String = "",
-                      @JsonProperty("intsucceed")
-                      val intsucceed: Int = 0,
                       @JsonProperty("strnamakontrak")
                       val strnamakontrak: String = "",
                       @JsonProperty("strnamaorg")
                       val strnamaorg: String = "",
-                      @JsonProperty("errdescription")
-                      val errdescription: String = "",
-                      @JsonProperty("dttoc")
-                      val dttoc: String = "")
+                      @JsonProperty("plan")
+                      val plan: Long = 0L,
+                      @JsonProperty("status")
+                      val status: Boolean = false,
+                      @JsonProperty("target")
+                      val target: Long = 0L)
 
 
 data class SearchContractModel(@JsonProperty("Request")
@@ -30,6 +26,6 @@ data class SearchContractModel(@JsonProperty("Request")
                                @JsonProperty("Code")
                                val code: Int = 0,
                                @JsonProperty("Result")
-                               val result: List<ResultItem>?)
+                               val result: List<SearchContractResultItem>?)
 
 

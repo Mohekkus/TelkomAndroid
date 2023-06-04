@@ -10,6 +10,7 @@ import com.telkom.capex.ui.menu.search.repo.SearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -34,7 +35,7 @@ class FragmentSearchViewModel @Inject constructor(
 
     fun getQuery() = _query
     fun setQuery(query: String) {
-        _query.value = query
+        _query.value = query.lowercase()
     }
 
     fun postQuery() {

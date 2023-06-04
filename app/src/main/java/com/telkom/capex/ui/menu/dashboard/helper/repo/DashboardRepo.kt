@@ -2,6 +2,8 @@ package com.telkom.capex.ui.menu.dashboard.helper.repo
 
 import com.telkom.capex.network.access.AccessComposer
 import com.telkom.capex.network.services.DashboardService
+import com.telkom.capex.ui.menu.dashboard.helper.model.DashboardDivisionResponse
+import com.telkom.capex.ui.menu.dashboard.helper.model.DashboardPieChartResponse
 import com.telkom.capex.ui.menu.dashboard.helper.model.DashboardResponse
 import com.telkom.capex.ui.menu.dashboard.helper.model.DashboardYearResponse
 import retrofit2.Response
@@ -25,4 +27,17 @@ class DashboardRepo @Inject constructor(
         )
     )
 
+    suspend fun getDivision(): Response<DashboardDivisionResponse> = dashboardService.getDivisionList(
+        AccessComposer.getAccess(
+            "api_selectall_organisasi"
+        )
+    )
+
+    suspend fun getPie(id: Int, preview: Boolean): Response<DashboardPieChartResponse> = dashboardService.getPie(
+        AccessComposer.getPie(
+            "api_summary_pie_preview",
+            id,
+            preview
+        )
+    )
 }

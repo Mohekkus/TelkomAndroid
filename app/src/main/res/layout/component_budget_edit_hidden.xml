@@ -8,7 +8,7 @@
     android:paddingBottom="4dp">
 
     <TextView
-        android:id="@+id/tv_hidden_name"
+        android:id="@+id/tv_tv_month_rkap_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -16,15 +16,11 @@
         android:textColor="@color/green_darkest" />
 
     <TextView
-        android:id="@+id/tv_hidden_sum"
+        android:id="@+id/tv_tv_month_rkap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="TextView"
         android:textColor="@color/green_darkest" />
-
-    <Space
-        android:layout_width="12dp"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>

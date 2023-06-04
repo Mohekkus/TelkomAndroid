@@ -3,12 +3,12 @@ package com.telkom.capex.ui.menu.dashboard.helper.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class ResultChart(@JsonProperty("intsucceed")
-                      val intsucceed: Int = 0,
-                       @JsonProperty("arrays")
-                      val arrays: List<Long>?,
-                       @JsonProperty("errdescription")
-                      val errdescription: String = "")
+data class DashboardYearResultItem(@JsonProperty("intsucceed")
+                                   val intsucceed: Int = 0,
+                                   @JsonProperty("arrays")
+                                   val arrays: List<Long>?,
+                                   @JsonProperty("errdescription")
+                                   val errdescription: String = "")
 
 
 data class DashboardYearResponse(@JsonProperty("Request")
@@ -18,6 +18,6 @@ data class DashboardYearResponse(@JsonProperty("Request")
                                  @JsonProperty("Code")
                                  val code: Int = 0,
                                  @JsonProperty("Result")
-                                 val result: List<ResultChart>?)
+                                 val result: List<DashboardYearResultItem>?)
 
 

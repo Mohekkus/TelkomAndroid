@@ -1,6 +1,8 @@
 package com.telkom.capex.network.services
 
 import com.telkom.capex.network.access.AppAccess
+import com.telkom.capex.ui.menu.dashboard.helper.model.DashboardDivisionResponse
+import com.telkom.capex.ui.menu.dashboard.helper.model.DashboardPieChartResponse
 import com.telkom.capex.ui.menu.dashboard.helper.model.DashboardResponse
 import com.telkom.capex.ui.menu.dashboard.helper.model.DashboardYearResponse
 import retrofit2.Response
@@ -18,4 +20,15 @@ interface DashboardService {
     suspend fun getBarYear(
         @Body access: AppAccess
     ) : Response<DashboardYearResponse>
+
+
+    @POST("/api")
+    suspend fun getDivisionList(
+        @Body access: AppAccess
+    ) : Response<DashboardDivisionResponse>
+
+    @POST("/api")
+    suspend fun getPie(
+        @Body access: AppAccess
+    ) : Response<DashboardPieChartResponse>
 }

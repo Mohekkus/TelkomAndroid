@@ -179,7 +179,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/doc_left_val"
+                        android:id="@+id/holder_target"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:enabled="false"

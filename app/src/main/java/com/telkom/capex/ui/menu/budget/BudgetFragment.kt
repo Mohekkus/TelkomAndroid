@@ -9,6 +9,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -22,46 +24,56 @@ import com.telkom.capex.network.utility.Status
 import com.telkom.capex.ui.menu.ViewHolder
 import com.telkom.capex.ui.menu.budget.fragments.BudgetList
 import com.telkom.capex.ui.menu.budget.viewmodel.BudgetSharedViewModel
-import com.telkom.capex.ui.menu.budget.viewmodel.BudgetViewModel
+import com.telkom.capex.ui.menu.dashboard.helper.fragments.DashboardDialog
+import com.telkom.capex.ui.menu.search.model.SharedSearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.time.Year
+import java.util.Calendar
 
 @AndroidEntryPoint
 class BudgetFragment : Fragment()  {
 
-    private var _binding: FragmentBudgetContainerBinding? = null
+    lateinit var binding: FragmentBudgetContainerBinding
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    private val viewmodel by hiltNavGraphViewModels<BudgetViewModel>(R.id.mobile_navigation)
-    private val shared by hiltNavGraphViewModels<BudgetSharedViewModel>(R.id.mobile_navigation)
+    private val viewmodel by hiltNavGraphViewModels<BudgetSharedViewModel>(R.id.mobile_navigation)
+    private val shared: SharedSearchViewModel by hiltNavGraphViewModels(R.id.mobile_navigation)
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBudgetContainerBinding.inflate(inflater, container, false)
+        binding = FragmentBudgetContainerBinding.inflate(inflater, container, false)
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        shared.apply {
-            setYear(
-                Year.now().value
-            )
-
+        viewmodel.apply {
+            monthList.observe(requireActivity()) {
+                if (setData.value?.groupBy { it?.monthReferences }?.containsKey(it) == false)
+                    getDataList()
+            }
+            year.observe(requireActivity()) {
+                binding.rvMonthYear.adapter?.notifyDataSetChanged()
+            }
             data.observe(viewLifecycleOwner) {
                 when (it.status) {
                     Status.SUCCESS -> {
-                        it.data.let { it ->
-                            val result = it?.result
-                            result?.let { list -> addListData(list) }
+                        if (it == null) return@observe
+                        it.data?.let { data ->
+                            val result = data.result?.get(0)
+                            if (result != null)
+                                addListData(
+                                    year.value ?: Calendar.getInstance().get(Calendar.YEAR),
+                                    monthList.value ?: MonthModifier.currentMonthInt(),
+                                    result
+                                )
                         }
+                        setRefreshing(true)
                     }
                     Status.LOADING -> {
 
@@ -72,18 +84,34 @@ class BudgetFragment : Fragment()  {
                     }
                 }
             }
+            if (binding.budgetRefresh.isRefreshing)
+                setRefreshing(true)
         }
 
         binding.apply {
+            ivBudgetSearch.setOnClickListener {
+                shared.setFlagTo(SharedSearchViewModel.DICTIONARY.BUDGET)
+                findNavController().navigate(R.id.action_budgetlist_to_fragmentSearchContract)
+            }
             rvMonthYearOverlay.setOnClickListener {
-                Snackbar.make(view, "Soon TM", Snackbar.LENGTH_LONG).show()
+                DashboardDialog(
+                    viewmodel.year.value ?: Year.now().value,
+                    viewmodel.monthList.value ?: MonthModifier.currentMonthInt()
+                ).apply {
+                    setListener { _, year, month, _ ->
+                        viewmodel.apply {
+                            if (month != monthList.value)
+                                setMonthList(month)
+                            if (year != viewmodel.year.value)
+                                setYear(year)
+                        }
+                    }
+                }.show(childFragmentManager, "YeMonth Picker")
             }
             rvMonthYear.apply {
                 //Scroll To Middle
                 layoutManager = ToMiddleScroller(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                viewmodel.monthList.observe(viewLifecycleOwner) {
-                    smoothScrollToPosition(it)
-                }
+
 
                 //Adapter with first and last item condition (to achieve everything is in middle)
                 adapter = object : RecyclerView.Adapter<ViewHolder>() {
@@ -98,7 +126,7 @@ class BudgetFragment : Fragment()  {
 
                         itemView.findViewById<TextView>(R.id.tv_item).apply {
                             val bulan = MonthModifier.getMonth(position + 1)
-                            text = "$bulan 2022"
+                            text = "$bulan ${viewmodel.year.value}"
 
                             viewmodel.apply {
                                 monthList.observe(viewLifecycleOwner) {
@@ -116,7 +144,7 @@ class BudgetFragment : Fragment()  {
                                 }
                             }
 
-                            val absoluteMiddlePx = (view.measuredWidth * .5).toInt()
+                            val absoluteMiddlePx = (this.measuredWidth * .5).toInt()
                             val measured = (this.measuredWidth * .5).toInt()
                             val marginOffset = (16 * resources.displayMetrics.density).toInt()
                             val absoluteMeasured = measured + marginOffset
@@ -140,35 +168,37 @@ class BudgetFragment : Fragment()  {
                     override fun getItemCount(): Int = 12
 
                     override fun createFragment(position: Int): Fragment {
-                        return BudgetList()
+                        return BudgetList(position)
                     }
                 }
-                registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                    override fun onPageSelected(position: Int) {
-                        super.onPageSelected(position)
-                        viewmodel.setMonthList(position)
+                viewmodel.apply {
+                    enableListener.observe(requireActivity()) {
+                        lifecycleScope.launch {
+                            delay(2000)
+                            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                                override fun onPageSelected(position: Int) {
+                                    super.onPageSelected(position)
+                                    if (position != monthList.value) setMonthList(position)
+                                }
+                            })
+                        }
                     }
-                })
+                }
             }
         }
     }
 
     override fun onResume() {
         super.onResume()
-
-        binding.apply {
-            val currentMonth = MonthModifier.currentMonthInt() - 1
-
-            rvMonthYear.smoothScrollToPosition(currentMonth)
-            budgetPagerList.setCurrentItem(
-                currentMonth,
-                true
-            )
+        viewmodel.apply {
+            monthList.observe(requireActivity()) {
+                binding.apply {
+                    rvMonthYear.smoothScrollToPosition(it)
+                    budgetPagerList.setCurrentItem(it, true)
+                }
+                if (enableListener.value == false)
+                    setEnableListener(true)
+            }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

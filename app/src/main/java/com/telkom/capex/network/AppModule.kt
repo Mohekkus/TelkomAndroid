@@ -1,5 +1,6 @@
 package com.telkom.capex.network
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.telkom.capex.network.interceptor.RetrofitInterceptor
 import com.telkom.capex.network.services.BudgetService
 import com.telkom.capex.network.services.DashboardService
@@ -74,5 +75,4 @@ object AppModule {
     @Singleton
     @Provides
     fun provideTokenHelper(tokenImplementor: TokenImplementor): TokenHelper = tokenImplementor
-
 }

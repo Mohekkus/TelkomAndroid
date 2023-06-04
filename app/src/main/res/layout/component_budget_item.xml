@@ -10,12 +10,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -58,20 +58,30 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/doc_title"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginBottom="16dp"
                 android:gravity="center_vertical"
+                android:maxLines="1"
                 android:text="ERR-666/69.420/05/2022"
                 android:textColor="@color/green_darkest"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:autoSizeMaxTextSize="36sp"
+                app:autoSizeMinTextSize="16sp"
+                app:autoSizeStepGranularity="2sp"
+                app:autoSizeTextType="uniform" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Progress"
+                android:textColor="@color/green_darkest" />
 
         </LinearLayout>
 
@@ -123,7 +133,6 @@
             android:layout_marginTop="8dp">
 
             <ProgressBar
-                android:id="@+id/progressBar5"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -132,7 +141,7 @@
                 android:progressDrawable="@drawable/drawable_dash_progressbar_nikon" />
 
             <ProgressBar
-                android:id="@+id/progressBar"
+                android:id="@+id/search_progress"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -144,7 +153,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:orientation="vertical"
             android:visibility="visible">
@@ -170,7 +179,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/doc_target_val"
+                        android:id="@+id/holder_plan"
                         android:layout_width="match_parent"
                         android:layout_height="17dp"
                         android:gravity="center"
@@ -201,7 +210,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/doc_left_val"
+                        android:id="@+id/holder_target"
                         android:layout_width="match_parent"
                         android:layout_height="17dp"
                         android:autoText="true"

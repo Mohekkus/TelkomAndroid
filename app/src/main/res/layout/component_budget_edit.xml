@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:focusable="auto"
+    android:gravity="center"
     android:orientation="vertical">
 
     <TextView
@@ -15,189 +17,107 @@
         android:layout_marginBottom="24dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:textColor="@color/green_darkest"
+        android:textColor="@color/green_dark"
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <LinearLayout
+    <FrameLayout
+        android:layout_width="254dp"
+        android:layout_height="2dp"
+        android:layout_weight="1"
+        android:background="@color/green_dark">
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvHolding"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/edit_opt_one"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/drawable_border_darkest"
-            android:orientation="vertical"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/iv_opt_one"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:tint="@color/green_darkest"
-                app:srcCompat="@drawable/baseline_monthly" />
-
-            <TextView
-                android:id="@+id/tv_opt_one"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:text="RKAP"
-                android:textColor="@color/green_darkest" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/edit_opt_two"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/drawable_border_darkest"
-            android:orientation="vertical"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/iv_opt_two"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:tint="@color/green_darkest"
-                app:srcCompat="@drawable/baseline_year" />
-
-            <TextView
-                android:id="@+id/tv_opt_two"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:text="PM"
-                android:textColor="@color/green_darkest" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/edit_opt_three"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/drawable_border_darkest"
-            android:orientation="vertical"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/iv_opt_three"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:tint="@color/green_darkest"
-                app:srcCompat="@drawable/ic_baseline_monetization_on_24" />
-
-            <TextView
-                android:id="@+id/tv_opt_three"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:text="BAST"
-                android:textColor="@color/green_darkest" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
         android:layout_weight="1"
+        android:gravity="center"
+        android:text="Which one to edit?"
+        android:textColor="@color/green_dark"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_option"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp" />
+
+    <FrameLayout
+        android:layout_width="254dp"
+        android:layout_height="2dp"
+        android:layout_weight="1"
+        android:background="@color/green_dark">
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/hidden_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
         android:orientation="vertical"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/green_darkest">
-
-        </FrameLayout>
+        android:visibility="visible">
 
         <TextView
             android:id="@+id/textView21"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Current RKAP"
-            android:textColor="@color/green_darkest"
-            android:textSize="14sp" />
+            android:layout_weight="1"
+            android:text="Current value"
+            android:textColor="@color/primary"
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView13"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="IDR "
+                android:textColor="@color/green_darkest"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/editTextNumberDecimal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:ems="10"
+                android:hint="Leaving it blank will result in deleting current value"
+                android:inputType="numberDecimal"
+                android:singleLine="true"
+                android:text="200.000.000.000.000"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button4"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="16dp"
-            android:text="Rp. 200.000.000.000"
-            android:textColor="@color/green_darkest"
-            android:textSize="20sp" />
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/green_darkest">
-
-        </FrameLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="24dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="true"
-            app:cardCornerRadius="24dp"
-            app:cardUseCompatPadding="true"
-            app:contentPadding="8dp"
-            app:contentPaddingBottom="16dp"
-            app:contentPaddingLeft="16dp"
-            app:contentPaddingRight="16dp">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </androidx.cardview.widget.CardView>
-
+            android:layout_margin="32dp"
+            android:layout_weight="1"
+            android:background="@drawable/drawable_rect_rounded_primary"
+            android:text="Review" />
     </LinearLayout>
 
 </LinearLayout>

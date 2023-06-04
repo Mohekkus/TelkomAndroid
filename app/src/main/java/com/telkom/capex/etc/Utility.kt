@@ -1,7 +1,6 @@
 package com.telkom.capex.etc
 
-import com.telkom.capex.etc.AnimUtils
-import com.telkom.capex.etc.TimelyGreet
+import com.telkom.capex.ui.menu.dashboard.helper.MyJavascriptInterface
 import javax.inject.Inject
 
 class Utility @Inject constructor() {
