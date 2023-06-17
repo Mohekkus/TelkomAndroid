@@ -73,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
             viewModel.apply {
-                bLogin.setOnClickListener {
+                buttonLogin.setOnClickListener {
                     loginProgress.value?.let { value -> doCheck(value) }
                 }
             }

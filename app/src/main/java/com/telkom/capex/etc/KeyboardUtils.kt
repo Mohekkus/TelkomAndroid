@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.IBinder
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -16,6 +17,7 @@ object KeyboardUtils {
         return activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     fun show(activity: Activity, view: View){
         GlobalScope.launch {
             withContext(Dispatchers.IO){
@@ -24,6 +26,7 @@ object KeyboardUtils {
         }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     fun hide(activity: Activity, binder: IBinder){
         GlobalScope.launch {
             withContext(Dispatchers.IO){

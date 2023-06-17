@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="expanding_string">expand</string>
-    <string name="collapsing_string">collapse</string>
+    <string name="expanding_string">Perluas</string>
+    <string name="collapsing_string">Perkecil</string>
 </resources>

@@ -1,10 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="Unit">
-        <item>Broadband Network </item>
-        <item>Core Network</item>
-        <item>DEFA</item>
-        <item>Service Aggregation</item>
-        <item>Service Edge &amp; Cloud</item>
-    </string-array>
-</resources>
+<resources></resources>

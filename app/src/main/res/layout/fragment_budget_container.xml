@@ -6,84 +6,75 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/budget_refresh"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="52dp"
+            android:background="@color/green_darkest">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <ImageView
+                android:id="@+id/iv_budget_search"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/baseline_search_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Budgetting"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_month_year"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="@color/green_darkest">
-
-                <ImageView
-                    android:id="@+id/iv_budget_search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/baseline_search_24" />
-
-                <TextView
-                    android:id="@+id/new_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Budgetting"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_height="match_parent" />
 
             <FrameLayout
+                android:id="@+id/rv_month_year_overlay"
                 android:layout_width="match_parent"
-                android:layout_height="48dp">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_month_year"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <FrameLayout
-                    android:id="@+id/rv_month_year_overlay"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                </FrameLayout>
+                android:layout_height="match_parent">
 
             </FrameLayout>
 
-            <FrameLayout
-                android:id="@+id/budget_pager_mmyy_container"
-                android:layout_width="match_parent"
-                android:layout_height="28dp"
-                android:visibility="gone">
+        </FrameLayout>
 
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/budget_pager_mmyy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </androidx.viewpager2.widget.ViewPager2>
-            </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:visibility="gone">
 
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/budget_pager_list"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-        </LinearLayout>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                android:layout_height="wrap_content">
+
+            </androidx.viewpager2.widget.ViewPager2>
+        </FrameLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/budget_pager_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
 
 </LinearLayout>

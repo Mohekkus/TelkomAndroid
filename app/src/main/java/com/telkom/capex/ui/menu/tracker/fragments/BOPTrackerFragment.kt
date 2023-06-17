@@ -29,7 +29,7 @@ class BOPTrackerFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            bopRv.apply {
+            bopListRecyclerView.apply {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = object : RecyclerView.Adapter<ViewHolder>() {
                     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =

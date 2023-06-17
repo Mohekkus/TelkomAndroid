@@ -42,12 +42,12 @@ class BudgetDetail: Fragment() {
     override fun onResume() {
         super.onResume()
         shared.apply {
-            changesLog.observe(requireActivity()) {
-                if (it.isNullOrEmpty()) return@observe
-
-                Snackbar.make(binding.linearLayout3, it, Snackbar.LENGTH_LONG).show()
-                setChangeLog("")
-            }
+//            changesLog.observe(requireActivity()) {
+//                if (it.isNullOrEmpty()) return@observe
+//
+//                Snackbar.make(binding.linearLayout3, it, Snackbar.LENGTH_LONG).show()
+//                setChangeLog("")
+//            }
 
         }
     }
@@ -58,7 +58,7 @@ class BudgetDetail: Fragment() {
             detail.observe(requireActivity()) {
                 when (it.status) {
                     Status.SUCCESS -> {
-                        it.data.let { it ->
+                        it.data.let {
                             val result = it?.result
                             result?.let { res ->
                                 assembleData(res[0])
@@ -77,7 +77,7 @@ class BudgetDetail: Fragment() {
             monthlyData.observe(requireActivity()) {
                 when (it.status) {
                     Status.SUCCESS -> {
-                        it.data.let { it ->
+                        it.data.let {
                             val result = it?.result
                             result?.let { res ->
                                 currentMonthValue(res)
@@ -97,9 +97,9 @@ class BudgetDetail: Fragment() {
         binding.apply {
             shared.apply {
                 val month = MonthModifier.getMonth(monthList.value?.toInt() ?: 0)
-                budgetPointer.text = "$month, ${year.value.toString()}"
+                budgetDate.text = "$month, ${year.value.toString()}"
             }
-            overviewPager.apply {
+            budgetPager.apply {
                 adapter = object : FragmentStateAdapter(this@BudgetDetail) {
                     override fun getItemCount(): Int = 2
 
@@ -110,14 +110,14 @@ class BudgetDetail: Fragment() {
                         }
                     }
                 }
-                TabLayoutMediator(tabLayout, overviewPager) {tab, pos ->
+                TabLayoutMediator(budgetTabLayout, budgetPager) {tab, pos ->
                     tab.text = when (pos) {
                         0 -> "Detail Kontrak"
                         1 -> "SMILE"
                         else -> null
                     }
                 }.attach()
-                overviewEdit.setOnClickListener {
+                budgetSettingEdit.setOnClickListener {
                     shared.apply {
                         if (editting.value == true) {
                             AlertDialog.Builder(requireActivity(), R.style.AlertDialogTheme).apply {
@@ -127,14 +127,14 @@ class BudgetDetail: Fragment() {
                                     appliedChanges()
                                     setEditting(false)
                                 }
-                                setNegativeButton("Cancel") { dialogInterface, i ->
+                                setNegativeButton("Cancel") { _, _ ->
                                     revertChanges()
                                     setEditting(false)
                                 }
                                 setOnDismissListener {
                                     editting.observe(requireActivity()) {
                                         if (!it) {
-                                            overviewEdit.setImageResource(R.drawable.baseline_menu_24)
+                                            budgetSettingEdit.setImageResource(R.drawable.baseline_menu_24)
                                         }
                                     }
                                 }
@@ -150,7 +150,7 @@ class BudgetDetail: Fragment() {
                             val viewdialog = ComponentBudgetSettingBinding.inflate(layoutInflater)
                             AlertDialog.Builder(requireActivity()).apply {
                                 setting.observe(requireActivity()) {
-                                    viewdialog.buttonBudgetSettingEdit.visibility =
+                                    viewdialog.budgetBudgetSettingEdit.visibility =
                                         if (it) View.GONE
                                         else View.VISIBLE
                                 }
@@ -161,17 +161,17 @@ class BudgetDetail: Fragment() {
                                     dialog.apply {
                                         window?.setBackgroundDrawableResource(R.color.transparent)
                                         setOnDismissListener {
-                                            overviewEdit.setImageResource(R.drawable.baseline_done_24)
+                                            budgetSettingEdit.setImageResource(R.drawable.baseline_done_24)
                                         }
                                     }
                                     viewdialog.apply {
-                                        buttonBudgetSettingEdit.setOnClickListener {
+                                        budgetBudgetSettingEdit.setOnClickListener {
                                             setEditting(true)
                                             dialog.dismiss()
                                         }
-                                        buttonBudgetSettingContractView.setOnClickListener {
-                                            dialog.dismiss()
-                                        }
+//                                        buttonBudgetSettingContractView.setOnClickListener {
+//                                            dialog.dismiss()
+//                                        }
                                     }
                                 }
                                 .show()
@@ -186,9 +186,9 @@ class BudgetDetail: Fragment() {
         val data = res[0].mdata?.get(shared.monthList.value ?: MonthModifier.currentMonthInt())
         binding.apply {
             utility.money.apply {
-                budgetDetailActual.text = format(data?.actual ?: 0)
+                budgetActual.text = format(data?.actual ?: 0)
                 budgetPlanRkap.text = format(data?.planningRKAP ?: 0)
-                budgetDetailPm.text = format(data?.planningPM ?: 0)
+                budgetPlanPm.text = format(data?.planningPM ?: 0)
             }
         }
     }
@@ -196,18 +196,18 @@ class BudgetDetail: Fragment() {
     private fun assembleData(res: BudgetDetailResultItem) {
         binding.apply {
             res.apply {
-                overviewTitle.text = "Budget Detail"
-                status.text =
+                budgetTitle.text = "Budget Detail"
+                budgetStatus.text =
                     when (boolstatus) {
                         false -> "Inactive"
                         else -> "Active"
                     }
-                tvMitraDocDetail.text = strnamakontrak
-                tvDescriptionDocDetail.text = txtdetailproyek
-                budgetDetailUnit.text = strnamaorg
-                budgetMitra.text = strnamamitra
-                budgetDetailEdc.text = dtedc.split("T")[0]
-                budgetEditToc.text = dttoc.split("T")[0]
+                budgetContractsName.text = strnamakontrak
+                budgetContractsDescription.text = txtdetailproyek
+                budgetContractsUnit.text = strnamaorg
+                budgetContractsMitra.text = strnamamitra
+                budgetContractsEdc.text = dtedc.split("T")[0]
+                budgetContractsToc.text = dttoc.split("T")[0]
             }
         }
         shared.apply {

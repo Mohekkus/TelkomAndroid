@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#ff307672</color>
+    <color name="primary">#307672</color>
     <color name="green_dark">#144D53</color>
     <!--    <color name="green_dark">#F22727</color>-->
     <!--    <color name="green_darkest">#F22727</color>-->

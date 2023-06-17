@@ -43,7 +43,7 @@ class BudgetMonthlyBAST: Fragment() {
         shared.smile.observe(requireActivity()) {
             when (it.status) {
                 Status.SUCCESS -> {
-                    it.data.let { it ->
+                    it.data.let {
                         val result = it?.result
                         result?.let { res ->
                             setSmile(res)
@@ -64,8 +64,8 @@ class BudgetMonthlyBAST: Fragment() {
     private fun setSmile(res: List<BudgetDetailSmileResultItem>) {
         val apiData = res[0]
         binding.apply {
-            budDetailRvVal.text = utility.money.format(apiData.totalsmile)
-            budgetEditRv.apply {
+            budgetSmileValue.text = utility.money.format(apiData.totalsmile)
+            budgetSmileRecyclerView.apply {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = object : RecyclerView.Adapter<ViewHolder>() {
                     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =

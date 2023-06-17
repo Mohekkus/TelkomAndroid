@@ -23,6 +23,7 @@ import com.telkom.capex.room.entity.BudgetListDataEntity
 import com.telkom.capex.room.entity.BudgetListMonthEntity
 import com.telkom.capex.room.entity.BudgetListYearEntity
 import com.telkom.capex.room.repository.BudgetLocalRepository
+import com.telkom.capex.ui.menu.budget.helper.PercentageEnum
 import com.telkom.capex.ui.menu.budget.helper.model.BudgetDetailMonthlyResponse
 import com.telkom.capex.ui.menu.budget.helper.model.BudgetDetailResponse
 import com.telkom.capex.ui.menu.budget.helper.model.BudgetDetailSmileResponse
@@ -222,8 +223,8 @@ class BudgetSharedViewModel @Inject constructor(
                     )
 
                 val percentage = listOf(
-                    Pair("RKAP", data.perplaningpm),
-                    Pair("PM", data.perplaningrkap)
+                    Pair(PercentageEnum.RKAP, data.perplaningpm),
+                    Pair(PercentageEnum.PM, data.perplaningrkap)
                 )
                 val param =
                     BudgetListDataEntity(
@@ -294,7 +295,7 @@ class BudgetSharedViewModel @Inject constructor(
 
     fun copyData(data: MonthlyDataItem?, position: Int) {
         if (data == null) return
-        val dataset = data
+//        val dataset = data
 
         _copiedData.value = Pair(position, MonthlyDataItem(
             planningPM =  data.planningPM,
@@ -410,10 +411,12 @@ class BudgetSharedViewModel @Inject constructor(
         viewModelScope.launch {
             _changesLog.value = "Submitting Changes"
             repo.initUpdateData(setup).let {
-                if (it.isSuccessful)
-                    _changesLog.value = "Sent and updated"
-                else
-                    _changesLog.value = it.body()?.result?.get(0)?.error ?: it.body()?.error
+                it.body()?.result?.get(0)?.apply {
+                    when (intSucceed) {
+                        1 -> _changesLog.value = errDescription ?: ""
+                        else -> _changesLog.value = errDescription ?: ""
+                    }
+                }
             }
         }
     }

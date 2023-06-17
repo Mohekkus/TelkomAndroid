@@ -1,8 +1,8 @@
 package com.telkom.capex.network
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.telkom.capex.network.interceptor.RetrofitInterceptor
 import com.telkom.capex.network.services.BudgetService
+import com.telkom.capex.network.services.ContractService
 import com.telkom.capex.network.services.DashboardService
 import com.telkom.capex.network.services.LoginService
 import com.telkom.capex.network.services.SearchService
@@ -71,6 +71,9 @@ object AppModule {
     @Singleton
     @Provides
     fun provideSearchService(retrofit: Retrofit): SearchService = retrofit.create(SearchService::class.java)
+    @Singleton
+    @Provides
+    fun provideContractService(retrofit: Retrofit): ContractService = retrofit.create(ContractService::class.java)
 
     @Singleton
     @Provides

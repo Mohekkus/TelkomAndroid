@@ -23,6 +23,10 @@ data class ResultItem(@JsonProperty("bintsumbast")
                       val bintsisapekerjaan: Long = 0,
                       @JsonProperty("intpersisapekerjaan")
                       val intpersisapekerjaan: Long = 0,
+                      @JsonProperty("intcountkontrakaktif")
+                      val intcountkontrakaktif : Long = 0,
+                      @JsonProperty("intcountcontrakselesai")
+                      val intcountcontrakselesaiNBSP : Long = 0,
                       @JsonProperty("errdescription")
                       val errdescription: String = "",
                       @JsonProperty("bintbastyear")

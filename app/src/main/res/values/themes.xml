@@ -23,20 +23,11 @@
         <item name="android:textColor">@color/green_dark</item>
     </style>
 
-    <style name="Theme.TelkomCapexDID.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
     <style name="BottomNavigationBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textColor">@drawable/shitty_bottom_navbar</item>
         <item name="colorPrimary">@color/primary</item>
         <item name="android:textColorSecondary">@color/green_darkest</item>
     </style>
-
-    <style name="Theme.MadDashboard.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.MadDashboard.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="AlertDialogTheme" parent="ThemeOverlay.AppCompat.Dialog.Alert">
         <item name="colorAccent">@color/green_darkest</item>

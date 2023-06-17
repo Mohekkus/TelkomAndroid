@@ -46,11 +46,6 @@ class ContainerActivity : AppCompatActivity() {
             }
         }
     }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-
-    }
 }
 
 class ViewHolder (view: View) : RecyclerView.ViewHolder(view)

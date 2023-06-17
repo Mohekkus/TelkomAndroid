@@ -20,7 +20,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/doc_mitra"
+                android:id="@+id/budget_list_item_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -29,30 +29,13 @@
                 android:textSize="12sp" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/budget_list_item_status"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
                 android:background="@drawable/drawable_circle_white"
                 android:backgroundTint="@color/primary"
                 android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/doc_progress_percentage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="23%"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/doc_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="Active"
-                    android:textSize="12sp" />
-            </LinearLayout>
+                android:orientation="horizontal" />
 
         </LinearLayout>
 
@@ -63,10 +46,10 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/doc_title"
+                android:id="@+id/budget_list_item_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="12dp"
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:text="ERR-666/69.420/05/2022"
@@ -76,12 +59,6 @@
                 app:autoSizeMinTextSize="16sp"
                 app:autoSizeStepGranularity="2sp"
                 app:autoSizeTextType="uniform" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Progress"
-                android:textColor="@color/green_darkest" />
 
         </LinearLayout>
 
@@ -97,7 +74,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pembayaran Terakhir:"
@@ -105,7 +81,6 @@
                     android:textSize="10sp" />
 
                 <TextView
-                    android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -117,7 +92,6 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Rp. 10.901.714.000"
@@ -127,135 +101,223 @@
 
         </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp">
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="100"
-                android:progress="100"
-                android:progressDrawable="@drawable/drawable_dash_progressbar_nikon" />
-
-            <ProgressBar
-                android:id="@+id/search_progress"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="100"
-                android:progress="23"
-                android:progressDrawable="@drawable/drawable_dash_progressbar_bast" />
-
-        </FrameLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical"
-            android:visibility="visible">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/doc_target_txt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Plan"
+                        android:id="@+id/budget_list_item_percentage_rkap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text=" 999%  "
                         android:textColor="@color/green_darkest"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/holder_plan"
-                        android:layout_width="match_parent"
-                        android:layout_height="17dp"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:text="888.888.888.888.888"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RKAP per Actual"
                         android:textColor="@color/green_darkest"
-                        app:autoSizeMaxTextSize="100sp"
-                        app:autoSizeMinTextSize="2sp"
-                        app:autoSizeStepGranularity="1sp"
-                        app:autoSizeTextType="uniform"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        android:textStyle="bold" />
+
                 </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ProgressBar
+                        android:id="@+id/budget_list_item_progress_rkap"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:progress="100"
+                        android:progressDrawable="@drawable/drawable_dash_progressbar_nikon" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_rkap"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:progress="20"
+                        android:progressDrawable="@drawable/drawable_dash_progressbar_left" />
+
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingBottom="8dp">
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/doc_left_txt"
-                        android:layout_width="match_parent"
+                        android:id="@+id/budget_list_item_percentage_pm"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Target"
+                        android:text=" 999%  "
                         android:textColor="@color/green_darkest"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/holder_target"
-                        android:layout_width="match_parent"
-                        android:layout_height="17dp"
-                        android:autoText="true"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:text="126.000.000.000"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PM per Actual"
                         android:textColor="@color/green_darkest"
-                        app:autoSizeMaxTextSize="100sp"
-                        app:autoSizeMinTextSize="2sp"
-                        app:autoSizeStepGranularity="1sp"
-                        app:autoSizeTextType="uniform"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        android:textStyle="bold" />
+
                 </LinearLayout>
 
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
-                    <TextView
-                        android:id="@+id/doc_filled_txt"
+                    <ProgressBar
+                        style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Actual"
-                        android:textColor="@color/teal_700"
-                        android:textStyle="bold" />
+                        android:max="100"
+                        android:progress="100"
+                        android:progressDrawable="@drawable/drawable_dash_progressbar_nikon" />
 
-                    <TextView
-                        android:id="@+id/doc_filled_val"
+                    <ProgressBar
+                        android:id="@+id/budget_list_item_progress_pm"
+                        style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="17dp"
-                        android:autoText="true"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:text="174.000.000.000"
-                        android:textColor="@color/green_darkest"
-                        app:autoSizeMaxTextSize="100sp"
-                        app:autoSizeMinTextSize="2sp"
-                        app:autoSizeStepGranularity="1sp"
-                        app:autoSizeTextType="uniform"
-                        tools:ignore="TouchTargetSizeCheck" />
-                </LinearLayout>
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:progress="23"
+                        android:progressDrawable="@drawable/drawable_dash_progressbar_bast" />
+
+                </FrameLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Plan RKAP"
+                    android:textColor="@color/green_darkest"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/budget_list_item_value_rkap"
+                    android:layout_width="match_parent"
+                    android:layout_height="17dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="888.888.888.888.888"
+                    android:textColor="@color/green_darkest"
+                    app:autoSizeMaxTextSize="100sp"
+                    app:autoSizeMinTextSize="2sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Plan PM"
+                    android:textColor="@color/green_darkest"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/budget_list_item_value_pm"
+                    android:layout_width="match_parent"
+                    android:layout_height="17dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="888.888.888.888.888"
+                    android:textColor="@color/green_darkest"
+                    app:autoSizeMaxTextSize="100sp"
+                    app:autoSizeMinTextSize="2sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Actual"
+                    android:textColor="@color/green_darkest"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/budget_list_item_value_actual"
+                    android:layout_width="match_parent"
+                    android:layout_height="17dp"
+                    android:autoText="true"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="888.888.888.888.888"
+                    android:textColor="@color/green_darkest"
+                    app:autoSizeMaxTextSize="100sp"
+                    app:autoSizeMinTextSize="2sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform"
+                    tools:ignore="TouchTargetSizeCheck" />
+
             </LinearLayout>
 
         </LinearLayout>

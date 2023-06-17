@@ -12,27 +12,19 @@ class DsahboardNewContract: Fragment() {
 
     lateinit var binding: FragmentNewContract1Binding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            buttonSave.setOnClickListener {
+            buttonSaveContract.setOnClickListener {
                 when {
-                    etContractName.text == null -> etContractName.error = "Must be filled"
-                    etOrganizationName.text == null -> etContractName.error = "Must be filled"
-                    etContractValue.text == null -> etContractName.error = "Must be filled"
-                    etDateEDC.text == null -> etContractName.error = "Must be filled"
-                    etDateTOC.text == null -> etContractName.error = "Must be filled"
-                    etDescription.text == null -> etContractName.error = "Must be filled"
-                    etPartnerName.text == null -> etContractName.error = "Must be filled"
+//                    etContractName.text == null -> etContractName.error = "Must be filled"
+//                    etOrganizationName.text == null -> etContractName.error = "Must be filled"
+//                    etContractValue.text == null -> etContractName.error = "Must be filled"
+//                    etDateEDC.text == null -> etContractName.error = "Must be filled"
+//                    etDateTOC.text == null -> etContractName.error = "Must be filled"
+//                    etDescription.text == null -> etContractName.error = "Must be filled"
+//                    etPartnerName.text == null -> etContractName.error = "Must be filled"
                     else -> initiateInsert()
                 }
             }

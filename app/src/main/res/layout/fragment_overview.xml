@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_kinda">
@@ -22,7 +21,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/overview_title"
+        android:id="@+id/budget_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -36,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/overview_edit"
+        android:id="@+id/budget_setting_edit"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:paddingStart="16dp"
@@ -80,23 +79,17 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <LinearLayout
+                        <TextView
+                            android:id="@+id/budget_contracts_name"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/tv_mitra_doc_detail"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="PT. Telkom Indonesia"
-                                android:textColor="@color/green_darkest"
-                                android:textStyle="bold"
-                                app:autoSizeMaxTextSize="100sp"
-                                app:autoSizeMinTextSize="8sp"
-                                app:autoSizeStepGranularity="2sp"
-                                app:autoSizeTextType="uniform" />
-                        </LinearLayout>
+                            android:layout_height="wrap_content"
+                            android:text="PT. Telkom Indonesia"
+                            android:textColor="@color/green_darkest"
+                            android:textStyle="bold"
+                            app:autoSizeMaxTextSize="100sp"
+                            app:autoSizeMinTextSize="8sp"
+                            app:autoSizeStepGranularity="2sp"
+                            app:autoSizeTextType="uniform" />
 
                     </LinearLayout>
 
@@ -107,7 +100,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tv_description_doc_detail"
+                            android:id="@+id/budget_contracts_description"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Pengadaan dan Pemasangan Ekspan Kapasitas IP Network Tools Blue Planet "
@@ -116,7 +109,6 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/linearLayout6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -139,7 +131,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/budget_detail_unit"
+                                android:id="@+id/budget_contracts_unit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Broadband"
@@ -160,7 +152,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/budget_mitra"
+                                android:id="@+id/budget_contracts_mitra"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Active"
@@ -183,7 +175,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/status"
+                                android:id="@+id/budget_status"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Active"
@@ -226,7 +218,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/budget_detail_edc"
+                            android:id="@+id/budget_contracts_edc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -260,7 +252,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/budget_edit_toc"
+                            android:id="@+id/budget_contracts_toc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -293,7 +285,6 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/textView47"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -307,7 +298,6 @@
                                 android:orientation="horizontal">
 
                                 <ImageView
-                                    android:id="@+id/imageView4"
                                     android:layout_width="8dp"
                                     android:layout_height="8dp"
                                     android:layout_marginStart="8dp"
@@ -316,7 +306,7 @@
                                     app:srcCompat="@drawable/drawable_circle_white" />
 
                                 <TextView
-                                    android:id="@+id/budget_pointer"
+                                    android:id="@+id/budget_date"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="8dp"
@@ -329,7 +319,7 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/budget_detail_actual"
+                            android:id="@+id/budget_actual"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
@@ -343,7 +333,6 @@
                             android:layout_height="wrap_content">
 
                             <ProgressBar
-                                android:id="@+id/progress_total"
                                 style="?android:attr/progressBarStyleHorizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="24dp"
@@ -351,7 +340,6 @@
                                 android:progressDrawable="@drawable/drawable_dash_progressbar_nikon" />
 
                             <ProgressBar
-                                android:id="@+id/progress_now"
                                 style="?android:attr/progressBarStyleHorizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="24dp"
@@ -359,7 +347,6 @@
                                 android:progressDrawable="@drawable/drawable_dash_progressbar_left" />
 
                             <ProgressBar
-                                android:id="@+id/progress_bast"
                                 style="?android:attr/progressBarStyleHorizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="24dp"
@@ -421,7 +408,7 @@
                                 android:textColor="@color/green_darkest" />
 
                             <TextView
-                                android:id="@+id/budget_detail_pm"
+                                android:id="@+id/budget_plan_pm"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -437,7 +424,7 @@
             </androidx.cardview.widget.CardView>
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
+                android:id="@+id/budget_tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -454,7 +441,7 @@
             </com.google.android.material.tabs.TabLayout>
 
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/overview_pager"
+                android:id="@+id/budget_pager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

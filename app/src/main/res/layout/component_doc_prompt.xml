@@ -17,7 +17,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView59"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Notice"
@@ -27,7 +26,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView61"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -36,7 +34,6 @@
                 android:textColor="@color/green_darkest" />
 
             <TextView
-                android:id="@+id/text_bulk_notice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -46,7 +43,6 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button_positive"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"

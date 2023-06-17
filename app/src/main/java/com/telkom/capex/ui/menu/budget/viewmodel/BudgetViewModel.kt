@@ -15,6 +15,4 @@ import java.time.Year
 import javax.inject.Inject
 
 @HiltViewModel
-class BudgetViewModel @Inject constructor(): ViewModel() {
-
-}
+class BudgetViewModel @Inject constructor(): ViewModel()

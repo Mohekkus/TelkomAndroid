@@ -88,7 +88,7 @@ class DOCTrackerFragment: Fragment() {
     private fun assembleData(resultDOCS: List<ResultDOC>) {
         binding.apply {
             setupSearch(resultDOCS)
-            docRecycler.apply {
+            docListRecyclerViewMain.apply {
                 isNestedScrollingEnabled = false
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = object : RecyclerView.Adapter<ViewHolder>() {
@@ -133,7 +133,7 @@ class DOCTrackerFragment: Fragment() {
                                     }
                                 }
                                 3 -> {
-                                    findViewById<TextView>(R.id.doc_status).apply {
+                                    findViewById<TextView>(R.id.search_item_contract_status).apply {
                                         text = context.getString(R.string.affrimation_done)
                                         setTextColor(
                                             Color.WHITE
@@ -205,7 +205,7 @@ class DOCTrackerFragment: Fragment() {
         val searchHandler = Handler(Looper.getMainLooper())
         val searchRunnable = AtomicReference<Runnable>()
 
-        binding.docSearch.apply {
+        binding.docListSearch.apply {
             KeyboardVisibilityEvent.setEventListener(
                 requireActivity()
             ) {
@@ -255,7 +255,7 @@ class DOCTrackerFragment: Fragment() {
             it.contractStatus
         }
 
-        binding.docFilter.apply {
+        binding.docListRecyclerViewFilter.apply {
             val tempModel = mutableListOf<DOCFilter>().apply {
                 add(DOCFilter("All Status"))
                 add(DOCFilter("Done (${data.count { !it }})"))

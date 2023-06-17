@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.widget.doAfterTextChanged
@@ -19,6 +20,7 @@ import com.telkom.capex.R
 import com.telkom.capex.databinding.ComponentBudgetItemBinding
 import com.telkom.capex.databinding.ComponentSearchItemBinding
 import com.telkom.capex.databinding.LayoutSearchContractBinding
+import com.telkom.capex.etc.KeyboardUtils
 import com.telkom.capex.network.utility.Status
 import com.telkom.capex.ui.menu.ViewHolder
 import com.telkom.capex.ui.menu.budget.viewmodel.BudgetSharedViewModel
@@ -31,9 +33,12 @@ import kotlin.math.roundToInt
 class FragmentSearchContract: Fragment() {
 
     lateinit var binding: LayoutSearchContractBinding
+    lateinit var bindingRv: ComponentSearchItemBinding
+
     private val viewModel: FragmentSearchViewModel by hiltNavGraphViewModels(R.id.mobile_navigation)
     private val shared: SharedSearchViewModel by hiltNavGraphViewModels(R.id.mobile_navigation)
     private val budgetvm: BudgetSharedViewModel by hiltNavGraphViewModels(R.id.mobile_navigation)
+
     var searchResult: List<SearchContractResultItem>? = listOf()
 
     override fun onCreateView(
@@ -54,7 +59,7 @@ class FragmentSearchContract: Fragment() {
                         val result = response?.result
                         if (result != null) {
                             searchResult = result
-                            binding.rvContractList.adapter?.notifyDataSetChanged()
+                            binding.searchContractRecyclerView.adapter?.notifyDataSetChanged()
                         }
                     }
                 }
@@ -69,7 +74,8 @@ class FragmentSearchContract: Fragment() {
         }
 
         binding.apply {
-            tieNomorKontrak.apply {
+            searchContractNumber.apply {
+                imeOptions = EditorInfo.IME_ACTION_DONE
                 doOnTextChanged { text, start, before, count ->
                     viewModel.setQuery(text.toString())
                 }
@@ -81,9 +87,14 @@ class FragmentSearchContract: Fragment() {
                         postQuery()
                     }
                 }
+                setOnEditorActionListener { _, i, _ ->
+                    if (i == EditorInfo.IME_ACTION_DONE)
+                        KeyboardUtils.hide(requireActivity(), this)
+                    true
+                }
             }
 
-            button3.setOnClickListener {
+            searchContractButtonSubmit.setOnClickListener {
                 viewModel.apply {
                     if (viewModel.getQuery().value.isNullOrEmpty())
                         return@setOnClickListener
@@ -91,7 +102,7 @@ class FragmentSearchContract: Fragment() {
                     postQuery()
                 }
             }
-            binding.rvContractList.apply {
+            searchContractRecyclerView.apply {
 //            isNestedScrollingEnabled = false
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = object : RecyclerView.Adapter<ViewHolder>() {
@@ -112,14 +123,14 @@ class FragmentSearchContract: Fragment() {
                             }
 
                             bindingRv.apply {
-                                searchKontrak.text = strnamakontrak
-                                searchMitra.text = strnamaorg
-                                searchPlan.text = plan.toString()
-                                searchTarget.text = target.toString()
-                                docStatus.text =
+                                searchItemContractId.text = strnamakontrak
+                                searchItemContractName.text = strnamaorg
+                                searchItemContractPlanPm.text = plan.toString()
+                                searchItemContractActual.text = target.toString()
+                                searchItemContractStatus.text =
                                     if (status) "Active" else "Inactive"
-                                docProgressPercentage.text = "${simpleMath.toString()}%"
-                                searchProgress.progress = simpleMath ?: 0
+                                searchItemContractPercentage.text = "${simpleMath.toString()}%"
+                                searchItemContractProgress.progress = simpleMath ?: 0
                             }
                         }
 
@@ -137,19 +148,5 @@ class FragmentSearchContract: Fragment() {
                 }
             }
         }
-    }
-
-    lateinit var bindingRv: ComponentSearchItemBinding
-    private fun setRecyclerView() {
-
-        removeLoading()
-    }
-
-    private fun removeLoading() {
-        binding.searchLoading.visibility = View.GONE
-    }
-
-    private fun restoreLoading() {
-        binding.searchLoading.visibility = View.VISIBLE
     }
 }

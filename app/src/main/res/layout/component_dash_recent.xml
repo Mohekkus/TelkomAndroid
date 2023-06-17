@@ -13,7 +13,6 @@
     android:paddingBottom="8dp">
 
     <ImageView
-        android:id="@+id/iv_random_icon"
         android:layout_width="8dp"
         android:layout_height="8dp"
         app:srcCompat="@drawable/drawable_all_rounded_solid_darkest" />
@@ -42,7 +41,6 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView7"
         android:layout_width="8dp"
         android:layout_height="8dp"
         app:srcCompat="@drawable/ic_next" />

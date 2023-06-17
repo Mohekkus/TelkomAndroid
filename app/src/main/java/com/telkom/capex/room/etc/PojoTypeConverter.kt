@@ -4,6 +4,7 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.telkom.capex.room.entity.BudgetListDataEntity
+import com.telkom.capex.ui.menu.budget.helper.PercentageEnum
 import com.telkom.capex.ui.menu.budget.helper.model.BudgetListJsonItem
 import com.telkom.capex.ui.menu.budget.helper.model.BudgetListResultItem
 
@@ -43,23 +44,22 @@ class PojoTypeConverter {
     fun toJsonList(list: List<BudgetListJsonItem>): String {
         return Gson().toJson(list)
     }
-
     @TypeConverter
-    fun fromPairList(pairList: List<Pair<String, Double>>): String {
+    fun fromPairList(pairList: List<Pair<PercentageEnum, Double>>): String {
         val stringBuilder = StringBuilder()
         for ((first, second) in pairList) {
-            stringBuilder.append("$first:$second,")
+            stringBuilder.append("${first.name}:${second},")
         }
         return stringBuilder.toString().dropLast(1)
     }
 
     @TypeConverter
-    fun toPairList(pairListString: String): List<Pair<String, Double>> {
-        val pairList = mutableListOf<Pair<String, Double>>()
+    fun toPairList(pairListString: String): List<Pair<PercentageEnum, Double>> {
+        val pairList = mutableListOf<Pair<PercentageEnum, Double>>()
         val pairs = pairListString.split(",")
         for (pair in pairs) {
             val keyValue = pair.split(":")
-            val first = keyValue[0]
+            val first = enumValueOf<PercentageEnum>(keyValue[0])
             val second = keyValue[1].toDouble()
             pairList.add(Pair(first, second))
         }

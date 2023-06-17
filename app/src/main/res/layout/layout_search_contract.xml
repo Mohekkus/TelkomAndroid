@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout15"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -16,7 +15,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/new_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Search Contract"
@@ -30,7 +28,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
-        android:id="@+id/scrollView4"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,7 +41,6 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -58,19 +54,18 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/til_nomor_kontrak"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tie_nomor_kontrak"
+                            android:id="@+id/search_contract_number"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
                             android:hint="Nomor Kontrak" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <Button
-                        android:id="@+id/button3"
+                        android:id="@+id/search_contract_button_submit"
                         style="@style/Widget.AppCompat.Button.Borderless.Colored"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -82,7 +77,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_contract_list"
+                android:id="@+id/search_contract_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -90,7 +85,6 @@
     </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/search_loading"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/darkest40"
@@ -101,7 +95,6 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <ProgressBar
-            android:id="@+id/progressBar9"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

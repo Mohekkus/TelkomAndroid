@@ -22,7 +22,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_contract"
+                android:id="@+id/contract_add_text_input_layout_contract_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Contract"
@@ -33,7 +33,7 @@
                 app:hintTextColor="@android:color/darker_gray">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tiet_contract"
+                    android:id="@+id/contract_add_edittext_contract_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"

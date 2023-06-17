@@ -1,6 +1,8 @@
 package com.telkom.capex.ui.menu.budget
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,10 +29,13 @@ import com.telkom.capex.ui.menu.budget.viewmodel.BudgetSharedViewModel
 import com.telkom.capex.ui.menu.dashboard.helper.fragments.DashboardDialog
 import com.telkom.capex.ui.menu.search.model.SharedSearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.time.Year
 import java.util.Calendar
+import java.util.concurrent.Executors
 
 @AndroidEntryPoint
 class BudgetFragment : Fragment()  {
@@ -54,8 +59,15 @@ class BudgetFragment : Fragment()  {
         super.onViewCreated(view, savedInstanceState)
         viewmodel.apply {
             monthList.observe(requireActivity()) {
-                if (setData.value?.groupBy { it?.monthReferences }?.containsKey(it) == false)
-                    getDataList()
+                if (setData.value?.groupBy { it?.monthReferences }?.containsKey(it) == false) {
+                    lifecycleScope.launch {
+                        withContext(Dispatchers.IO) {
+                            // Perform network request or any long-running task here
+                            getDataList()
+                        }
+                        // Update the UI with the new data if necessary
+                    }
+                }
             }
             year.observe(requireActivity()) {
                 binding.rvMonthYear.adapter?.notifyDataSetChanged()
@@ -73,7 +85,6 @@ class BudgetFragment : Fragment()  {
                                     result
                                 )
                         }
-                        setRefreshing(true)
                     }
                     Status.LOADING -> {
 
@@ -84,8 +95,6 @@ class BudgetFragment : Fragment()  {
                     }
                 }
             }
-            if (binding.budgetRefresh.isRefreshing)
-                setRefreshing(true)
         }
 
         binding.apply {

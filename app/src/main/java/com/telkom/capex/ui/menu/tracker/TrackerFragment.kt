@@ -42,7 +42,7 @@ class TrackerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            budgetPager.apply {
+            bopPager.apply {
                 isUserInputEnabled = false
                 adapter = object : FragmentStateAdapter(this@TrackerFragment) {
                     override fun getItemCount(): Int = 1
@@ -67,7 +67,7 @@ class TrackerFragment : Fragment() {
 //                }
 //            }.attach()
 
-            buttonEditor.apply {
+            bopButtonAdd.apply {
                 viewModel.selectingItemList.observe(viewLifecycleOwner) {
                     if (it) {
                         setImageResource(R.drawable.ic_baseline_edit_24)

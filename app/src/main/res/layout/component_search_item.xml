@@ -20,7 +20,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/search_mitra"
+                android:id="@+id/search_item_contract_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -37,7 +37,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/doc_progress_percentage"
+                    android:id="@+id/search_item_contract_percentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -45,7 +45,7 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/doc_status"
+                    android:id="@+id/search_item_contract_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -63,7 +63,7 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/search_kontrak"
+                android:id="@+id/search_item_contract_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -97,7 +97,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pembayaran Terakhir:"
@@ -105,7 +104,6 @@
                     android:textSize="10sp" />
 
                 <TextView
-                    android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -117,7 +115,6 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Rp. 10.901.714.000"
@@ -141,7 +138,7 @@
                 android:progressDrawable="@drawable/drawable_dash_progressbar_nikon" />
 
             <ProgressBar
-                android:id="@+id/search_progress"
+                android:id="@+id/search_item_contract_progress"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -179,7 +176,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/search_plan"
+                        android:id="@+id/search_item_contract_plan_pm"
                         android:layout_width="match_parent"
                         android:layout_height="17dp"
                         android:gravity="center"
@@ -210,7 +207,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/search_target"
+                        android:id="@+id/search_item_contract_actual"
                         android:layout_width="match_parent"
                         android:layout_height="17dp"
                         android:autoText="true"

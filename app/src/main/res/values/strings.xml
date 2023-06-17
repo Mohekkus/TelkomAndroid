@@ -4,19 +4,11 @@
     <string name="title_budget">Budget</string>
     <string name="title_tracker">BOP</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 
     <string name="dash_scroll">DASH SCROLL STRING</string>
     <string name="dash_spinner">DASH SPINNER STRING</string>
-    <string name="title_activity_container">ContainerActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-    <string name="expanding_string">expand</string>
-    <string name="collapsing_string">collapse</string>
+    <string name="expanding_string">Perluas</string>
+    <string name="collapsing_string">Perkecil</string>
     <string name="array_null_data">No data to show</string>
     <string name="affrimation_done">Done</string>
     <string name="affrimation_progress">Progress</string>

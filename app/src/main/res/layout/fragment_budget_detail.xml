@@ -35,7 +35,6 @@
                     android:paddingBottom="8dp">
 
                     <TextView
-                        android:id="@+id/bud_detail_rv_mo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -43,7 +42,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rp."
@@ -51,7 +49,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/bud_detail_rv_val"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -65,7 +62,7 @@
                     android:layout_height="wrap_content">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/budget_detail_rv"
+                        android:id="@+id/budget_contracts_recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:isScrollContainer="false"

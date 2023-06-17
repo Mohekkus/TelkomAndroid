@@ -19,7 +19,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/overview_title2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="14dp"
@@ -75,7 +74,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/doc_status"
+                                    android:id="@+id/search_item_contract_status"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="8dp"
@@ -85,7 +84,6 @@
                             </LinearLayout>
 
                             <TextView
-                                android:id="@+id/tv_mitra_doc_detail"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
@@ -103,7 +101,6 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tv_description_doc_detail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Migrasi BRAS Banjarmasin dan Integrasi BRAS Ulin Platform Huawei "
@@ -191,7 +188,6 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView72"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="To"
@@ -249,7 +245,6 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView73"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Arrival"
@@ -296,7 +291,6 @@
                     android:visibility="visible">
 
                     <TextView
-                        android:id="@+id/bud_detail_rv_mo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -304,7 +298,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rp."
@@ -312,7 +305,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/bud_detail_rv_val"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

@@ -29,7 +29,6 @@
                     android:visibility="gone">
 
                     <FrameLayout
-                        android:id="@+id/frameLayout4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,7 +37,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ProgressBar
-                            android:id="@+id/progressbar"
                             style="?android:attr/progressBarStyleHorizontal"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
@@ -49,7 +47,6 @@
                     </FrameLayout>
 
                     <TextView
-                        android:id="@+id/textView36"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="50% \n of something"
@@ -123,7 +120,6 @@
                         android:paddingBottom="8dp">
 
                         <TextView
-                            android:id="@+id/textView38"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -131,7 +127,6 @@
                             android:textColor="@color/green_darkest" />
 
                         <TextView
-                            android:id="@+id/textView39"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -151,7 +146,6 @@
                         android:paddingBottom="8dp">
 
                         <TextView
-                            android:id="@+id/textView37"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -159,7 +153,6 @@
                             android:textColor="@color/green_darkest" />
 
                         <TextView
-                            android:id="@+id/textView40"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -177,7 +170,6 @@
                 android:visibility="gone">
 
                 <ImageView
-                    android:id="@+id/budget_list_back"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingStart="16dp"
@@ -185,14 +177,12 @@
                     app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/search_budget_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="24dp"
                     app:cardUseCompatPadding="true">
 
                     <SearchView
-                        android:id="@+id/budget_search"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:iconifiedByDefault="false"
@@ -202,7 +192,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/budget_filter_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -212,7 +201,6 @@
                 android:paddingBottom="12dp">
 
                 <TextView
-                    android:id="@+id/budget_filter_none"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
@@ -228,7 +216,6 @@
                     android:textAlignment="center" />
 
                 <TextView
-                    android:id="@+id/budget_filter_done"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
@@ -244,7 +231,6 @@
                     android:textColor="@color/green_darkest" />
 
                 <TextView
-                    android:id="@+id/budget_filter_progress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
@@ -261,7 +247,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/budget_container_rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -277,7 +262,7 @@
                 android:layout_height="match_parent">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/bop_rv"
+                    android:id="@+id/bop_list_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:isScrollContainer="false" />

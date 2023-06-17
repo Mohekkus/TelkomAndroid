@@ -72,7 +72,7 @@ class DashboardFragment : Fragment() {
                         it.data.let { dashboardResponse ->
                             val result = dashboardResponse?.result
                             result?.get(0)?.apply {
-                                assembleData(bintsumbast, intcountkont, bintsumnikon, bintsisapekerjaan, bintbastyear)
+                                assembleData(bintsumbast, intcountkont, bintsumnikon, bintsisapekerjaan, bintbastyear, intcountkontrakaktif, intcountcontrakselesaiNBSP)
                             }
                         }
                     }
@@ -106,13 +106,10 @@ class DashboardFragment : Fragment() {
             }
             binding.apply {
                 page.observe(viewLifecycleOwner) {
-                    dashPagerMonth.currentItem = it
+                    dashboardPagerMonth.currentItem = it
                 }
                 year.observe(viewLifecycleOwner) {
-                    dashYearHolder.text = it.toString()
-                }
-                dashCardNew.setOnClickListener {
-
+                    dashboardTextYear.text = it.toString()
                 }
             }
 
@@ -124,7 +121,7 @@ class DashboardFragment : Fragment() {
     private fun initiateActivity() {
         binding.apply {
             utility.timelyGreet.setGreeting(dashTime)
-            dashRefresh.setOnRefreshListener {
+            dashboardRefresh.setOnRefreshListener {
 
             }
             mehLottie.apply {
@@ -137,10 +134,10 @@ class DashboardFragment : Fragment() {
                 parentFragmentManager.findFragmentById(this.id)
             }
 
-            dashSelectMonth.setOnClickListener {
+            dashboardChangeMonthYear.setOnClickListener {
                 DashboardDialog(
                     viewModel.year.value?.toInt() ?: Calendar.getInstance().get(Calendar.YEAR),
-                    dashPagerMonth.currentItem
+                    dashboardPagerMonth.currentItem
                 ).apply {
                     setListener { _, y, m, _ ->
                         viewModel.apply {
@@ -150,35 +147,35 @@ class DashboardFragment : Fragment() {
                     }
                 }.show(childFragmentManager, "YeMonth Picker")
             }
-            dashKontrak.setOnClickListener {
+            dashboardContractCollapsedDetail.setOnClickListener {
                 isExpanding = when (isExpanding) {
                     true -> {
-                        textView6.text = getString(R.string.expanding_string)
-                        dashExpand.apply {
+                        dashboardContractCollapsedIndicator.text = getString(R.string.expanding_string)
+                        dashboardContractCollapsedIconAnimated.apply {
                             setMaxFrame(12)
                             resumeAnimation()
                             utility.animUtils.apply {
-                                expand(dashPercentage)
-                                collapse(dashDetail)
+                                expand(dashboardContractCollapsedMiniView)
+                                collapse(dashboardContractCollapsedDetailedView)
                             }
                         }
                         false
                     }
                     false -> {
-                        textView6.text = getString(R.string.collapsing_string)
-                        dashExpand.apply {
+                        dashboardContractCollapsedIndicator.text = getString(R.string.collapsing_string)
+                        dashboardContractCollapsedIconAnimated.apply {
                             setMaxFrame(6)
                             playAnimation()
                             utility.animUtils.apply {
-                                collapse(dashPercentage)
-                                expand(dashDetail)
+                                collapse(dashboardContractCollapsedMiniView)
+                                expand(dashboardContractCollapsedDetailedView)
                             }
                         }
                         true
                     }
                 }
             }
-            dashPieChart.apply {
+            dashboardSmilePiechart.apply {
                 setBackgroundColor(Color.TRANSPARENT)
                 webChromeClient = WebChromeClient()
                 settings.apply {
@@ -190,8 +187,8 @@ class DashboardFragment : Fragment() {
                     pie.observe(requireActivity()) {
                         when (it.status) {
                             Status.SUCCESS -> {
-                                dashPieChart.visibility = View.VISIBLE
-                                dashPieProgress.visibility = View.GONE
+                                dashboardSmilePiechart.visibility = View.VISIBLE
+                                dashboardSmileLoading.visibility = View.GONE
                                 it.data.let { dashboardResponse ->
                                     val result = dashboardResponse?.result
 
@@ -205,8 +202,8 @@ class DashboardFragment : Fragment() {
                                 }
                             }
                             Status.LOADING -> {
-                                dashPieChart.visibility = View.GONE
-                                dashPieProgress.visibility = View.VISIBLE
+                                dashboardSmilePiechart.visibility = View.GONE
+                                dashboardSmileLoading.visibility = View.VISIBLE
                             }
                             Status.ERROR -> {
                                 Snackbar.make(binding.root, "Something went wrong", Snackbar.LENGTH_SHORT)
@@ -216,11 +213,11 @@ class DashboardFragment : Fragment() {
                     }
                 }
             }
-            dashCardNew.setOnClickListener {
+            dashboardCardNew.setOnClickListener {
                 shared.setFlagTo(SharedSearchViewModel.DICTIONARY.CONTRACT)
                 findNavController().navigate(R.id.action_navigation_dashboard_to_fragmentSearchContract)
             }
-            dashSearch.setOnClickListener {
+            dashboardSearchContract.setOnClickListener {
                 shared.setFlagTo(SharedSearchViewModel.DICTIONARY.CONTRACT)
                 findNavController().navigate(R.id.action_navigation_dashboard_to_fragmentSearchContract)
             }
@@ -235,52 +232,55 @@ class DashboardFragment : Fragment() {
         bastValue: Long,
         bastContracts: Long,
         bastLeft: Long,
-        bastdone: Long
+        bastdone: Long,
+        active: Long,
+        inactive: Long
     ) {
         binding.apply {
+            dashboardOverviewTotalContracts.text = bastValue.toString()
+            dashboardOverviewTotalContractActive.text = active.toString()
+            dashboardOverviewTotalContractDone.text = inactive.toString()
             utility.money.apply {
-                dashTotal.text = format(bastTotal)
-                dashCountValue.text = formatToMil(bastContracts)
-                dashCountContracts.text = bastValue.toString()
-                dashRemain.text = format(bastLeft)
-                dashNikon.text = format(bastContracts)
-                dashBastYr.text = format(bastdone)
-
-                percentage(
-                    bastContracts, bastLeft
-                ).apply {
-                    dashProgressLeft.progress = this
-                    dashPercentageContractRemain.text = "$this%"
-                    dashPercentageContractRemainExpand.text = "$this%"
-                }
+                dashboardOverviewTotalValue.text = format(bastTotal)
+                dashboardDetailedContractRemain.text = format(bastLeft)
+                dashboardOverviewContractValue.text = format(bastContracts)
+                dashboardDetailedContractBastDone.text = format(bastdone)
 
                 percentage(
                     bastContracts,
                     bastdone
                 ).apply {
-                    dashProgressBast.progress = this
-                    dashPercentageContractBast.text = "$this%"
-                    dashPercentageContractBastExpand.text = "$this%"
+                    dashboardProgressBastDone.progress = this
+                    dashboardOverviewPercentageDone.text = "$this%"
+                    dashboardDetailedPercentageDone.text = "$this%"
+                }
+
+                percentage(
+                    bastContracts, bastLeft
+                ).apply {
+                    dashboardProgressContractValue.progress = this
+                    dashboardOverviewPercentageRemain.text = "$this%"
+                    dashboardDetailedPercentageRemain.text = "$this%"
                 }
             }
 
-            dashRefresh.isRefreshing = false
+            dashboardRefresh.isRefreshing = false
         }
     }
 
     private fun checkBarData(resultChart: DashboardYearResultItem) {
         binding.apply {
-            dashYearHolder.text = viewModel.year.value.toString()
+            dashboardTextYear.text = viewModel.year.value.toString()
             
             if (resultChart.arrays.isNullOrEmpty() || resultChart.arrays.sum() < 1) {
                 dataNullBarChart()
                 return
             }
 
-            dashPagerMonth.apply {
+            dashboardPagerMonth.apply {
                 if (visibility == View.GONE) {
                     visibility = View.VISIBLE
-                    tvNullData.text = ""
+                    dashboardPagerTextNull.text = ""
                 }
 
                 adapter = object : FragmentStateAdapter(this@DashboardFragment) {
@@ -293,7 +293,8 @@ class DashboardFragment : Fragment() {
 
                 currentItem = Calendar.getInstance().get(Calendar.MONTH)
             }
-            dashColChart.apply {
+
+            dashboardBastBarchart.apply {
                 if (visibility == View.GONE)
                     visibility = View.VISIBLE
 
@@ -313,7 +314,7 @@ class DashboardFragment : Fragment() {
                 addJavascriptInterface( object {
                     @JavascriptInterface
                     fun onClick(columnIndex : Int) {
-                        dashPagerMonth.setCurrentItem(columnIndex, true)
+                        dashboardPagerMonth.setCurrentItem(columnIndex, true)
                     }
                 }, "Android")
             }
@@ -323,9 +324,10 @@ class DashboardFragment : Fragment() {
 
     private fun dataNullBarChart() {
         binding.apply {
-            dashPagerMonth.visibility = View.GONE
-            dashColChart.visibility = View.GONE
-            tvNullData.text = getString(R.string.array_null_data)
+            dashboardPagerMonth.visibility = View.GONE
+            dashboardBastBarchart.visibility = View.GONE
+
+            dashboardPagerTextNull.text = getString(R.string.array_null_data)
         }
     }
 }

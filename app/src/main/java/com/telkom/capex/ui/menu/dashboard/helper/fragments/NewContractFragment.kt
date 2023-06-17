@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.telkom.capex.R
 import com.telkom.capex.databinding.ComponentContractInputNameBinding
@@ -34,7 +35,7 @@ class NewContractFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            edittextAmount.apply {
+            contractAddValue.apply {
                 addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
@@ -45,9 +46,9 @@ class NewContractFragment : Fragment() {
                     }
                 })
             }
-            contractRequirement.apply {
+            contractAddDynamic.apply {
                 ComponentContractSpinnerUnitBinding.inflate(layoutInflater).apply {
-                    unitSelection.apply {
+                    contractAddSpinnerUnit.apply {
                         adapter = ArrayAdapter.createFromResource(
                             requireContext(),
                             R.array.unit_list,
@@ -61,7 +62,7 @@ class NewContractFragment : Fragment() {
                                 id: Long
                             ) {
                                 parent?.getItemAtPosition(pos).toString().apply {
-                                    unitName.text = this
+                                    contractAddSpinnerItemName.text = this
 //                                    Snackbar.make(
 //                                        requireView().rootView,
 //                                        this,
@@ -74,26 +75,25 @@ class NewContractFragment : Fragment() {
                         }
                     }
 
-                    spinnerActivator.setOnClickListener {
-                        unitSelection.performClick()
+                    contractAddSpinnerTrigger.setOnClickListener {
+                        contractAddSpinnerUnit.performClick()
                     }
                     addView(this.root)
                 }
                 ComponentContractInputNameBinding.inflate(layoutInflater).apply {
-
-                    tietContract.apply {
+                    contractAddEdittextContractName.apply {
                         onFocusChangeListener = View.OnFocusChangeListener { _, b ->
-                            if (b) tilContract.helperText = ""
-                            else tilContract.helperText = "Tap to input new contract header"
+                            if (b) contractAddTextInputLayoutContractName.helperText = ""
+                            else contractAddTextInputLayoutContractName.helperText = "Tap to input new contract header"
                         }
                     }
                     addView(this.root)
                 }
-                buttonSave.apply {
+                contractAddButtonSave.apply {
                     val validation = false
 
                     if (!validation) setBackgroundColor(
-                        resources.getColor(R.color.white_kinda)
+                        ContextCompat.getColor(requireContext(), R.color.white_kinda)
                     )
                     setOnClickListener {
                         if (!validation)
