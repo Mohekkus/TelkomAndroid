@@ -145,7 +145,6 @@
                     android:layout_weight="1">
 
                     <ProgressBar
-                        android:id="@+id/budget_list_item_progress_rkap"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -154,12 +153,12 @@
                         android:progressDrawable="@drawable/drawable_dash_progressbar_nikon" />
 
                     <ProgressBar
-                        android:id="@+id/progress_rkap"
+                        android:id="@+id/budget_list_item_progress_rkap"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:max="100"
-                        android:progress="20"
+                        android:progress="10"
                         android:progressDrawable="@drawable/drawable_dash_progressbar_left" />
 
                 </FrameLayout>

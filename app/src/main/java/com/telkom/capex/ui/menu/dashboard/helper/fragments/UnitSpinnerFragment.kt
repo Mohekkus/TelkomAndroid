@@ -57,7 +57,7 @@ class UnitSpinnerFragment: Fragment() {
                                     pos: Int,
                                     id: Long
                                 ) {
-                                    viewModel.getPie(pos)
+                                    viewModel.getPie(pos + 1)
                                 }
 
                                 override fun onNothingSelected(p0: AdapterView<*>?) {}

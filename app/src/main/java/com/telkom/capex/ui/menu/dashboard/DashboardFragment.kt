@@ -2,6 +2,7 @@ package com.telkom.capex.ui.menu.dashboard
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,11 +51,15 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.apply {
+            isRefreshing.observe(requireActivity()) {
+                if (it) getDashboard()
+            }
             division.observe(requireActivity()) { handler ->
                 when (handler.status) {
                     Status.SUCCESS -> {
                         handler.data.let { res ->
-                            getPie(res?.result?.get(0)?.intidorg ?: 0)
+                            Log.e("Division", res?.result?.get(0)?.intidorg.toString())
+                            if (res?.result?.get(0)?.intidorg != null) getPie(res.result[0].intidorg ?: 0)
                         }
                     }
                     Status.LOADING -> {
@@ -75,6 +80,7 @@ class DashboardFragment : Fragment() {
                                 assembleData(bintsumbast, intcountkont, bintsumnikon, bintsisapekerjaan, bintbastyear, intcountkontrakaktif, intcountcontrakselesaiNBSP)
                             }
                         }
+                        if (isRefreshing.value == true) setRefreshing(false)
                     }
                     Status.LOADING -> {
 
@@ -122,7 +128,7 @@ class DashboardFragment : Fragment() {
         binding.apply {
             utility.timelyGreet.setGreeting(dashTime)
             dashboardRefresh.setOnRefreshListener {
-
+                viewModel.setRefreshing(true)
             }
             mehLottie.apply {
                 setOnClickListener {
@@ -245,6 +251,9 @@ class DashboardFragment : Fragment() {
                 dashboardDetailedContractRemain.text = format(bastLeft)
                 dashboardOverviewContractValue.text = format(bastContracts)
                 dashboardDetailedContractBastDone.text = format(bastdone)
+                dashboardDetailedTextBastDoneWYear.append(
+                    viewModel.year.value.toString()
+                )
 
                 percentage(
                     bastContracts,

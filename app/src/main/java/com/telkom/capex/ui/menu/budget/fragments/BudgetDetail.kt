@@ -2,10 +2,10 @@ package com.telkom.capex.ui.menu.budget.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -19,6 +19,7 @@ import com.telkom.capex.etc.Utility
 import com.telkom.capex.network.utility.Status
 import com.telkom.capex.ui.menu.budget.helper.model.BudgetDetailMonthlyResultItem
 import com.telkom.capex.ui.menu.budget.helper.model.BudgetDetailResultItem
+import com.telkom.capex.ui.menu.budget.helper.model.MonthlyDataItem
 import com.telkom.capex.ui.menu.budget.viewmodel.BudgetSharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -39,18 +40,6 @@ class BudgetDetail: Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        shared.apply {
-//            changesLog.observe(requireActivity()) {
-//                if (it.isNullOrEmpty()) return@observe
-//
-//                Snackbar.make(binding.linearLayout3, it, Snackbar.LENGTH_LONG).show()
-//                setChangeLog("")
-//            }
-
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -80,7 +69,12 @@ class BudgetDetail: Fragment() {
                         it.data.let {
                             val result = it?.result
                             result?.let { res ->
-                                currentMonthValue(res)
+                                val data = res[0]
+                                    .mdata
+                                    ?.get(shared.monthList.value ?: MonthModifier.currentMonthInt())
+                                    ?: return@observe
+
+                                setHighlightedData(data)
                             }
                         }
                     }
@@ -93,12 +87,11 @@ class BudgetDetail: Fragment() {
                     }
                 }
             }
+            highlightedData.observe(requireActivity()) {
+                setMonthValue(it)
+            }
         }
         binding.apply {
-            shared.apply {
-                val month = MonthModifier.getMonth(monthList.value?.toInt() ?: 0)
-                budgetDate.text = "$month, ${year.value.toString()}"
-            }
             budgetPager.apply {
                 adapter = object : FragmentStateAdapter(this@BudgetDetail) {
                     override fun getItemCount(): Int = 2
@@ -182,13 +175,53 @@ class BudgetDetail: Fragment() {
         }
     }
 
-    private fun currentMonthValue(res: List<BudgetDetailMonthlyResultItem>) {
-        val data = res[0].mdata?.get(shared.monthList.value ?: MonthModifier.currentMonthInt())
+    private fun setMonthValue(data: MonthlyDataItem?) {
+        if (data == null) return
         binding.apply {
+            shared.apply {
+                val month = MonthModifier.getMonth(detailMonth.value ?: 0)
+                budgetDate.text = "$month, ${year.value.toString()}"
+            }
+
             utility.money.apply {
-                budgetActual.text = format(data?.actual ?: 0)
-                budgetPlanRkap.text = format(data?.planningRKAP ?: 0)
-                budgetPlanPm.text = format(data?.planningPM ?: 0)
+                data.apply {
+
+                    budgetActual.text = format(actual)
+                    budgetPlanRkap.text = format(planningRKAP)
+                    budgetPlanPm.text = format(planningPM)
+
+                    if (planningPM < planningRKAP)
+                        progressDetailPm.bringToFront()
+                    else
+                        progressDetailRkap.bringToFront()
+
+                    progressDetailPm.progress = percentage(actual, planningPM)
+                    progressDetailRkap.progress = percentage(actual, planningRKAP)
+                    budgetDetailTxtRkapWithPercentage.apply {
+                        if (text.toString().contains('('))
+                            text = text
+                                .replace(
+                                    Regex("\\(.*\\)"),
+                                    "(${percentage(actual,planningRKAP)}%)"
+                                )
+                        else
+                            append(
+                                " (${percentage(actual,planningRKAP)}%)"
+                            )
+                    }
+                    budgetDetailTxtPmWithPercentage.apply {
+                        if (text.toString().contains('('))
+                            text = text
+                                .replace(
+                                    Regex("\\(.*\\)"),
+                                    "(${percentage(actual,planningPM)}%)"
+                                )
+                        else
+                            append(
+                                " (${percentage(actual,planningPM)}%)"
+                            )
+                    }
+                }
             }
         }
     }

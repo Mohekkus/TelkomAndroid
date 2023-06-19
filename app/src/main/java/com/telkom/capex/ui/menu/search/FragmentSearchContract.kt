@@ -122,14 +122,16 @@ class FragmentSearchContract: Fragment() {
                                 simpleMath = ((plan.toDouble() / target.toDouble()) * 100).roundToInt()
                             }
 
+                            Log.e("Search Result", data?.strnamamitra.toString())
                             bindingRv.apply {
                                 searchItemContractId.text = strnamakontrak
-                                searchItemContractName.text = strnamaorg
+                                searchItemContractName.text = strnamamitra
                                 searchItemContractPlanPm.text = plan.toString()
                                 searchItemContractActual.text = target.toString()
                                 searchItemContractStatus.text =
                                     if (status) "Active" else "Inactive"
-                                searchItemContractPercentage.text = "${simpleMath.toString()}%"
+                                searchItemContractPercentage.text =
+                                    if (simpleMath == null) "0%" else "${simpleMath.toString()}%"
                                 searchItemContractProgress.progress = simpleMath ?: 0
                             }
                         }

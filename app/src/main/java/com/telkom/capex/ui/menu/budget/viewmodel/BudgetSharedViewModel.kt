@@ -46,10 +46,6 @@ class BudgetSharedViewModel @Inject constructor(
     val data: LiveData<ServiceHandler<BudgetListResponse>>
         get() = _data
 
-    private var _setData = MutableLiveData<MutableList<BudgetListDataEntity?>>()
-    val setData: LiveData<MutableList<BudgetListDataEntity?>>
-        get() = _setData
-
     init {
         viewModelScope.launch {
             repo.getListBudget(MonthModifier.currentMonthInt(), Year.now().value, 1).let {
@@ -71,7 +67,6 @@ class BudgetSharedViewModel @Inject constructor(
     }
     val year: LiveData<Int>
         get() = _year
-
     fun setYear(year: Int) {
         _year.value = year
     }
@@ -81,8 +76,15 @@ class BudgetSharedViewModel @Inject constructor(
     }
     val monthList: LiveData<Int> = _monthList
     fun setMonthList(data: Int) {
-        println("pos: $data")
         _monthList.value = data
+    }
+
+    private val _detailMonth = MutableLiveData<Int>().apply {
+        value = MonthModifier.currentMonthInt()
+    }
+    val detailMonth: LiveData<Int> = _detailMonth
+    fun setDetailMonth(data: Int) {
+        _detailMonth.value = data + 1
     }
 
     private val _setting = MutableLiveData<Boolean> ().apply {
@@ -147,7 +149,6 @@ class BudgetSharedViewModel @Inject constructor(
     private var _monthlyData = MutableLiveData<ServiceHandler<BudgetDetailMonthlyResponse>>()
     val monthlyData: LiveData<ServiceHandler<BudgetDetailMonthlyResponse>>
         get() = _monthlyData
-
     private fun getMonthlyData(id: Int) {
         viewModelScope.launch {
             repo.getMonthly(id, monthList.value ?: MonthModifier.currentMonthInt(), year.value ?: Year.now().value)
@@ -246,6 +247,9 @@ class BudgetSharedViewModel @Inject constructor(
         }
     }
 
+    private var _setData = MutableLiveData<MutableList<BudgetListDataEntity?>>()
+    val setData: LiveData<MutableList<BudgetListDataEntity?>>
+        get() = _setData
     fun getDataList() {
         if (setData.value?.groupBy { it?.monthReferences }?.containsKey(monthList.value) == true) return
         viewModelScope.launch {
@@ -289,20 +293,30 @@ class BudgetSharedViewModel @Inject constructor(
         }
     }
 
+    private var _highlightedData = MutableLiveData<MonthlyDataItem>()
+    val highlightedData: LiveData<MonthlyDataItem>
+        get() = _highlightedData
+    fun setHighlightedData(data: MonthlyDataItem) {
+        _highlightedData.value = data
+    }
+
     private var _copiedData = MutableLiveData<Pair<Int, MonthlyDataItem>>()
     val copiedData: LiveData<Pair<Int, MonthlyDataItem>>
         get() = _copiedData
 
     fun copyData(data: MonthlyDataItem?, position: Int) {
         if (data == null) return
-//        val dataset = data
 
-        _copiedData.value = Pair(position, MonthlyDataItem(
-            planningPM =  data.planningPM,
-            planningRKAP = data.planningRKAP,
-            actual = data.actual
-        )
-        )
+        data.apply {
+            _copiedData.value = Pair(
+                position,
+                MonthlyDataItem(
+                    planningPM =  planningPM,
+                    planningRKAP = planningRKAP,
+                    actual = actual
+                )
+            )
+        }
     }
 
     fun updatedCopiedData(position: Int, value: Long) {

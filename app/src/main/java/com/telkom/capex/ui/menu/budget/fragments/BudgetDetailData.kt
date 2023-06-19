@@ -62,8 +62,17 @@ class BudgetDetailData : Fragment()  {
                             val result = it?.result
                             result?.let { res ->
                                 listdata = res[0].mdata
-                                binding.
-                                    budgetContractsRecyclerView.adapter?.notifyDataSetChanged()
+
+                                binding.apply {
+                                    recyclerMonth()
+                                    budgetDetailTotalBast.apply {
+                                        var total = 0L
+                                        listdata?.forEach {
+                                            total += it.actual
+                                        }
+                                        text = utility.money.format(total)
+                                    }
+                                }
                             }
                         }
                     }
@@ -76,12 +85,11 @@ class BudgetDetailData : Fragment()  {
                     }
                 }
             }
-//            changesLog.observe(requireActivity()) {
-//                Snackbar.make(binding.root, it, Snackbar.LENGTH_SHORT).show()
-//            }
         }
-        binding.apply {
+    }
 
+    private fun recyclerMonth() {
+        binding.apply {
             budgetContractsRecyclerView.apply {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = object : RecyclerView.Adapter<ViewHolder>() {
@@ -95,22 +103,28 @@ class BudgetDetailData : Fragment()  {
                     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
                         val data = listdata?.get(position)
                         val month = MonthModifier.getMonth( position + 1)
+                        println(month)
                         rvBinding.apply {
-                            shared.editting.observe(requireActivity()) {
-                                if (it) {
-                                    imageEditable.visibility = View.VISIBLE
-                                    textEditable.visibility = View.VISIBLE
-                                    triggerEditable.setOnClickListener {
-                                        shared.copyData(data, position)
-                                        betterShittyRadioButton(
-                                            data,
-                                            "$month, ${shared.year.value}"
-                                        )
+                            shared.apply {
+                                editting.observe(requireActivity()) {
+                                    if (it) {
+                                        imageEditable.visibility = View.VISIBLE
+                                        textEditable.visibility = View.VISIBLE
+                                        triggerEditable.setOnClickListener {
+                                            copyData(data, position)
+                                            betterShittyRadioButton(
+                                                data,
+                                                "$month, ${shared.year.value}"
+                                            )
+                                        }
+                                    } else {
+                                        imageEditable.visibility = View.GONE
+                                        textEditable.visibility = View.GONE
+                                        triggerEditable.setOnClickListener {
+                                            setDetailMonth(position)
+                                            setHighlightedData(data ?: return@setOnClickListener)
+                                        }
                                     }
-                                } else {
-                                    imageEditable.visibility = View.GONE
-                                    textEditable.visibility = View.GONE
-                                    triggerEditable.setOnClickListener {  }
                                 }
                             }
                             textBastMonth.text = "BAST $month"
@@ -170,9 +184,6 @@ class BudgetDetailData : Fragment()  {
                                                 text =
                                                     if (textTemp == "") "Weird, I presence there is no data change"
                                                     else textTemp
-
-                                                println(data?.planningPM)
-                                                println(value?.planningPM)
                                             }
                                         }
                                     }
@@ -187,7 +198,6 @@ class BudgetDetailData : Fragment()  {
     private lateinit var botDialog: ComponentBudgetEditBinding
     lateinit var rvEditBinding: ComponentBudgetCardBinding
     private fun betterShittyRadioButton(data: MonthlyDataItem?, title: String) {
-
         botDialog = ComponentBudgetEditBinding.inflate(layoutInflater)
             .apply {
                 textEditTitle.text = title
