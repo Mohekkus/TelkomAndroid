@@ -1,5 +1,3 @@
-Implementing API --
-
-v Login
-x Dashboard and etc
-
+req: add smile (whatsapp chat)
+req: add database with 1 hour time span (database add time int compare with current millis
+req: add paging list
